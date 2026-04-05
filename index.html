@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Pearl Hotel Staffing | Kampala's #1 Hotel Staffing & Revenue Agency</title>
+  <meta name="theme-color" content="#e2b13c">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0a0a;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      color: white;
+      padding-bottom: 70px;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+      padding: 16px;
+      border-bottom: 3px solid #e2b13c;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo h1 {
+      color: #e2b13c;
+      font-size: 22px;
+      text-align: center;
+    }
+
+    .logo p {
+      font-size: 11px;
+      color: #888;
+      text-align: center;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 6px 12px;
+      background: #222;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      background: #e2b13c;
+      color: black;
+    }
+
+    .btn-gold {
+      background: #e2b13c !important;
+      color: black !important;
+    }
+
+    .hero {
+      padding: 60px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 span {
+      color: #e2b13c;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #ccc;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      margin: 5px;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: #e2b13c;
+      color: black;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.05);
+      background: #c99f2e;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid #e2b13c;
+      color: #e2b13c;
+    }
+
+    .btn-secondary:hover {
+      background: #e2b13c;
+      color: black;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px 20px;
+      background: #111;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      background: #1a1a1a;
+      padding: 25px;
+      border-radius: 16px;
+      text-align: center;
+      min-width: 120px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .stat:hover {
+      transform: translateY(-5px);
+      border: 1px solid #e2b13c;
+    }
+
+    .stat h3 {
+      color: #e2b13c;
+      font-size: 32px;
+    }
+
+    .stat p {
+      font-size: 12px;
+      color: #888;
+    }
+
+    .pricing-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 20px;
+      flex: 1;
+      min-width: 250px;
+      text-align: center;
+      border: 1px solid #333;
+      transition: 0.3s;
+    }
+
+    .pricing-card:hover {
+      border-color: #e2b13c;
+      transform: translateY(-5px);
+    }
+
+    .pricing-card.popular {
+      border: 2px solid #e2b13c;
+      background: #1f1f1f;
+    }
+
+    .price {
+      font-size: 28px;
+      color: #e2b13c;
+      margin: 15px 0;
+      font-weight: bold;
+    }
+
+    .pricing-card ul {
+      list-style: none;
+      margin: 20px 0;
+    }
+
+    .pricing-card li {
+      padding: 8px 0;
+      border-bottom: 1px solid #333;
+    }
+
+    .service-grid,
+    .job-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+      padding: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .service-card,
+    .job-card {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid #333;
+    }
+
+    .commission-badge {
+      background: #e2b13c;
+      color: black;
+      padding: 5px 10px;
+      border-radius: 20px;
+      display: inline-block;
+      font-weight: bold;
+      margin: 5px;
+    }
+
+    .broker-badge {
+      background: #ff9800;
+      color: black;
+      padding: 5px 10px;
+      border-radius: 20px;
+      display: inline-block;
+      font-weight: bold;
+      margin: 5px;
+    }
+
+    .partner-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .partner-card {
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      flex: 1;
+      min-width: 250px;
+      border: 1px solid #333;
+    }
+
+    .partner-card h3 {
+      margin-bottom: 15px;
+    }
+
+    .contact-bar {
+      background: #1a1a1a;
+      padding: 20px;
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+
+    .contact-bar a {
+      color: #e2b13c;
+      text-decoration: none;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #1a1a1a;
+      padding: 25px;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 90%;
+      border: 1px solid #e2b13c;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      background: #222;
+      border: 1px solid #333;
+      color: white;
+      border-radius: 8px;
+    }
+
+    /* FIXED: Scrollable dropdown styles */
+    .scrollable-select {
+      margin: 10px 0;
+    }
+
+    .scrollable-select select {
+      width: 100%;
+      padding: 10px;
+      background: #222;
+      border: 1px solid #444;
+      color: white;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    /* Make dropdown show many options at once */
+    select[size] {
+      height: auto;
+      min-height: 180px;
+    }
+
+    select option {
+      padding: 10px;
+      border-bottom: 1px solid #333;
+    }
+
+    select optgroup {
+      font-weight: bold;
+      color: #e2b13c;
+      background: #1a1a1a;
+      padding: 8px;
+    }
+
+    .close {
+      float: right;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 80px;
+      left: 20px;
+      right: 20px;
+      background: #2e7d32;
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+      z-index: 1000;
+      display: none;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #1a1a1a;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px;
+      border-top: 1px solid #e2b13c;
+      z-index: 100;
+    }
+
+    .bottom-nav button {
+      background: none;
+      border: none;
+      color: #888;
+      font-size: 11px;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .photo-preview {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 10px auto;
+      display: block;
+      border: 2px solid #e2b13c;
+    }
+
+    .roi-banner {
+      background: linear-gradient(95deg, #e2b13c10, #0a0a0a);
+      border-left: 4px solid #e2b13c;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 800px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+
+      .service-grid,
+      .job-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 1000px;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+      }
+
+      .stats {
+        gap: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="logo">
+      <h1>🏨 PEARL HOTEL STAFFING</h1>
+      <p>Kampala's #1 Staffing & Revenue Growth Agency</p>
+    </div>
+    <div class="nav-links">
+      <a onclick="showSection('home')">Home</a>
+      <a onclick="showSection('pricing')">Pricing</a>
+      <a onclick="showSection('jobs')">Jobs</a>
+      <a onclick="showSection('partners')">Earn 16% / 40%</a>
+      <a onclick="openStaffRegister()" class="btn-gold">Register</a>
+      <a onclick="openAdmin()">Admin</a>
+    </div>
+  </div>
+
+  <div id="homeSection">
+    <div class="hero">
+      <h1>Find <span>Hotel Jobs</span> Near You in <span>Kampala</span></h1>
+      <p>Upload CV & Photo. Connect with hotels, restaurants, cafes, bars & clubs. Earn up to 40% commission as a broker.</p>
+      <div>
+        <button class="btn-primary" onclick="openStaffRegister()">🔍 Find Work (CV + Photo)</button>
+        <button class="btn-primary" onclick="openCompanyRegister()">🏢 Post a Job</button>
+        <button class="btn-secondary" onclick="showSection('partners')">💰 Earn 40% as Broker</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat" onclick="showSection('stafflist')">
+        <h3 id="staffCount">0</h3>
+        <p>Staff</p>
+      </div>
+      <div class="stat" onclick="showSection('jobs')">
+        <h3 id="jobCount">0</h3>
+        <p>Jobs</p>
+      </div>
+      <div class="stat" onclick="showSection('promoters')">
+        <h3 id="promoterCount">0</h3>
+        <p>Promoters</p>
+      </div>
+      <div class="stat" onclick="showSection('brokers')">
+        <h3 id="brokerCount">0</h3>
+        <p>Brokers</p>
+      </div>
+    </div>
+
+    <div class="roi-banner">
+      <h3>📈 ROI Guarantee</h3>
+      <p>Investing UGX 1,000,000 in our Professional Plan typically returns <strong>UGX 4,000,000+</strong> in new revenue. That's a <strong>300% ROI</strong>.</p>
+    </div>
+  </div>
+
+  <div id="pricingSection" style="display:none;">
+    <h2 style="text-align:center; padding:30px 20px 0;">📊 Investment Plans</h2>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>📱 Starter</h3>
+        <div class="price">UGX 500k <span style="font-size:14px;">/month</span></div>
+        <ul>
+          <li>✅ Digital Marketing Setup</li>
+          <li>✅ Basic Staff Placement</li>
+          <li>✅ Monthly Report</li>
+        </ul>
+        <button class="btn-primary" onclick="selectPlan('Starter', 500000)">Select Plan</button>
+      </div>
+      <div class="pricing-card popular">
+        <h3>⭐ Professional</h3>
+        <div class="price">UGX 1.5M <span style="font-size:14px;">/month</span></div>
+        <ul>
+          <li>✅ Upselling Training</li>
+          <li>✅ Menu Engineering</li>
+          <li>✅ Weekly Consultations</li>
+          <li>✅ Guest Retention System</li>
+        </ul>
+        <button class="btn-primary" onclick="selectPlan('Professional', 1500000)">Most Popular</button>
+      </div>
+      <div class="pricing-card">
+        <h3>👑 Elite</h3>
+        <div class="price">Custom</div>
+        <ul>
+          <li>✅ Full Agency Partnership</li>
+          <li>✅ Profit-Share Model</li>
+          <li>✅ Dedicated Account Manager</li>
+        </ul>
+        <button class="btn-primary" onclick="openRevenueConsult()">Contact Us</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="jobsSection" style="display:none;">
+    <h2 style="text-align:center; padding:30px 20px 0;">📍 Jobs Near You</h2>
+    <div class="job-grid" id="jobListings"></div>
+  </div>
+
+  <div id="stafflistSection" style="display:none;">
+    <h2 style="text-align:center; padding:30px 20px 0;">👥 Registered Staff</h2>
+    <div class="job-grid" id="staffListings"></div>
+  </div>
+
+  <div id="partnersSection" style="display:none;">
+    <h2 style="text-align:center; padding:30px 20px 0;">🤝 Partner Ecosystem</h2>
+    <div class="partner-grid">
+      <div class="partner-card">
+        <div class="commission-badge">💰 16% COMMISSION</div>
+        <h3>Promoter</h3>
+        <p>Share links & earn 16% on every sale.</p>
+        <button class="btn-primary" onclick="openPromoterForm()">Become Promoter</button>
+      </div>
+      <div class="partner-card">
+        <div class="broker-badge">💰 40% COMMISSION</div>
+        <h3>Broker</h3>
+        <p>Recruit staff OR bring hotel clients. Earn 40%.</p>
+        <button class="btn-primary" onclick="openBrokerForm()">Become Broker</button>
+      </div>
+    </div>
+    <div style="text-align:center; padding:20px;">
+      <button class="btn-secondary" onclick="openBrokerStaffSubmit()">📋 Broker: Submit Staff (Earn 40%)</button>
+      <button class="btn-secondary" onclick="openBrokerJobSubmit()">📢 Broker: Submit Job (Earn 40%)</button>
+    </div>
+  </div>
+
+  <!-- STAFF MODAL - FIXED SCROLLABLE DROPDOWNS -->
+  <div id="staffModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeStaffModal()">&times;</span>
+      <h2>📋 Staff Registration</h2>
+      <input type="text" id="staffName" placeholder="Full Name *">
+      <input type="tel" id="staffPhone" placeholder="WhatsApp *">
+      <input type="email" id="staffEmail" placeholder="Email">
+
+      <label style="color:#e2b13c; margin-top:10px;">📍 Select Your Location:</label>
+      <div class="scrollable-select">
+        <select id="staffLocation" size="8">
+          <option value="">-- Select Location --</option>
+          <optgroup label="📍 CENTRAL KAMPALA">
+            <option>Kampala CBD</option>
+            <option>Kololo</option>
+            <option>Naguru</option>
+            <option>Mbuya</option>
+            <option>Bugolobi</option>
+            <option>Namuwongo</option>
+          </optgroup>
+          <optgroup label="📍 SOUTH KAMPALA">
+            <option>Kansanga</option>
+            <option>Gaba</option>
+            <option>Munyonyo</option>
+            <option>Lubowa</option>
+            <option>Kajjansi</option>
+            <option>Entebbe</option>
+            <option>Makindye</option>
+            <option>Luzira</option>
+          </optgroup>
+          <optgroup label="📍 EAST KAMPALA">
+            <option>Ntinda</option>
+            <option>Najjera</option>
+            <option>Kira</option>
+            <option>Bweyogerere</option>
+            <option>Kyambogo</option>
+            <option>Matugga</option>
+          </optgroup>
+          <optgroup label="📍 NORTH KAMPALA">
+            <option>Wandegeya</option>
+            <option>Bwaise</option>
+            <option>Kawempe</option>
+            <option>Gayaza</option>
+          </optgroup>
+          <optgroup label="📍 WEST KAMPALA">
+            <option>Rubaga</option>
+            <option>Ndeeba</option>
+            <option>Muyenga</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <label style="color:#e2b13c; margin-top:10px;">💼 Select Job Position:</label>
+      <div class="scrollable-select">
+        <select id="staffPosition" size="10">
+          <option value="">-- Select Position --</option>
+          <optgroup label="🍳 KITCHEN DEPARTMENT">
+            <option>Executive Chef</option>
+            <option>Sous Chef</option>
+            <option>Commis Chef</option>
+            <option>Pastry Chef</option>
+            <option>Pizza Chef</option>
+            <option>Kitchen Helper</option>
+            <option>Kitchen Steward</option>
+            <option>Demi Chef</option>
+          </optgroup>
+          <optgroup label="🍽️ SERVICE DEPARTMENT">
+            <option>Waiter/Waitress</option>
+            <option>Sommelier</option>
+            <option>Restaurant Supervisor</option>
+            <option>Captain Waiter</option>
+            <option>Barista</option>
+            <option>Bartender</option>
+            <option>Bar Back</option>
+            <option>Head Waiter</option>
+          </optgroup>
+          <optgroup label="🛎️ FRONT OFFICE">
+            <option>Receptionist</option>
+            <option>Front Desk Agent</option>
+            <option>Guest Relations Officer</option>
+            <option>Reservation Agent</option>
+            <option>Concierge</option>
+            <option>Night Auditor</option>
+          </optgroup>
+          <optgroup label="🧹 HOUSEKEEPING">
+            <option>Room Attendant</option>
+            <option>Housekeeping Supervisor</option>
+            <option>Laundry Attendant</option>
+            <option>Public Area Cleaner</option>
+            <option>Housekeeper</option>
+          </optgroup>
+          <optgroup label="📊 MANAGEMENT">
+            <option>Hotel Manager</option>
+            <option>Operations Manager</option>
+            <option>Food & Beverage Manager</option>
+            <option>General Manager</option>
+            <option>Assistant Manager</option>
+            <option>Sales Manager</option>
+            <option>Marketing Manager</option>
+          </optgroup>
+          <optgroup label="🔧 MAINTENANCE & SECURITY">
+            <option>Maintenance Technician</option>
+            <option>Electrician</option>
+            <option>Plumber</option>
+            <option>HVAC Technician</option>
+            <option>Security Guard</option>
+            <option>Security Supervisor</option>
+          </optgroup>
+          <optgroup label="💼 OTHER">
+            <option>IT Support</option>
+            <option>Accountant</option>
+            <option>Human Resources</option>
+            <option>Driver</option>
+            <option>Store Keeper</option>
+            <option>Events Coordinator</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <input type="number" id="staffExperience" placeholder="Years Experience">
+      <label>📸 Upload Photo:</label>
+      <input type="file" id="staffPhoto" accept="image/*" onchange="previewStaffPhoto(event)">
+      <div id="staffPhotoPreview"></div>
+      <label>📄 Upload CV:</label>
+      <input type="file" id="staffCV" accept=".pdf,.doc,.docx">
+      <input type="text" id="staffPromoterCode" placeholder="Promoter/Broker Code">
+      <button class="btn-primary" onclick="registerStaff()">Submit Registration (UGX 50,000)</button>
+      <p id="staffMsg"></p>
+    </div>
+  </div>
+
+  <!-- COMPANY MODAL - FIXED SCROLLABLE DROPDOWNS -->
+  <div id="companyModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeCompanyModal()">&times;</span>
+      <h2>🏢 Post a Job</h2>
+      <input type="text" id="companyName" placeholder="Hotel Name *">
+      <input type="text" id="companyContact" placeholder="Contact Person *">
+      <input type="tel" id="companyPhone" placeholder="WhatsApp *">
+      <input type="email" id="companyEmail" placeholder="Email">
+
+      <label style="color:#e2b13c;">📍 Company Location:</label>
+      <div class="scrollable-select">
+        <select id="companyLocation" size="8">
+          <option>Kampala CBD</option>
+          <option>Kansanga</option>
+          <option>Gaba</option>
+          <option>Munyonyo</option>
+          <option>Ntinda</option>
+          <option>Najjera</option>
+          <option>Wandegeya</option>
+          <option>Rubaga</option>
+          <option>Ndeeba</option>
+          <option>Bwaise</option>
+          <option>Kawempe</option>
+          <option>Entebbe</option>
+          <option>Kololo</option>
+          <option>Bugolobi</option>
+          <option>Kira</option>
+          <option>Lubowa</option>
+        </select>
+      </div>
+
+      <label style="color:#e2b13c;">💼 Position to Fill:</label>
+      <div class="scrollable-select">
+        <select id="jobPosition" size="8">
+          <option>Executive Chef</option>
+          <option>Sous Chef</option>
+          <option>Commis Chef</option>
+          <option>Pastry Chef</option>
+          <option>Waiter/Waitress</option>
+          <option>Bartender</option>
+          <option>Barista</option>
+          <option>Receptionist</option>
+          <option>Front Desk Agent</option>
+          <option>Housekeeper</option>
+          <option>Room Attendant</option>
+          <option>Hotel Manager</option>
+          <option>Assistant Manager</option>
+          <option>Security Guard</option>
+          <option>Maintenance Technician</option>
+          <option>Accountant</option>
+          <option>Sales Manager</option>
+          <option>Driver</option>
+        </select>
+      </div>
+
+      <input type="text" id="jobSalary" placeholder="Salary Range">
+      <input type="text" id="jobPromoterCode" placeholder="Promoter/Broker Code">
+      <button class="btn-primary" onclick="registerCompany()">Post Job (UGX 100,000)</button>
+      <p id="companyMsg"></p>
+    </div>
+  </div>
+
+  <!-- Other Modals -->
+  <div id="promoterModal" class="modal">
+    <div class="modal-content"><span class="close" onclick="closePromoterModal()">&times;</span>
+      <h2>Register as Promoter (16%)</h2>
+      <input type="text" id="promoterName" placeholder="Full Name *"><input type="tel" id="promoterPhone" placeholder="WhatsApp *"><input type="email" id="promoterEmail" placeholder="Email">
+      <button class="btn-primary" onclick="registerPromoter()">Register - Earn 16%</button>
+      <p id="promoterMsg"></p>
+    </div>
+  </div>
+
+  <div id="brokerModal" class="modal">
+    <div class="modal-content"><span class="close" onclick="closeBrokerModal()">&times;</span>
+      <h2>Register as Broker (40%)</h2>
+      <input type="text" id="brokerName" placeholder="Agency/Company Name *"><input type="tel" id="brokerPhone" placeholder="WhatsApp *"><input type="email" id="brokerEmail" placeholder="Email">
+      <select id="brokerType">
+        <option>Individual Broker</option>
+        <option>Recruitment Agency</option>
+        <option>Hotel Consultant</option>
+      </select>
+      <button class="btn-primary" onclick="registerBroker()">Register - Earn 40%</button>
+      <p id="brokerMsg"></p>
+    </div>
+  </div>
+
+  <div id="brokerStaffModal" class="modal">
+    <div class="modal-content"><span class="close" onclick="closeBrokerStaffModal()">&times;</span>
+      <h2>Broker: Submit Staff (Earn 40%)</h2>
+      <input type="text" id="brokerCodeStaff" placeholder="Your Broker Code *"><input type="text" id="brokerStaffName" placeholder="Staff Name *"><input type="tel" id="brokerStaffPhone" placeholder="Staff WhatsApp *">
+      <select id="brokerStaffPosition">
+        <option>Chef</option>
+        <option>Waiter</option>
+        <option>Manager</option>
+      </select>
+      <button class="btn-primary" onclick="brokerSubmitStaff()">Submit - Earn 40%</button>
+      <p id="brokerStaffMsg"></p>
+    </div>
+  </div>
+
+  <div id="brokerJobModal" class="modal">
+    <div class="modal-content"><span class="close" onclick="closeBrokerJobModal()">&times;</span>
+      <h2>Broker: Submit Job (Earn 40%)</h2>
+      <input type="text" id="brokerCodeJob" placeholder="Your Broker Code *"><input type="text" id="brokerCompanyJob" placeholder="Hotel Name *"><input type="text" id="brokerPositionJob" placeholder="Position *">
+      <button class="btn-primary" onclick="brokerSubmitJob()">Submit - Earn 40%</button>
+      <p id="brokerJobMsg"></p>
+    </div>
+  </div>
+
+  <div id="revenueModal" class="modal">
+    <div class="modal-content"><span class="close" onclick="closeRevenueModal()">&times;</span>
+      <h2>Free Revenue Consultation</h2>
+      <input type="text" id="revHotel" placeholder="Hotel Name *"><input type="tel" id="revPhone" placeholder="WhatsApp *"><input type="email" id="revEmail" placeholder="Email">
+      <button class="btn-primary" onclick="requestRevenueAudit()">Request Consultation</button>
+      <p id="revMsg"></p>
+    </div>
+  </div>
+
+  <div id="adminModal" class="modal">
+    <div class="modal-content"><span class="close" onclick="closeAdmin()">&times;</span>
+      <h2>🔐 Admin Dashboard</h2>
+      <input type="password" id="adminPassword" placeholder="Password"><button class="btn-primary" onclick="loginAdmin()">Login</button>
+      <div id="adminContent" style="display:none; margin-top:20px;"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <div class="contact-bar">
+    <p>📞 Airtel: <a href="tel:+256709937339">+256 709 937 339</a> | MTN: <a href="tel:+256783168227">+256 783 168 227</a></p>
+    <p>📧 <a href="mailto:tesfayhidmo@gmail.com">tesfayhidmo@gmail.com</a> | 💬 <a href="https://wa.me/256709937339">WhatsApp</a></p>
+  </div>
+
+  <div class="bottom-nav">
+    <button onclick="showSection('home')">🏠 Home</button>
+    <button onclick="showSection('pricing')">💰 Pricing</button>
+    <button onclick="showSection('jobs')">💼 Jobs</button>
+    <button onclick="showSection('partners')">🤝 16% / 40%</button>
+    <button onclick="openStaffRegister()">📝 Register</button>
+  </div>
+
+  <script>
+    let staffData = JSON.parse(localStorage.getItem('pearl_staff') || '[]');
+    let jobsData = JSON.parse(localStorage.getItem('pearl_jobs') || '[]');
+    let promotersData = JSON.parse(localStorage.getItem('pearl_promoters') || '[]');
+    let brokersData = JSON.parse(localStorage.getItem('pearl_brokers') || '[]');
+    let revenueData = JSON.parse(localStorage.getItem('pearl_revenue') || '[]');
+    let paymentsData = JSON.parse(localStorage.getItem('pearl_payments') || '[]');
+    const PRICES = {
+      staff: 50000,
+      job: 100000
+    };
+    const ADMIN_PASSWORD = 'pearl123';
+    let staffPhotoData = null;
+
+    function showToast(msg, isError) {
+      let toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.style.backgroundColor = isError ? '#c62828' : '#2e7d32';
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 4000);
+    }
+
+    function updateCounts() {
+      document.getElementById('staffCount').innerText = staffData.length;
+      document.getElementById('jobCount').innerText = jobsData.length;
+      document.getElementById('promoterCount').innerText = promotersData.length;
+      document.getElementById('brokerCount').innerText = brokersData.length;
+      if (document.getElementById('staffListings')) loadStaffList();
+    }
+
+    function sendWhatsApp(phone, message) {
+      let cleanPhone = phone.replace(/[^0-9]/g, '');
+      if (!cleanPhone.startsWith('256')) cleanPhone = '256' + cleanPhone;
+      window.open(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    function previewStaffPhoto(event) {
+      let file = event.target.files[0];
+      if (file) {
+        let reader = new FileReader();
+        reader.onload = function(e) {
+          staffPhotoData = e.target.result;
+          document.getElementById('staffPhotoPreview').innerHTML = `<img src="${staffPhotoData}" class="photo-preview">`;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function selectPlan(plan, amount) {
+      sendWhatsApp('256709937339', `Client interested in ${plan} plan (UGX ${amount.toLocaleString()}). Please contact.`);
+      showToast(`✅ Inquiry sent for ${plan} plan. We'll call you within 24 hours.`, false);
+    }
+
+    function requestRevenueAudit() {
+      let hotel = document.getElementById('revHotel').value;
+      let phone = document.getElementById('revPhone').value;
+      if (!hotel || !phone) {
+        showToast('❌ Fill hotel name and phone number', true);
+        return;
+      }
+      revenueData.push({
+        hotel,
+        phone,
+        date: new Date().toISOString()
+      });
+      localStorage.setItem('pearl_revenue', JSON.stringify(revenueData));
+      sendWhatsApp(phone, `📈 Revenue consultation requested for ${hotel}. We'll contact you within 24 hours.`);
+      sendWhatsApp('256709937339', `📈 New revenue consultation: ${hotel} - ${phone}`);
+      showToast('✅ Consultation request sent! Check WhatsApp.', false);
+      closeRevenueModal();
+    }
+
+    function showSection(section) {
+      let sections = ['homeSection', 'pricingSection', 'jobsSection', 'stafflistSection', 'partnersSection'];
+      for (let i = 0; i < sections.length; i++) {
+        let el = document.getElementById(sections[i]);
+        if (el) el.style.display = 'none';
+      }
+      let active = document.getElementById(section + 'Section');
+      if (active) active.style.display = 'block';
+      if (section === 'jobs') loadJobs();
+      if (section === 'stafflist') loadStaffList();
+      window.scrollTo(0, 0);
+    }
+
+    function loadJobs() {
+      let container = document.getElementById('jobListings');
+      if (!container) return;
+      if (jobsData.length === 0) {
+        container.innerHTML = '<p style="text-align:center; color:#888;">No jobs yet. Post your first job!</p>';
+        return;
+      }
+      let html = '';
+      for (let i = 0; i < jobsData.length; i++) {
+        let job = jobsData[i];
+        html += `<div class="job-card"><h4>${job.position}</h4><p>🏨 ${job.company}</p><p>📍 ${job.location}</p><p>💰 ${job.salary || 'Negotiable'}</p><button class="btn-primary" onclick="openStaffRegister()">Apply Now</button></div>`;
+      }
+      container.innerHTML = html;
+    }
+
+    function loadStaffList() {
+      let container = document.getElementById('staffListings');
+      if (!container) return;
+      if (staffData.length === 0) {
+        container.innerHTML = '<p style="text-align:center; color:#888;">No staff registered yet.</p>';
+        return;
+      }
+      let html = '';
+      let start = Math.max(0, staffData.length - 10);
+      for (let i = start; i < staffData.length; i++) {
+        let staff = staffData[i];
+        html += `<div class="job-card"><h4>${staff.name}</h4><p>💼 ${staff.position}</p><p>📍 ${staff.location}</p><p>📞 ${staff.phone}</p>${staff.photo ? `<img src="${staff.photo}" style="width:50px;height:50px;border-radius:50%;margin-top:10px;">` : ''}</div>`;
+      }
+      container.innerHTML = html;
+    }
+
+    function registerStaff() {
+      let name = document.getElementById('staffName').value;
+      let phone = document.getElementById('staffPhone').value;
+      let email = document.getElementById('staffEmail').value;
+      let location = document.getElementById('staffLocation').value;
+      let position = document.getElementById('staffPosition').value;
+      let promoterCode = document.getElementById('staffPromoterCode').value;
+      if (!name || !phone || !location || !position) {
+        showToast('❌ Fill all required fields', true);
+        return;
+      }
+      staffData.push({
+        name,
+        phone,
+        email,
+        location,
+        position,
+        photo: staffPhotoData,
+        promoterCode,
+        registeredAt: new Date().toISOString()
+      });
+      localStorage.setItem('pearl_staff', JSON.stringify(staffData));
+      if (promoterCode) {
+        let promoter = promotersData.find(p => p.code === promoterCode);
+        if (promoter) {
+          let commission = PRICES.staff * 0.16;
+          promoter.earnings = (promoter.earnings || 0) + commission;
+          localStorage.setItem('pearl_promoters', JSON.stringify(promotersData));
+          sendWhatsApp(promoter.phone, `💰 You earned UGX ${commission.toLocaleString()} (16%) from ${name}`);
+        }
+        let broker = brokersData.find(b => b.code === promoterCode);
+        if (broker) {
+          let commission = PRICES.staff * 0.4;
+          broker.earnings = (broker.earnings || 0) + commission;
+          localStorage.setItem('pearl_brokers', JSON.stringify(brokersData));
+          sendWhatsApp(broker.phone, `💰 You earned UGX ${commission.toLocaleString()} (40%) from ${name}`);
+        }
+      }
+      sendWhatsApp(phone, `✅ Registration confirmed ${name}! Position: ${position}\nLocation: ${location}\n\nWe will contact you within 24 hours.`);
+      showToast('✅ Registered! Check WhatsApp.', false);
+      updateCounts();
+      setTimeout(() => closeStaffModal(), 1500);
+    }
+
+    function registerCompany() {
+      let company = document.getElementById('companyName').value;
+      let contact = document.getElementById('companyContact').value;
+      let phone = document.getElementById('companyPhone').value;
+      let email = document.getElementById('companyEmail').value;
+      let location = document.getElementById('companyLocation').value;
+      let position = document.getElementById('jobPosition').value;
+      let promoterCode = document.getElementById('jobPromoterCode').value;
+      if (!company || !contact || !phone || !location || !position) {
+        showToast('❌ Fill all fields', true);
+        return;
+      }
+      jobsData.push({
+        company,
+        contact,
+        phone,
+        email,
+        location,
+        position,
+        promoterCode,
+        postedAt: new Date().toISOString()
+      });
+      localStorage.setItem('pearl_jobs', JSON.stringify(jobsData));
+      if (promoterCode) {
+        let promoter = promotersData.find(p => p.code === promoterCode);
+        if (promoter) {
+          let commission = PRICES.job * 0.16;
+          promoter.earnings = (promoter.earnings || 0) + commission;
+          localStorage.setItem('pearl_promoters', JSON.stringify(promotersData));
+          sendWhatsApp(promoter.phone, `💰 You earned UGX ${commission.toLocaleString()} (16%) from job post by ${company}`);
+        }
+        let broker = brokersData.find(b => b.code === promoterCode);
+        if (broker) {
+          let commission = PRICES.job * 0.4;
+          broker.earnings = (broker.earnings || 0) + commission;
+          localStorage.setItem('pearl_brokers', JSON.stringify(brokersData));
+          sendWhatsApp(broker.phone, `💰 You earned UGX ${commission.toLocaleString()} (40%) from job post by ${company}`);
+        }
+      }
+      sendWhatsApp(phone, `✅ Job posted: ${position} at ${company} in ${location}\n\nCandidates will contact you soon.`);
+      showToast('✅ Job posted!', false);
+      updateCounts();
+      setTimeout(() => closeCompanyModal(), 1500);
+    }
+
+    function registerPromoter() {
+      let name = document.getElementById('promoterName').value;
+      let phone = document.getElementById('promoterPhone').value;
+      let email = document.getElementById('promoterEmail').value;
+      if (!name || !phone || !email) {
+        showToast('❌ Fill all fields', true);
+        return;
+      }
+      let code = 'PRL' + Math.random().toString(36).substring(2, 8).toUpperCase();
+      promotersData.push({
+        name,
+        phone,
+        email,
+        code,
+        earnings: 0,
+        referrals: 0
+      });
+      localStorage.setItem('pearl_promoters', JSON.stringify(promotersData));
+      sendWhatsApp(phone, `🎉 Welcome ${name}! Your Promoter Code: ${code}\nEarn 16% on every sale!`);
+      showToast(`✅ Your Code: ${code} (16% commission)`, false);
+      updateCounts();
+      closePromoterModal();
+    }
+
+    function registerBroker() {
+      let name = document.getElementById('brokerName').value;
+      let phone = document.getElementById('brokerPhone').value;
+      let email = document.getElementById('brokerEmail').value;
+      let type = document.getElementById('brokerType').value;
+      if (!name || !phone || !email) {
+        showToast('❌ Fill all fields', true);
+        return;
+      }
+      let code = 'BRK' + Math.random().toString(36).substring(2, 8).toUpperCase();
+      brokersData.push({
+        name,
+        phone,
+        email,
+        type,
+        code,
+        earnings: 0,
+        referrals: 0
+      });
+      localStorage.setItem('pearl_brokers', JSON.stringify(brokersData));
+      sendWhatsApp(phone, `🎉 Welcome Broker ${name}! Your Broker Code: ${code}\nEarn 40% commission!`);
+      showToast(`✅ Your Broker Code: ${code} (40% commission)`, false);
+      updateCounts();
+      closeBrokerModal();
+    }
+
+    function brokerSubmitStaff() {
+      let brokerCode = document.getElementById('brokerCodeStaff').value;
+      let name = document.getElementById('brokerStaffName').value;
+      let phone = document.getElementById('brokerStaffPhone').value;
+      let position = document.getElementById('brokerStaffPosition').value;
+      if (!brokerCode || !name || !phone) {
+        showToast('❌ Fill broker code and staff details', true);
+        return;
+      }
+      let broker = brokersData.find(b => b.code === brokerCode);
+      if (!broker) {
+        showToast('❌ Invalid broker code', true);
+        return;
+      }
+      staffData.push({
+        name,
+        phone,
+        position,
+        brokerCode,
+        registeredAt: new Date().toISOString()
+      });
+      localStorage.setItem('pearl_staff', JSON.stringify(staffData));
+      let commission = PRICES.staff * 0.4;
+      broker.earnings = (broker.earnings || 0) + commission;
+      broker.referrals = (broker.referrals || 0) + 1;
+      localStorage.setItem('pearl_brokers', JSON.stringify(brokersData));
+      sendWhatsApp(broker.phone, `💰 Commission Alert!\n\nYou earned UGX ${commission.toLocaleString()} (40%) for submitting staff: ${name}\n\nTotal Earnings: UGX ${broker.earnings.toLocaleString()}`);
+      sendWhatsApp(phone, `✅ Registration confirmed ${name}! We will contact you soon.`);
+      showToast(`✅ Staff submitted! Broker earned UGX ${commission.toLocaleString()}`, false);
+      updateCounts();
+      closeBrokerStaffModal();
+    }
+
+    function brokerSubmitJob() {
+      let brokerCode = document.getElementById('brokerCodeJob').value;
+      let company = document.getElementById('brokerCompanyJob').value;
+      let position = document.getElementById('brokerPositionJob').value;
+      if (!brokerCode || !company || !position) {
+        showToast('❌ Fill broker code and job details', true);
+        return;
+      }
+      let broker = brokersData.find(b => b.code === brokerCode);
+      if (!broker) {
+        showToast('❌ Invalid broker code', true);
+        return;
+      }
+      jobsData.push({
+        company,
+        position,
+        brokerCode,
+        postedAt: new Date().toISOString()
+      });
+      localStorage.setItem('pearl_jobs', JSON.stringify(jobsData));
+      let commission = PRICES.job * 0.4;
+      broker.earnings = (broker.earnings || 0) + commission;
+      broker.referrals = (broker.referrals || 0) + 1;
+      localStorage.setItem('pearl_brokers', JSON.stringify(brokersData));
+      sendWhatsApp(broker.phone, `💰 Commission Alert!\n\nYou earned UGX ${commission.toLocaleString()} (40%) for submitting job: ${position} at ${company}\n\nTotal Earnings: UGX ${broker.earnings.toLocaleString()}`);
+      showToast(`✅ Job submitted! Broker earned UGX ${commission.toLocaleString()}`, false);
+      updateCounts();
+      closeBrokerJobModal();
+    }
+
+    function loginAdmin() {
+      let pwd = document.getElementById('adminPassword').value;
+      if (pwd === ADMIN_PASSWORD) {
+        let totalBrokerCommissions = brokersData.reduce((sum, b) => sum + (b.earnings || 0), 0);
+        document.getElementById('adminContent').innerHTML = `
+          <div style="background:#1a1a1a; padding:15px; border-radius:12px;">
+            <h3 style="color:#e2b13c;">📊 Dashboard Summary</h3>
+            <p>👥 Staff Registered: ${staffData.length}</p>
+            <p>🏢 Jobs Posted: ${jobsData.length}</p>
+            <p>🤝 Promoters (16%): ${promotersData.length}</p>
+            <p>🏢 Brokers (40%): ${brokersData.length}</p>
+            <p>📈 Revenue Clients: ${revenueData.length}</p>
+            <p style="color:#ff9800;">Total Broker Commissions Paid: UGX ${totalBrokerCommissions.toLocaleString()}</p>
+            <hr>
+            <h3 style="color:#ff9800;">Brokers List (40%)</h3>
+            ${brokersData.map(b => `<p>💰 ${b.name} - Code: ${b.code} - Earnings: UGX ${(b.earnings||0).toLocaleString()} - Referrals: ${b.referrals||0}</p>`).join('') || '<p>No brokers yet</p>'}
+            <hr>
+            <h3 style="color:#e2b13c;">Promoters List (16%)</h3>
+            ${promotersData.map(p => `<p>🤝 ${p.name} - Code: ${p.code} - Earnings: UGX ${(p.earnings||0).toLocaleString()}</p>`).join('') || '<p>No promoters yet</p>'}
+            <hr>
+            <button class="btn-primary" onclick="exportAllData()">📤 Export All Data to CSV</button>
+          </div>
+        `;
+        document.getElementById('adminContent').style.display = 'block';
+        showToast('Welcome Admin!', false);
+      } else {
+        showToast('Wrong password!', true);
+      }
+    }
+
+    function exportAllData() {
+      let csvRows = [
+        ['PEARL HOTEL STAFFING - COMPLETE DATA EXPORT'],
+        ['Date:', new Date().toISOString()],
+        [],
+        ['STAFF REGISTRATIONS'],
+        ['Name', 'Phone', 'Email', 'Position', 'Location', 'Has Photo', 'Promoter/Broker Code', 'Date'],
+        ...staffData.map(s => [s.name, s.phone, s.email || '', s.position, s.location, s.photo ? 'Yes' : 'No', s.promoterCode || '', s.registeredAt || '']),
+        [],
+        ['PROMOTERS (16% Commission)'],
+        ['Name', 'Phone', 'Email', 'Code', 'Earnings (UGX)', 'Referrals'],
+        ...promotersData.map(p => [p.name, p.phone, p.email, p.code, p.earnings || 0, p.referrals || 0]),
+        [],
+        ['BROKERS (40% Commission)'],
+        ['Name', 'Phone', 'Email', 'Type', 'Code', 'Earnings (UGX)', 'Referrals'],
+        ...brokersData.map(b => [b.name, b.phone, b.email, b.type, b.code, b.earnings || 0, b.referrals || 0]),
+        [],
+        ['JOBS POSTED'],
+        ['Company', 'Contact', 'Phone', 'Email', 'Location', 'Position', 'Salary', 'Promoter/Broker Code', 'Date'],
+        ...jobsData.map(j => [j.company, j.contact, j.phone, j.email || '', j.location, j.position, j.salary || '', j.promoterCode || '', j.postedAt || ''])
+      ];
+      let csvContent = csvRows.map(row => row.join(',')).join('\n');
+      let blob = new Blob([csvContent], {
+        type: 'text/csv'
+      });
+      let a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `pearl_staffing_${new Date().toISOString().split('T')[0]}.csv`;
+      a.click();
+      showToast('✅ Data exported successfully!', false);
+    }
+
+    function openStaffRegister() {
+      document.getElementById('staffModal').style.display = 'flex';
+    }
+
+    function closeStaffModal() {
+      document.getElementById('staffModal').style.display = 'none';
+    }
+
+    function openCompanyRegister() {
+      document.getElementById('companyModal').style.display = 'flex';
+    }
+
+    function closeCompanyModal() {
+      document.getElementById('companyModal').style.display = 'none';
+    }
+
+    function openPromoterForm() {
+      document.getElementById('promoterModal').style.display = 'flex';
+    }
+
+    function closePromoterModal() {
+      document.getElementById('promoterModal').style.display = 'none';
+    }
+
+    function openBrokerForm() {
+      document.getElementById('brokerModal').style.display = 'flex';
+    }
+
+    function closeBrokerModal() {
+      document.getElementById('brokerModal').style.display = 'none';
+    }
+
+    function openBrokerStaffSubmit() {
+      document.getElementById('brokerStaffModal').style.display = 'flex';
+    }
+
+    function closeBrokerStaffModal() {
+      document.getElementById('brokerStaffModal').style.display = 'none';
+    }
+
+    function openBrokerJobSubmit() {
+      document.getElementById('brokerJobModal').style.display = 'flex';
+    }
+
+    function closeBrokerJobModal() {
+      document.getElementById('brokerJobModal').style.display = 'none';
+    }
+
+    function openAdmin() {
+      document.getElementById('adminModal').style.display = 'flex';
+    }
+
+    function closeAdmin() {
+      document.getElementById('adminModal').style.display = 'none';
+    }
+
+    function openRevenueConsult() {
+      document.getElementById('revenueModal').style.display = 'flex';
+    }
+
+    function closeRevenueModal() {
+      document.getElementById('revenueModal').style.display = 'none';
+    }
+    window.onclick = function(event) {
+      if (event.target.classList && event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+      }
+    };
+    updateCounts();
+  </script>
+</body>
+
+</html>
