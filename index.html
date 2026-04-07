@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Pearl Hotel Staffing | Kampala</title>
+  <title>Pearl Hotel Staffing | Find Hotel Jobs in Kampala</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -12,7 +12,6 @@
       color: white;
       padding-bottom: 70px;
     }
-    /* Header */
     .header {
       background: #1a1a1a;
       padding: 15px;
@@ -41,7 +40,8 @@
       font-size: 12px;
     }
     .btn-gold { background: #e2b13c !important; color: black !important; }
-    /* Main Action Buttons */
+    
+    /* Main Buttons */
     .action-buttons {
       display: flex;
       flex-direction: column;
@@ -62,7 +62,26 @@
     .btn-jobseeker { background: #e2b13c; color: black; }
     .btn-employer { background: #ff9800; color: black; }
     .btn-earn { background: transparent; border: 2px solid #e2b13c; color: #e2b13c; }
-    /* Simple steps */
+    
+    /* Why Choose Us - Green Checklist */
+    .why-choose {
+      background: #0a2a1a;
+      padding: 30px 20px;
+      margin: 20px;
+      border-radius: 20px;
+      border-left: 4px solid #4caf50;
+    }
+    .why-choose h3 { color: #4caf50; margin-bottom: 15px; }
+    .why-choose li {
+      list-style: none;
+      margin: 12px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .why-choose li::before { content: "✅"; color: #4caf50; }
+    
+    /* Steps */
     .steps {
       display: flex;
       justify-content: center;
@@ -71,11 +90,7 @@
       padding: 20px;
       background: #111;
     }
-    .step {
-      text-align: center;
-      flex: 1;
-      min-width: 100px;
-    }
+    .step { text-align: center; flex: 1; min-width: 100px; }
     .step-number {
       background: #e2b13c;
       color: black;
@@ -86,7 +101,18 @@
       line-height: 30px;
       margin-bottom: 8px;
     }
-    /* Cards */
+    
+    /* Verified Badge */
+    .verified-badge {
+      background: #e2b13c20;
+      border: 1px solid #e2b13c;
+      border-radius: 30px;
+      padding: 8px 20px;
+      display: inline-block;
+      margin: 15px auto;
+      text-align: center;
+    }
+    
     .card {
       background: #1a1a1a;
       padding: 20px;
@@ -192,7 +218,6 @@
       margin: 15px 0;
       text-align: center;
     }
-    .payment-info p { margin: 5px 0; }
     @media (min-width: 768px) {
       .action-buttons { max-width: 400px; }
     }
@@ -214,23 +239,40 @@
   </div>
 </div>
 
-<!-- MAIN HOME SECTION (Simple) -->
+<!-- MAIN HOME SECTION -->
 <div id="mainSection">
+  <!-- Headline -->
+  <div style="text-align: center; padding: 30px 20px 10px;">
+    <h1 style="font-size: 28px;">Find <span style="color:#e2b13c;">Hotel Jobs</span> Near You in <span style="color:#e2b13c;">Kampala</span></h1>
+    <div class="verified-badge">
+      ✅ 100+ Verified & Vetted Staff Ready
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
   <div class="action-buttons">
-    <button class="btn-large btn-jobseeker" onclick="openStaffRegister()">🔍 I need a job (FREE)</button>
-    <button class="btn-large btn-employer" onclick="openCompanyRegister()">🏢 I need staff (UGX 100,000)</button>
+    <button class="btn-large btn-jobseeker" onclick="openStaffRegister()">🔍 I need a job (FREE registration)</button>
+    <button class="btn-large btn-employer" onclick="openCompanyRegister()">🏢 I need staff (Post a job)</button>
     <button class="btn-large btn-earn" onclick="showPromoters()">💰 Earn 16% as Promoter</button>
   </div>
 
+  <!-- Why Choose Us (Green Checklist) -->
+  <div class="why-choose">
+    <h3>⭐ Why Choose Pearl Hotel Staffing?</h3>
+    <ul>
+      <li>100+ verified & vetted hospitality staff</li>
+      <li>14-day free replacement guarantee</li>
+      <li>You pay only after satisfied (Escrow protection)</li>
+      <li>Fast matching within 24 hours</li>
+      <li>WhatsApp support 7 days a week</li>
+    </ul>
+  </div>
+
+  <!-- Simple Steps -->
   <div class="steps">
     <div class="step"><div class="step-number">1</div><p>Register<br>free</p></div>
     <div class="step"><div class="step-number">2</div><p>Get matched<br>or post job</p></div>
     <div class="step"><div class="step-number">3</div><p>Hire or<br>get hired</p></div>
-  </div>
-
-  <div class="card">
-    <h3 style="color:#e2b13c;">✅ Why choose us?</h3>
-    <p style="margin-top: 10px;">✓ 300+ verified staff<br>✓ 14-day free replacement<br>✓ Pay only after satisfied<br>✓ WhatsApp support</p>
   </div>
 </div>
 
@@ -272,19 +314,21 @@
   </div>
 </div>
 
-<!-- STAFF REGISTRATION MODAL -->
+<!-- STAFF REGISTRATION MODAL (Empty location/position by default) -->
 <div id="staffModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeStaffModal()">&times;</span>
-    <h2>📋 Find a job (FREE)</h2>
+    <h2>📋 Find a job (FREE registration)</h2>
     <input type="text" id="staffName" placeholder="Full Name *">
     <input type="tel" id="staffPhone" placeholder="WhatsApp Number *">
     <input type="email" id="staffEmail" placeholder="Email (optional)">
     <select id="staffLocation">
+      <option value="" disabled selected>-- Select your location --</option>
       <option>Kampala CBD</option><option>Kansanga</option><option>Gaba</option>
       <option>Munyonyo</option><option>Ntinda</option><option>Entebbe</option>
     </select>
     <select id="staffPosition">
+      <option value="" disabled selected>-- Select your position --</option>
       <option>Chef</option><option>Waiter/Waitress</option><option>Manager</option>
       <option>Housekeeping</option><option>Receptionist</option><option>Bartender</option>
     </select>
@@ -298,7 +342,7 @@
   </div>
 </div>
 
-<!-- JOB POST MODAL (with payment instructions) -->
+<!-- JOB POST MODAL -->
 <div id="companyModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeCompanyModal()">&times;</span>
@@ -314,15 +358,34 @@
     <input type="tel" id="companyPhone" placeholder="WhatsApp Number *">
     <input type="email" id="companyEmail" placeholder="Email">
     <select id="companyLocation">
+      <option value="" disabled selected>-- Select location --</option>
       <option>Kampala CBD</option><option>Kansanga</option><option>Gaba</option><option>Munyonyo</option>
     </select>
     <select id="jobPositionSelect">
+      <option value="" disabled selected>-- Select position --</option>
       <option>Chef</option><option>Waiter</option><option>Manager</option><option>Housekeeping</option>
     </select>
     <input type="text" id="jobSalary" placeholder="Salary range (optional)">
     <input type="text" id="jobPromoterCode" placeholder="Promoter/Broker code (optional)">
     <button class="btn-primary" onclick="registerCompany()">Post Job (UGX 100,000)</button>
     <p id="companyMsg" style="margin-top:10px;"></p>
+  </div>
+</div>
+
+<!-- APPLY MODAL (10k payment) -->
+<div id="applyModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeApplyModal()">&times;</span>
+    <h2>📝 Apply for this job</h2>
+    <div class="payment-info">
+      <p>Application fee: <strong>UGX 10,000</strong></p>
+      <p>Send to: <strong>Airtel +256 709 937 339</strong> or <strong>MTN +256 783 168 227</strong></p>
+      <p style="font-size:12px;">After payment, WhatsApp your transaction ID to <strong>+256 709 937 339</strong></p>
+    </div>
+    <input type="text" id="applicantName" placeholder="Your Full Name *">
+    <input type="tel" id="applicantPhone" placeholder="Your WhatsApp *">
+    <p id="applyMsg" style="margin-top:10px;"></p>
+    <button class="btn-primary" onclick="submitApplication()">Confirm Application (UGX 10,000)</button>
   </div>
 </div>
 
@@ -341,7 +404,7 @@
 
 <div class="contact-bar" style="background:#1a1a1a; padding:15px; text-align:center; font-size:12px;">
   <p>📞 Airtel: <a href="tel:+256709937339" style="color:#e2b13c;">+256 709 937 339</a> | MTN: <a href="tel:+256783168227" style="color:#e2b13c;">+256 783 168 227</a></p>
-  <p>📧 <a href="mailto:tesfayhidmo@gmail.com" style="color:#e2b13c;">tesfayhidmo@gmail.com</a> | 💬 <a href="https://wa.me/256709937339" style="color:#e2b13c;">WhatsApp</a></p>
+  <p>📧 <a href="mailto:tesfann2@gmail.com" style="color:#e2b13c;">tesfann2@gmail.com</a> | 💬 <a href="https://wa.me/256709937339" style="color:#e2b13c;">WhatsApp</a></p>
 </div>
 
 <div class="bottom-nav">
@@ -358,11 +421,11 @@ let staffData = JSON.parse(localStorage.getItem('pearl_staff') || '[]');
 let jobsData = JSON.parse(localStorage.getItem('pearl_jobs') || '[]');
 let promotersData = JSON.parse(localStorage.getItem('pearl_promoters') || '[]');
 let brokersData = JSON.parse(localStorage.getItem('pearl_brokers') || '[]');
-let paymentsData = JSON.parse(localStorage.getItem('pearl_payments') || '[]');
+let applicationsData = JSON.parse(localStorage.getItem('pearl_applications') || '[]');
 const ADMIN_PASSWORD = 'pearl123';
 let staffPhotoData = null;
+let currentJobForApply = null;
 
-// ========== HELPERS ==========
 function showToast(msg, isError) {
   let toast = document.getElementById('toast');
   toast.textContent = msg;
@@ -377,11 +440,7 @@ function sendWhatsApp(phone, message) {
   window.open(`https://wa.me/${clean}?text=${encodeURIComponent(message)}`, '_blank');
 }
 
-function updateCounts() {
-  // Not needed for simplicity but keep for admin
-}
-
-// ========== UI NAVIGATION ==========
+// ========== UI ==========
 function showMain() {
   document.getElementById('mainSection').style.display = 'block';
   document.getElementById('jobsListSection').style.display = 'none';
@@ -421,10 +480,42 @@ function loadJobsList() {
       <h4>${j.position}</h4>
       <p>🏨 ${j.company} | 📍 ${j.location}</p>
       <p>💰 ${j.salary || 'Negotiable'}</p>
-      <button class="btn-secondary" onclick="openStaffRegister()">Apply now</button>
+      <button class="btn-secondary" onclick="openApplyModal('${j.company}', '${j.position}')">Apply now (UGX 10,000)</button>
     </div>`;
   }
   container.innerHTML = html;
+}
+
+function openApplyModal(company, position) {
+  currentJobForApply = { company, position };
+  document.getElementById('applyModal').style.display = 'flex';
+}
+function closeApplyModal() {
+  document.getElementById('applyModal').style.display = 'none';
+  document.getElementById('applicantName').value = '';
+  document.getElementById('applicantPhone').value = '';
+}
+
+function submitApplication() {
+  let name = document.getElementById('applicantName').value;
+  let phone = document.getElementById('applicantPhone').value;
+  if (!name || !phone) {
+    showToast('❌ Please enter your name and WhatsApp number', true);
+    return;
+  }
+  // Save application
+  applicationsData.push({
+    name, phone,
+    job: currentJobForApply,
+    fee: 10000,
+    date: new Date().toISOString()
+  });
+  localStorage.setItem('pearl_applications', JSON.stringify(applicationsData));
+  // Notify admin
+  sendWhatsApp('256709937339', `📝 New application: ${name} applied for ${currentJobForApply.position} at ${currentJobForApply.company}. Phone: ${phone}. Payment of UGX 10,000 pending confirmation.`);
+  sendWhatsApp(phone, `✅ Application received for ${currentJobForApply.position} at ${currentJobForApply.company}. We will contact you within 24 hours after payment confirmation.`);
+  showToast('✅ Application submitted! Check WhatsApp.', false);
+  closeApplyModal();
 }
 
 // ========== STAFF REGISTRATION ==========
@@ -454,7 +545,6 @@ function registerStaff() {
   let cvName = cvFile ? cvFile.name : 'No CV';
   staffData.push({ name, phone, email, location, position, photo: staffPhotoData, cvName, registeredAt: new Date().toISOString() });
   localStorage.setItem('pearl_staff', JSON.stringify(staffData));
-  // Send WhatsApp confirmation
   sendWhatsApp(phone, `✅ Registration confirmed ${name}! Position: ${position}, Location: ${location}. We will contact you within 24 hours.`);
   showToast('✅ Registered! Check WhatsApp.', false);
   closeStaffModal();
@@ -462,6 +552,8 @@ function registerStaff() {
   document.getElementById('staffName').value = '';
   document.getElementById('staffPhone').value = '';
   document.getElementById('staffEmail').value = '';
+  document.getElementById('staffLocation').selectedIndex = 0;
+  document.getElementById('staffPosition').selectedIndex = 0;
   document.getElementById('staffPhotoPreview').innerHTML = '';
   staffPhotoData = null;
 }
@@ -482,26 +574,23 @@ function registerCompany() {
     return;
   }
   
-  // Save job
   jobsData.push({ company, contact, phone, email, location, position, salary, promoterCode, postedAt: new Date().toISOString() });
   localStorage.setItem('pearl_jobs', JSON.stringify(jobsData));
   
-  // Notify admin via WhatsApp
   sendWhatsApp('256709937339', `📢 New job posted: ${position} at ${company} by ${contact}. Phone: ${phone}`);
   sendWhatsApp(phone, `✅ Job posted successfully! Candidates will contact you. Thank you for using Pearl Hotel Staffing.`);
   
-  // Commission to promoter/broker if code provided
   if (promoterCode) {
     let promoter = promotersData.find(p => p.code === promoterCode);
     if (promoter) {
-      let commission = 16000; // 16% of 100k
+      let commission = 16000;
       promoter.earnings = (promoter.earnings || 0) + commission;
       localStorage.setItem('pearl_promoters', JSON.stringify(promotersData));
       sendWhatsApp(promoter.phone, `💰 You earned UGX ${commission} (16%) from job post by ${company}.`);
     }
     let broker = brokersData.find(b => b.code === promoterCode);
     if (broker) {
-      let commission = 40000; // 40% of 100k
+      let commission = 40000;
       broker.earnings = (broker.earnings || 0) + commission;
       localStorage.setItem('pearl_brokers', JSON.stringify(brokersData));
       sendWhatsApp(broker.phone, `💰 You earned UGX ${commission} (40%) from job post by ${company}.`);
@@ -510,11 +599,12 @@ function registerCompany() {
   
   showToast('✅ Job posted! We will confirm payment.', false);
   closeCompanyModal();
-  // Clear form
   document.getElementById('companyName').value = '';
   document.getElementById('companyContact').value = '';
   document.getElementById('companyPhone').value = '';
   document.getElementById('jobPromoterCode').value = '';
+  document.getElementById('companyLocation').selectedIndex = 0;
+  document.getElementById('jobPositionSelect').selectedIndex = 0;
 }
 
 // ========== PROMOTER ==========
@@ -588,6 +678,8 @@ function closeAdmin() { document.getElementById('adminModal').style.display = 'n
 function loginAdmin() {
   let pwd = document.getElementById('adminPassword').value;
   if (pwd === ADMIN_PASSWORD) {
+    let totalBroker = brokersData.reduce((s,b)=>s+(b.earnings||0),0);
+    let totalPromoter = promotersData.reduce((s,p)=>s+(p.earnings||0),0);
     document.getElementById('adminContent').innerHTML = `
       <div style="background:#1a1a1a; padding:15px; border-radius:12px;">
         <h3>📊 Dashboard</h3>
@@ -595,13 +687,14 @@ function loginAdmin() {
         <p>🏢 Jobs: ${jobsData.length}</p>
         <p>🤝 Promoters: ${promotersData.length}</p>
         <p>🏢 Brokers: ${brokersData.length}</p>
+        <p>📝 Applications: ${applicationsData.length}</p>
+        <p style="color:#ff9800;">Broker earnings: UGX ${totalBroker.toLocaleString()}</p>
+        <p style="color:#e2b13c;">Promoter earnings: UGX ${totalPromoter.toLocaleString()}</p>
         <hr>
-        <h4>Recent Staff</h4>
-        ${staffData.slice(-5).map(s => `<p>${s.name} - ${s.position} - ${s.phone}</p>`).join('')}
+        <h4>Recent Applications</h4>
+        ${applicationsData.slice(-5).map(a => `<p>${a.name} applied for ${a.job.position} at ${a.job.company}</p>`).join('')}
         <hr>
-        <h4>Recent Jobs</h4>
-        ${jobsData.slice(-5).map(j => `<p>${j.position} at ${j.company}</p>`).join('')}
-        <button class="btn-primary" onclick="exportData()">Export CSV</button>
+        <button class="btn-primary" onclick="exportAllData()">Export CSV</button>
       </div>
     `;
     document.getElementById('adminContent').style.display = 'block';
@@ -610,9 +703,9 @@ function loginAdmin() {
     showToast('Wrong password', true);
   }
 }
-function exportData() {
-  let csv = "Name,Phone,Email,Position,Location\n";
-  staffData.forEach(s => csv += `${s.name},${s.phone},${s.email},${s.position},${s.location}\n`);
+function exportAllData() {
+  let csv = "Name,Phone,Position,Location,Date\n";
+  staffData.forEach(s => csv += `${s.name},${s.phone},${s.position},${s.location},${s.registeredAt}\n`);
   let blob = new Blob([csv], {type: 'text/csv'});
   let a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
@@ -631,7 +724,6 @@ window.onclick = function(e) {
   if (e.target.classList && e.target.classList.contains('modal')) e.target.style.display = 'none';
 }
 
-// Initial load
 showMain();
 </script>
 </body>
