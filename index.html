@@ -129,6 +129,14 @@
       color: white;
       border-radius: 10px;
     }
+    /* Larger file input for mobile */
+    input[type="file"] {
+      padding: 15px;
+      font-size: 16px;
+      background: #222;
+      border: 1px dashed #e2b13c;
+      border-radius: 12px;
+    }
     .btn-primary {
       background: #e2b13c;
       color: black;
@@ -218,6 +226,16 @@
       margin: 15px 0;
       text-align: center;
     }
+    .hidden-admin {
+      text-align: center;
+      font-size: 10px;
+      color: #333;
+      margin-top: 20px;
+    }
+    .hidden-admin a {
+      color: #333;
+      text-decoration: none;
+    }
     @media (min-width: 768px) {
       .action-buttons { max-width: 400px; }
     }
@@ -235,13 +253,12 @@
     <a onclick="showJobsList()">Jobs</a>
     <a onclick="showPromoters()">Earn 16%</a>
     <a onclick="showBrokers()">Earn 40%</a>
-    <a onclick="openAdmin()">Admin</a>
+    <!-- Admin link removed from menu - hidden below -->
   </div>
 </div>
 
 <!-- MAIN HOME SECTION -->
 <div id="mainSection">
-  <!-- Headline -->
   <div style="text-align: center; padding: 30px 20px 10px;">
     <h1 style="font-size: 28px;">Find <span style="color:#e2b13c;">Hotel Jobs</span> Near You in <span style="color:#e2b13c;">Kampala</span></h1>
     <div class="verified-badge">
@@ -249,14 +266,12 @@
     </div>
   </div>
 
-  <!-- Action Buttons -->
   <div class="action-buttons">
     <button class="btn-large btn-jobseeker" onclick="openStaffRegister()">🔍 I need a job (FREE registration)</button>
     <button class="btn-large btn-employer" onclick="openCompanyRegister()">🏢 I need staff (Post a job)</button>
     <button class="btn-large btn-earn" onclick="showPromoters()">💰 Earn 16% as Promoter</button>
   </div>
 
-  <!-- Why Choose Us (Green Checklist) -->
   <div class="why-choose">
     <h3>⭐ Why Choose Pearl Hotel Staffing?</h3>
     <ul>
@@ -268,7 +283,6 @@
     </ul>
   </div>
 
-  <!-- Simple Steps -->
   <div class="steps">
     <div class="step"><div class="step-number">1</div><p>Register<br>free</p></div>
     <div class="step"><div class="step-number">2</div><p>Get matched<br>or post job</p></div>
@@ -329,8 +343,27 @@
     </select>
     <select id="staffPosition">
       <option value="" disabled selected>-- Select your position --</option>
-      <option>Chef</option><option>Waiter/Waitress</option><option>Manager</option>
-      <option>Housekeeping</option><option>Receptionist</option><option>Bartender</option>
+      <optgroup label="Kitchen">
+        <option>Chef</option><option>Commis Chef</option><option>Kitchen Helper</option>
+      </optgroup>
+      <optgroup label="Service">
+        <option>Waiter/Waitress</option><option>Bartender</option><option>Barista</option>
+      </optgroup>
+      <optgroup label="Front Office">
+        <option>Receptionist</option><option>Front Desk Agent</option><option>Guest Relations</option>
+      </optgroup>
+      <optgroup label="Housekeeping">
+        <option>Housekeeper</option><option>Room Attendant</option><option>Laundry Attendant</option>
+      </optgroup>
+      <optgroup label="Security">
+        <option>Security Guard</option><option>Security Supervisor</option>
+      </optgroup>
+      <optgroup label="Finance">
+        <option>Accountant</option><option>Auditor</option><option>Cashier</option>
+      </optgroup>
+      <optgroup label="Management">
+        <option>Hotel Manager</option><option>Assistant Manager</option><option>Operations Manager</option>
+      </optgroup>
     </select>
     <label>📸 Upload your photo (optional):</label>
     <input type="file" id="staffPhoto" accept="image/*" onchange="previewStaffPhoto(event)">
@@ -342,16 +375,17 @@
   </div>
 </div>
 
-<!-- JOB POST MODAL -->
+<!-- JOB POST MODAL (with Request Quote instead of upfront payment) -->
 <div id="companyModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeCompanyModal()">&times;</span>
-    <h2>🏢 Post a job - UGX 100,000</h2>
+    <h2>🏢 Post a job - Request Quote</h2>
     <div class="payment-info">
-      <p>📱 <strong>How to pay:</strong></p>
-      <p>Send <strong>UGX 100,000</strong> to:</p>
-      <p>Airtel: <strong>+256 709 937 339</strong><br>MTN: <strong>+256 783 168 227</strong></p>
-      <p style="font-size:12px;">After payment, WhatsApp your transaction ID to <strong>+256 709 937 339</strong><br>Then fill this form.</p>
+      <p>📱 <strong>How it works:</strong></p>
+      <p>1. Fill in your details below</p>
+      <p>2. We will call you within 1 hour with a quote</p>
+      <p>3. Agree on price, then post your job</p>
+      <p style="font-size:12px;">Typical price: <strong>UGX 100,000</strong> per job post</p>
     </div>
     <input type="text" id="companyName" placeholder="Hotel Name *">
     <input type="text" id="companyContact" placeholder="Contact Person *">
@@ -363,11 +397,31 @@
     </select>
     <select id="jobPositionSelect">
       <option value="" disabled selected>-- Select position --</option>
-      <option>Chef</option><option>Waiter</option><option>Manager</option><option>Housekeeping</option>
+      <optgroup label="Kitchen">
+        <option>Chef</option><option>Commis Chef</option><option>Kitchen Helper</option>
+      </optgroup>
+      <optgroup label="Service">
+        <option>Waiter</option><option>Bartender</option><option>Barista</option>
+      </optgroup>
+      <optgroup label="Front Office">
+        <option>Receptionist</option><option>Front Desk Agent</option><option>Guest Relations</option>
+      </optgroup>
+      <optgroup label="Housekeeping">
+        <option>Housekeeper</option><option>Room Attendant</option>
+      </optgroup>
+      <optgroup label="Security">
+        <option>Security Guard</option><option>Security Supervisor</option>
+      </optgroup>
+      <optgroup label="Finance">
+        <option>Accountant</option><option>Auditor</option><option>Cashier</option>
+      </optgroup>
+      <optgroup label="Management">
+        <option>Hotel Manager</option><option>Assistant Manager</option>
+      </optgroup>
     </select>
     <input type="text" id="jobSalary" placeholder="Salary range (optional)">
     <input type="text" id="jobPromoterCode" placeholder="Promoter/Broker code (optional)">
-    <button class="btn-primary" onclick="registerCompany()">Post Job (UGX 100,000)</button>
+    <button class="btn-primary" onclick="requestQuote()">Request Quote</button>
     <p id="companyMsg" style="margin-top:10px;"></p>
   </div>
 </div>
@@ -389,7 +443,7 @@
   </div>
 </div>
 
-<!-- ADMIN MODAL -->
+<!-- ADMIN MODAL (hidden, accessed via gear icon) -->
 <div id="adminModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeAdmin()">&times;</span>
@@ -405,6 +459,11 @@
 <div class="contact-bar" style="background:#1a1a1a; padding:15px; text-align:center; font-size:12px;">
   <p>📞 Airtel: <a href="tel:+256709937339" style="color:#e2b13c;">+256 709 937 339</a> | MTN: <a href="tel:+256783168227" style="color:#e2b13c;">+256 783 168 227</a></p>
   <p>📧 <a href="mailto:tesfann2@gmail.com" style="color:#e2b13c;">tesfann2@gmail.com</a> | 💬 <a href="https://wa.me/256709937339" style="color:#e2b13c;">WhatsApp</a></p>
+</div>
+
+<!-- Hidden Admin Link (gear icon) -->
+<div class="hidden-admin">
+  <a href="#" onclick="openAdmin(); return false;">⚙️</a>
 </div>
 
 <div class="bottom-nav">
@@ -503,7 +562,6 @@ function submitApplication() {
     showToast('❌ Please enter your name and WhatsApp number', true);
     return;
   }
-  // Save application
   applicationsData.push({
     name, phone,
     job: currentJobForApply,
@@ -511,7 +569,6 @@ function submitApplication() {
     date: new Date().toISOString()
   });
   localStorage.setItem('pearl_applications', JSON.stringify(applicationsData));
-  // Notify admin
   sendWhatsApp('256709937339', `📝 New application: ${name} applied for ${currentJobForApply.position} at ${currentJobForApply.company}. Phone: ${phone}. Payment of UGX 10,000 pending confirmation.`);
   sendWhatsApp(phone, `✅ Application received for ${currentJobForApply.position} at ${currentJobForApply.company}. We will contact you within 24 hours after payment confirmation.`);
   showToast('✅ Application submitted! Check WhatsApp.', false);
@@ -548,7 +605,6 @@ function registerStaff() {
   sendWhatsApp(phone, `✅ Registration confirmed ${name}! Position: ${position}, Location: ${location}. We will contact you within 24 hours.`);
   showToast('✅ Registered! Check WhatsApp.', false);
   closeStaffModal();
-  // Clear form
   document.getElementById('staffName').value = '';
   document.getElementById('staffPhone').value = '';
   document.getElementById('staffEmail').value = '';
@@ -558,53 +614,37 @@ function registerStaff() {
   staffPhotoData = null;
 }
 
-// ========== COMPANY JOB POST ==========
-function registerCompany() {
+// ========== REQUEST QUOTE (instead of upfront payment) ==========
+function requestQuote() {
   let company = document.getElementById('companyName').value;
   let contact = document.getElementById('companyContact').value;
   let phone = document.getElementById('companyPhone').value;
-  let email = document.getElementById('companyEmail').value;
   let location = document.getElementById('companyLocation').value;
   let position = document.getElementById('jobPositionSelect').value;
-  let salary = document.getElementById('jobSalary').value;
-  let promoterCode = document.getElementById('jobPromoterCode').value;
   
   if (!company || !contact || !phone || !location || !position) {
-    showToast('❌ Please fill all required fields', true);
+    showToast('❌ Please fill Hotel Name, Contact Person, WhatsApp, Location, and Position first', true);
     return;
   }
   
-  jobsData.push({ company, contact, phone, email, location, position, salary, promoterCode, postedAt: new Date().toISOString() });
-  localStorage.setItem('pearl_jobs', JSON.stringify(jobsData));
+  // Save job as pending (optional)
+  let pendingJob = { company, contact, phone, location, position, status: 'quote_requested', requestedAt: new Date().toISOString() };
+  let pendingJobs = JSON.parse(localStorage.getItem('pearl_pending_jobs') || '[]');
+  pendingJobs.push(pendingJob);
+  localStorage.setItem('pearl_pending_jobs', JSON.stringify(pendingJobs));
   
-  sendWhatsApp('256709937339', `📢 New job posted: ${position} at ${company} by ${contact}. Phone: ${phone}`);
-  sendWhatsApp(phone, `✅ Job posted successfully! Candidates will contact you. Thank you for using Pearl Hotel Staffing.`);
-  
-  if (promoterCode) {
-    let promoter = promotersData.find(p => p.code === promoterCode);
-    if (promoter) {
-      let commission = 16000;
-      promoter.earnings = (promoter.earnings || 0) + commission;
-      localStorage.setItem('pearl_promoters', JSON.stringify(promotersData));
-      sendWhatsApp(promoter.phone, `💰 You earned UGX ${commission} (16%) from job post by ${company}.`);
-    }
-    let broker = brokersData.find(b => b.code === promoterCode);
-    if (broker) {
-      let commission = 40000;
-      broker.earnings = (broker.earnings || 0) + commission;
-      localStorage.setItem('pearl_brokers', JSON.stringify(brokersData));
-      sendWhatsApp(broker.phone, `💰 You earned UGX ${commission} (40%) from job post by ${company}.`);
-    }
-  }
-  
-  showToast('✅ Job posted! We will confirm payment.', false);
+  // Send quote request to admin via WhatsApp
+  sendWhatsApp('256709937339', `📋 QUOTE REQUEST from ${company}. Contact: ${contact}, Phone: ${phone}, Position: ${position}, Location: ${location}. Please call to discuss job posting.`);
+  sendWhatsApp(phone, `✅ Thank you for your interest! We will call you within 1 hour with a quote for posting your job.`);
+  showToast('✅ Quote request sent! We will call you soon.', false);
   closeCompanyModal();
+  
+  // Clear form
   document.getElementById('companyName').value = '';
   document.getElementById('companyContact').value = '';
   document.getElementById('companyPhone').value = '';
+  document.getElementById('companyEmail').value = '';
   document.getElementById('jobPromoterCode').value = '';
-  document.getElementById('companyLocation').selectedIndex = 0;
-  document.getElementById('jobPositionSelect').selectedIndex = 0;
 }
 
 // ========== PROMOTER ==========
@@ -680,6 +720,7 @@ function loginAdmin() {
   if (pwd === ADMIN_PASSWORD) {
     let totalBroker = brokersData.reduce((s,b)=>s+(b.earnings||0),0);
     let totalPromoter = promotersData.reduce((s,p)=>s+(p.earnings||0),0);
+    let pendingQuotes = JSON.parse(localStorage.getItem('pearl_pending_jobs') || '[]');
     document.getElementById('adminContent').innerHTML = `
       <div style="background:#1a1a1a; padding:15px; border-radius:12px;">
         <h3>📊 Dashboard</h3>
@@ -688,11 +729,15 @@ function loginAdmin() {
         <p>🤝 Promoters: ${promotersData.length}</p>
         <p>🏢 Brokers: ${brokersData.length}</p>
         <p>📝 Applications: ${applicationsData.length}</p>
+        <p>📋 Pending Quotes: ${pendingQuotes.length}</p>
         <p style="color:#ff9800;">Broker earnings: UGX ${totalBroker.toLocaleString()}</p>
         <p style="color:#e2b13c;">Promoter earnings: UGX ${totalPromoter.toLocaleString()}</p>
         <hr>
         <h4>Recent Applications</h4>
         ${applicationsData.slice(-5).map(a => `<p>${a.name} applied for ${a.job.position} at ${a.job.company}</p>`).join('')}
+        <hr>
+        <h4>Pending Quote Requests</h4>
+        ${pendingQuotes.slice(-5).map(q => `<p>${q.company} - ${q.position} - Contact: ${q.contact}</p>`).join('')}
         <hr>
         <button class="btn-primary" onclick="exportAllData()">Export CSV</button>
       </div>
