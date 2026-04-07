@@ -41,7 +41,6 @@
     }
     .btn-gold { background: #e2b13c !important; color: black !important; }
     
-    /* Main Buttons */
     .action-buttons {
       display: flex;
       flex-direction: column;
@@ -56,14 +55,12 @@
       border: none;
       border-radius: 50px;
       cursor: pointer;
-      transition: 0.2s;
       width: 100%;
     }
     .btn-jobseeker { background: #e2b13c; color: black; }
     .btn-employer { background: #ff9800; color: black; }
     .btn-earn { background: transparent; border: 2px solid #e2b13c; color: #e2b13c; }
     
-    /* Why Choose Us */
     .why-choose {
       background: #0a2a1a;
       padding: 30px 20px;
@@ -127,7 +124,6 @@
       color: white;
       border-radius: 10px;
     }
-    /* Larger file upload for mobile */
     input[type="file"] {
       padding: 15px;
       font-size: 16px;
@@ -232,11 +228,11 @@
     }
     .location-filter {
       padding: 15px;
-    }
-    .location-filter select {
-      max-width: 200px;
-      display: inline-block;
-      margin-left: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
     @media (min-width: 768px) {
       .action-buttons { max-width: 400px; }
@@ -255,7 +251,6 @@
     <a onclick="showJobsList()">Jobs</a>
     <a onclick="showPromoters()">Earn 16%</a>
     <a onclick="showBrokers()">Earn 40%</a>
-    <!-- Admin link removed from main menu -->
   </div>
 </div>
 
@@ -293,7 +288,7 @@
 <!-- JOBS LIST SECTION with Location Filter -->
 <div id="jobsListSection" style="display:none;">
   <h2 style="text-align:center; padding:20px;">📋 Available Jobs</h2>
-  <div class="location-filter" style="display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;">
+  <div class="location-filter">
     <span>Filter by location:</span>
     <select id="locationFilter" onchange="filterJobsByLocation()">
       <option value="">All Kampala</option>
@@ -336,7 +331,7 @@
   </div>
 </div>
 
-<!-- STAFF REGISTRATION MODAL -->
+<!-- STAFF REGISTRATION MODAL (FREE) -->
 <div id="staffModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeStaffModal()">&times;</span>
@@ -344,12 +339,12 @@
     <input type="text" id="staffName" placeholder="Full Name *">
     <input type="tel" id="staffPhone" placeholder="WhatsApp Number *">
     <input type="email" id="staffEmail" placeholder="Email (optional)">
-    <select id="staffLocation">
+    <select id="staffLocation" required>
       <option value="" disabled selected>-- Select your location --</option>
       <option>Kampala CBD</option><option>Kansanga</option><option>Gaba</option>
       <option>Munyonyo</option><option>Ntinda</option><option>Entebbe</option>
     </select>
-    <select id="staffPosition">
+    <select id="staffPosition" required>
       <option value="" disabled selected>-- Select your position --</option>
       <optgroup label="Kitchen"><option>Chef</option><option>Commis Chef</option><option>Kitchen Helper</option></optgroup>
       <optgroup label="Service"><option>Waiter/Waitress</option><option>Bartender</option><option>Barista</option></optgroup>
@@ -369,20 +364,21 @@
   </div>
 </div>
 
-<!-- JOB POST MODAL - Self-service, sends WhatsApp quote -->
+<!-- JOB POST MODAL - Self-service WhatsApp quote -->
 <div id="companyModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeCompanyModal()">&times;</span>
     <h2>🏢 Post a job - UGX 100,000</h2>
-    <input type="text" id="companyName" placeholder="Hotel Name *">
-    <input type="text" id="companyContact" placeholder="Contact Person *">
-    <input type="tel" id="companyPhone" placeholder="WhatsApp Number *">
-    <input type="email" id="companyEmail" placeholder="Email">
-    <select id="companyLocation">
+    <input type="text" id="companyName" placeholder="Hotel Name *" required>
+    <input type="text" id="companyContact" placeholder="Contact Person *" required>
+    <input type="tel" id="companyPhone" placeholder="WhatsApp Number *" required>
+    <input type="email" id="companyEmail" placeholder="Email (optional)">
+    <select id="companyLocation" required>
       <option value="" disabled selected>-- Select location --</option>
-      <option>Kampala CBD</option><option>Kansanga</option><option>Gaba</option><option>Munyonyo</option>
+      <option>Kampala CBD</option><option>Kansanga</option><option>Gaba</option>
+      <option>Munyonyo</option><option>Ntinda</option><option>Entebbe</option>
     </select>
-    <select id="jobPositionSelect">
+    <select id="jobPositionSelect" required>
       <option value="" disabled selected>-- Select position --</option>
       <optgroup label="Kitchen"><option>Chef</option><option>Commis Chef</option><option>Kitchen Helper</option></optgroup>
       <optgroup label="Service"><option>Waiter</option><option>Bartender</option><option>Barista</option></optgroup>
@@ -395,6 +391,10 @@
     <input type="text" id="jobSalary" placeholder="Salary range (optional)">
     <input type="text" id="jobPromoterCode" placeholder="Promoter/Broker code (optional)">
     <button class="btn-primary" onclick="sendJobQuote()">Get Quote via WhatsApp</button>
+    <!-- Email fallback -->
+    <div class="payment-info" style="background: #2196f320; margin-top: 15px;">
+      <p>📧 No WhatsApp? Email job details to: <strong>tesfann2@gmail.com</strong></p>
+    </div>
     <p id="companyMsg" style="margin-top:10px; font-size:12px; color:#ccc;">We will reply with payment instructions. No upfront payment required.</p>
   </div>
 </div>
@@ -409,14 +409,14 @@
       <p>Send to: <strong>Airtel +256 709 937 339</strong> or <strong>MTN +256 783 168 227</strong></p>
       <p style="font-size:12px;">After payment, WhatsApp your transaction ID to <strong>+256 709 937 339</strong></p>
     </div>
-    <input type="text" id="applicantName" placeholder="Your Full Name *">
-    <input type="tel" id="applicantPhone" placeholder="Your WhatsApp *">
+    <input type="text" id="applicantName" placeholder="Your Full Name *" required>
+    <input type="tel" id="applicantPhone" placeholder="Your WhatsApp *" required>
     <button class="btn-primary" onclick="submitApplication()">Confirm Application (UGX 10,000)</button>
     <p id="applyMsg" style="margin-top:10px;"></p>
   </div>
 </div>
 
-<!-- ADMIN MODAL (Secret access via gear icon) -->
+<!-- ADMIN MODAL (Secret gear icon) -->
 <div id="adminModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeAdmin()">&times;</span>
@@ -435,7 +435,7 @@
 </div>
 
 <!-- Hidden gear icon for admin access -->
-<div style="text-align: center; font-size: 12px; color: #333; margin: 10px 0;">
+<div style="text-align: center; font-size: 14px; color: #333; margin: 10px 0;">
   <a href="#" onclick="openAdmin(); return false;" style="color: #333; text-decoration: none;">⚙️</a>
 </div>
 
@@ -566,7 +566,7 @@ function registerStaff() {
   let location = document.getElementById('staffLocation').value;
   let position = document.getElementById('staffPosition').value;
   if (!name || !phone || !location || !position) {
-    showToast('❌ Please fill all required fields', true);
+    showToast('❌ Please fill all required fields (including location)', true);
     return;
   }
   let cvFile = document.getElementById('staffCV').files[0];
@@ -597,7 +597,7 @@ function sendJobQuote() {
   let promoterCode = document.getElementById('jobPromoterCode').value;
 
   if (!company || !contact || !phone || !location || !position) {
-    showToast('❌ Please fill all required fields', true);
+    showToast('❌ Please fill all required fields (including location)', true);
     return;
   }
 
@@ -636,7 +636,7 @@ Please confirm to proceed with payment.`;
   document.getElementById('jobPositionSelect').selectedIndex = 0;
 }
 
-// ========== PROMOTER & BROKER FUNCTIONS ==========
+// ========== PROMOTER & BROKER ==========
 function registerPromoter() {
   let name = document.getElementById('promoterName').value;
   let phone = document.getElementById('promoterPhone').value;
@@ -727,16 +727,13 @@ function loginAdmin() {
 }
 
 function approveJob(company, position, contact, phone, location, salary, promoterCode) {
-  // Add to active jobs
   jobsData.push({ company, contact, phone, location, position, salary, promoterCode, postedAt: new Date().toISOString() });
   localStorage.setItem('pearl_jobs', JSON.stringify(jobsData));
-  // Remove from pending
   pendingJobs = pendingJobs.filter(j => !(j.company === company && j.position === position && j.contact === contact));
   localStorage.setItem('pearl_pending_jobs', JSON.stringify(pendingJobs));
-  // Optionally notify employer
   sendWhatsApp(phone, `✅ Your job post for ${position} at ${company} has been approved and is now live.`);
-  showToast('Job approved and added to active jobs', false);
-  loginAdmin(); // refresh admin view
+  showToast('Job approved', false);
+  loginAdmin();
   filterJobsByLocation();
 }
 
