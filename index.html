@@ -9,6 +9,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #0a0a0a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; color: white; padding-bottom: 70px; }
     
+    /* Header */
     .header { background: linear-gradient(135deg, #1a1a1a, #0d0d0d); padding: 16px; border-bottom: 3px solid #e2b13c; position: sticky; top: 0; z-index: 100; }
     .logo h1 { color: #e2b13c; font-size: 22px; text-align: center; }
     .logo p { font-size: 11px; color: #888; text-align: center; }
@@ -17,23 +18,27 @@
     .nav-links a:hover { background: #e2b13c; color: black; }
     .btn-gold { background: #e2b13c !important; color: black !important; }
     
+    /* Hero */
     .hero { padding: 60px 20px; text-align: center; background: linear-gradient(135deg, #0f0f0f, #1a1a1a); }
     .hero h1 { font-size: 32px; margin-bottom: 15px; }
     .hero h1 span { color: #e2b13c; }
     .hero p { font-size: 18px; color: #ccc; max-width: 600px; margin: 0 auto 30px; }
     
+    /* Buttons */
     .btn-primary, .btn-secondary { padding: 12px 24px; border-radius: 30px; font-weight: bold; cursor: pointer; border: none; margin: 5px; transition: 0.3s; }
     .btn-primary { background: #e2b13c; color: black; }
     .btn-primary:hover { transform: scale(1.05); background: #c99f2e; }
     .btn-secondary { background: transparent; border: 2px solid #e2b13c; color: #e2b13c; }
     .btn-secondary:hover { background: #e2b13c; color: black; }
     
+    /* Stats */
     .stats { display: flex; justify-content: center; gap: 20px; padding: 40px 20px; background: #111; flex-wrap: wrap; }
     .stat { background: #1a1a1a; padding: 25px; border-radius: 16px; text-align: center; min-width: 120px; cursor: pointer; transition: 0.3s; }
     .stat:hover { transform: translateY(-5px); border: 1px solid #e2b13c; }
     .stat h3 { color: #e2b13c; font-size: 32px; }
     .stat p { font-size: 12px; color: #888; }
     
+    /* Pricing Cards */
     .pricing-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
     .pricing-card { background: #1a1a1a; padding: 30px; border-radius: 20px; flex: 1; min-width: 280px; text-align: center; border: 1px solid #333; transition: 0.3s; }
     .pricing-card:hover { transform: translateY(-10px); border-color: #e2b13c; }
@@ -42,17 +47,22 @@
     .pricing-card ul { list-style: none; margin: 20px 0; text-align: left; }
     .pricing-card li { padding: 8px 0; border-bottom: 1px solid #333; }
     
+    /* Commission Badge */
     .commission-badge { background: #ff9800; color: black; padding: 5px 10px; border-radius: 20px; display: inline-block; font-weight: bold; font-size: 12px; margin-bottom: 10px; }
     
+    /* Cards */
     .service-grid, .job-grid { display: grid; grid-template-columns: 1fr; gap: 15px; padding: 20px; max-width: 600px; margin: 0 auto; }
     .service-card, .job-card { background: #1a1a1a; padding: 20px; border-radius: 16px; border: 1px solid #333; }
     
+    /* Partner Grid */
     .partner-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; padding: 40px 20px; max-width: 1000px; margin: 0 auto; }
     .partner-card { background: #1a1a1a; padding: 30px; border-radius: 20px; text-align: center; flex: 1; min-width: 250px; border: 1px solid #333; }
     
+    /* Contact Bar */
     .contact-bar { background: #1a1a1a; padding: 20px; text-align: center; margin-top: 30px; font-size: 14px; }
     .contact-bar a { color: #e2b13c; text-decoration: none; }
     
+    /* Modals */
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; }
     .modal-content { background: #1a1a1a; padding: 25px; border-radius: 20px; max-width: 500px; width: 90%; border: 1px solid #e2b13c; max-height: 85vh; overflow-y: auto; }
     input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; background: #222; border: 1px solid #333; color: white; border-radius: 8px; }
@@ -91,80 +101,87 @@
   <div class="hero">
     <h1>Find <span>Hotel Jobs</span> Near You in <span>Kampala</span></h1>
     <p>Upload CV & Photo. Connect with hotels, restaurants, cafes, bars & clubs. Earn up to 40% commission as a broker.</p>
-    <div>
+    <div class="hero-buttons">
       <button class="btn-primary" onclick="openStaffRegister()">🔍 Find Work (FREE)</button>
       <button class="btn-primary" onclick="openCompanyRegister()">🏢 Post a Job (UGX 100,000)</button>
       <button class="btn-secondary" onclick="showSection('partners')">💰 Earn 40% as Broker</button>
     </div>
   </div>
 
+  <!-- HIRING MADE SIMPLE & SAFE - 3 STEP PROCESS -->
+  <div style="background: linear-gradient(135deg, #0a2a1a, #0a0a0a); padding: 50px 20px; margin: 20px auto; max-width: 1200px; border-radius: 30px; border: 1px solid #e2b13c;">
+    <h2 style="text-align: center; color: #e2b13c; margin-bottom: 10px; font-size: 28px;">🏨 Hiring Made Simple & Safe</h2>
+    <p style="text-align: center; color: #ccc; margin-bottom: 40px;">300+ verified experts ready to work for you</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+      <div style="background: #1a1a1a; padding: 30px 20px; border-radius: 20px; text-align: center;">
+        <div style="background: #e2b13c; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;"><span style="font-size: 28px; color: black; font-weight: bold;">1</span></div>
+        <h3 style="color: #e2b13c; margin-bottom: 10px;">📋 Choose</h3>
+        <p style="color: #ccc; font-size: 15px;">Pick from our <strong>300+ verified experts</strong>. Chefs, Waiters, Housekeeping, Managers - all vetted and ready to work.</p>
+      </div>
+      <div style="background: #1a1a1a; padding: 30px 20px; border-radius: 20px; text-align: center;">
+        <div style="background: #ff9800; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;"><span style="font-size: 28px; color: black; font-weight: bold;">2</span></div>
+        <h3 style="color: #ff9800; margin-bottom: 10px;">🔒 Secure</h3>
+        <p style="color: #ccc; font-size: 15px;">Pay a small commitment fee of <strong>UGX 100,000</strong>. <strong style="color: #ff9800;">Held in Escrow</strong> - we don't get paid until you're satisfied.</p>
+      </div>
+      <div style="background: #1a1a1a; padding: 30px 20px; border-radius: 20px; text-align: center;">
+        <div style="background: #4caf50; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;"><span style="font-size: 28px; color: black; font-weight: bold;">3</span></div>
+        <h3 style="color: #4caf50; margin-bottom: 10px;">✅ Hire</h3>
+        <p style="color: #ccc; font-size: 15px;">If they don't fit, we <strong>replace them for FREE</strong> within <strong>14 days</strong>. No extra cost. No risk.</p>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 35px;">
+      <div style="display: inline-block; background: #222; padding: 12px 25px; border-radius: 50px;"><span style="color: #e2b13c;">⭐</span><span style="color: #ccc; margin: 0 5px;">"You only pay for results"</span><span style="color: #e2b13c;">⭐</span></div>
+    </div>
+    <div style="text-align: center; margin-top: 30px;">
+      <button class="btn-primary" onclick="openCompanyRegister()" style="background: #e2b13c; color: black; padding: 14px 35px; font-size: 16px;">📢 Post a Job Now →</button>
+      <button class="btn-secondary" onclick="sendWhatsApp('256709937339', 'I want to hire staff through Pearl Hotel Staffing')" style="margin-left: 15px; padding: 14px 25px;">💬 Talk to Us</button>
+    </div>
+  </div>
+
+  <!-- DETAILED GUARANTEE SECTION -->
+  <div style="background: #111; padding: 30px 20px; margin: 10px auto; max-width: 1000px; border-radius: 20px; border: 1px solid #333;">
+    <h3 style="text-align: center; color: #e2b13c; margin-bottom: 20px;">📋 Our Service Fee & Quality Guarantee</h3>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+      <div style="flex: 1; min-width: 200px; text-align: center;"><div style="font-size: 24px;">💰</div><p style="font-size: 13px; color: #ccc; margin-top: 5px;"><strong>Transparent Flat Fee</strong><br>UGX 100,000 per placement</p></div>
+      <div style="flex: 1; min-width: 200px; text-align: center;"><div style="font-size: 24px;">🔒</div><p style="font-size: 13px; color: #ccc; margin-top: 5px;"><strong>14-Day Escrow</strong><br>Payment held for 2 weeks</p></div>
+      <div style="flex: 1; min-width: 200px; text-align: center;"><div style="font-size: 24px;">🔄</div><p style="font-size: 13px; color: #ccc; margin-top: 5px;"><strong>Free Replacement</strong><br>Within 14 days if not satisfied</p></div>
+      <div style="flex: 1; min-width: 200px; text-align: center;"><div style="font-size: 24px;">⭐</div><p style="font-size: 13px; color: #ccc; margin-top: 5px;"><strong>300+ Verified</strong><br>Qualified experts ready</p></div>
+    </div>
+  </div>
+
   <div class="stats">
-    <div class="stat" onclick="showSection('stafflist')"><h3 id="staffCount">0</h3><p>Staff (FREE)</p></div>
-    <div class="stat" onclick="showSection('jobs')"><h3 id="jobCount">0</h3><p>Jobs (UGX 100k)</p></div>
+    <div class="stat" onclick="showSection('stafflist')"><h3 id="staffCount">0</h3><p>Staff</p></div>
+    <div class="stat" onclick="showSection('jobs')"><h3 id="jobCount">0</h3><p>Jobs</p></div>
     <div class="stat" onclick="showSection('promoters')"><h3 id="promoterCount">0</h3><p>Promoters (16%)</p></div>
     <div class="stat" onclick="showSection('brokers')"><h3 id="brokerCount">0</h3><p>Brokers (40%)</p></div>
   </div>
 </div>
 
-<!-- PRICING SECTION - 3 PARTNER PLANS WITH 35% COMMISSION -->
+<!-- PRICING SECTION -->
 <div id="pricingSection" style="display:none;">
-  <h2 style="text-align:center; padding:30px 20px 0;">📊 3 Partner Plans</h2>
-  
-  <!-- Expert Partner Commission Notice -->
+  <h2 style="text-align:center; padding:30px 20px 0;">📊 Investment Plans</h2>
   <div style="text-align:center; margin: 10px auto; max-width: 600px;">
-    <div style="background: #ff980020; padding: 10px; border-radius: 20px; display: inline-block;">
-      🤝 <strong>Expert Partners earn 35% commission</strong> on Professional & Elite Plans
-    </div>
+    <div style="background: #ff980020; padding: 10px; border-radius: 20px; display: inline-block;">🤝 <strong>Expert Partners earn 35% commission</strong> on Professional & Elite Plans</div>
   </div>
-  
   <div class="pricing-grid">
-    
-    <!-- PLAN 1: STARTER - No Commission -->
-    <div class="pricing-card">
-      <h3>🏨 STARTER</h3>
-      <div class="price">UGX 500,000 <span style="font-size:14px;">/month</span></div>
-      <ul>
-        <li>✅ Digital Marketing Setup</li>
-        <li>✅ Basic Staff Placement</li>
-        <li>✅ Monthly Report</li>
-      </ul>
+    <div class="pricing-card"><h3>🏨 STARTER</h3><div class="price">UGX 500,000 <span style="font-size:14px;">/month</span></div>
+      <ul><li>✅ Digital Marketing Setup</li><li>✅ Basic Staff Placement</li><li>✅ Monthly Report</li></ul>
       <button class="btn-primary" onclick="selectPlan('Starter', 500000)">Select Plan</button>
     </div>
-
-    <!-- PLAN 2: PROFESSIONAL - Expert Partner earns 35% -->
-    <div class="pricing-card popular">
-      <div class="commission-badge">⭐ Expert Partners earn 35% on this plan</div>
-      <h3>⭐ PROFESSIONAL</h3>
-      <div class="price">UGX 1,500,000 <span style="font-size:14px;">/month</span></div>
-      <ul>
-        <li>✅ Upselling Training</li>
-        <li>✅ Menu Engineering</li>
-        <li>✅ Weekly Consultations</li>
-        <li>✅ Guest Retention System</li>
-      </ul>
+    <div class="pricing-card popular"><div class="commission-badge">⭐ Expert Partners earn 35% on this plan</div>
+      <h3>⭐ PROFESSIONAL</h3><div class="price">UGX 1,500,000 <span style="font-size:14px;">/month</span></div>
+      <ul><li>✅ Upselling Training</li><li>✅ Menu Engineering</li><li>✅ Weekly Consultations</li><li>✅ Guest Retention System</li></ul>
       <button class="btn-primary" onclick="selectPlan('Professional', 1500000)">Most Popular</button>
     </div>
-
-    <!-- PLAN 3: ELITE - Expert Partner earns 35% + profit-share -->
-    <div class="pricing-card">
-      <div class="commission-badge">👑 Expert Partners earn 35% + profit-share</div>
-      <h3>👑 ELITE</h3>
-      <div class="price">UGX 3,000,000+ <span style="font-size:14px;">/month</span></div>
-      <ul>
-        <li>✅ Full Agency Partnership</li>
-        <li>✅ Profit-Share Model</li>
-        <li>✅ Dedicated Account Manager</li>
-      </ul>
+    <div class="pricing-card"><div class="commission-badge">👑 Expert Partners earn 35% + profit-share</div>
+      <h3>👑 ELITE</h3><div class="price">UGX 3,000,000+ <span style="font-size:14px;">/month</span></div>
+      <ul><li>✅ Full Agency Partnership</li><li>✅ Profit-Share Model</li><li>✅ Dedicated Account Manager</li></ul>
       <button class="btn-primary" onclick="openRevenueConsult()">Contact Us</button>
     </div>
-    
   </div>
-  
-  <!-- Expert Partner CTA -->
   <div style="background: linear-gradient(135deg, #1a1a1a, #0d0d0d); margin: 30px auto; max-width: 600px; padding: 25px; border-radius: 20px; text-align: center; border: 1px solid #e2b13c;">
     <h3 style="color:#e2b13c;">👑 Become an Expert Partner</h3>
     <p style="margin: 10px 0;">Earn <strong>35% commission</strong> on Professional & Elite Plans</p>
-    <p style="font-size: 14px; color: #ccc;">Sell training + menu engineering to hotels. We handle delivery.</p>
     <button class="btn-primary" onclick="openExpertPartnerForm()">Apply as Expert Partner →</button>
   </div>
 </div>
@@ -177,154 +194,87 @@
 
 <!-- Staff List Section -->
 <div id="stafflistSection" style="display:none;">
-  <h2 style="text-align:center; padding:30px 20px 0;">👥 Registered Staff (FREE)</h2>
+  <h2 style="text-align:center; padding:30px 20px 0;">👥 Registered Staff</h2>
   <div class="job-grid" id="staffListings"></div>
 </div>
 
-<!-- Partners Section (Promoters & Brokers) -->
+<!-- Partners Section -->
 <div id="partnersSection" style="display:none;">
   <h2 style="text-align:center; padding:30px 20px 0;">🤝 Partner Ecosystem</h2>
   <div class="partner-grid">
-    <div class="partner-card">
-      <div style="background:#e2b13c; color:black; padding:5px 10px; border-radius:20px; display:inline-block; font-weight:bold;">💰 16% COMMISSION</div>
-      <h3 style="margin:15px 0;">Promoter</h3>
-      <p>Share links & earn 16% on every job post sale.</p>
+    <div class="partner-card"><div style="background:#e2b13c; color:black; padding:5px 10px; border-radius:20px; display:inline-block; font-weight:bold;">💰 16% COMMISSION</div>
+      <h3 style="margin:15px 0;">Promoter</h3><p>Share links & earn 16% on every job post sale.</p>
       <button class="btn-primary" onclick="openPromoterForm()">Become Promoter</button>
     </div>
-    <div class="partner-card">
-      <div style="background:#ff9800; color:black; padding:5px 10px; border-radius:20px; display:inline-block; font-weight:bold;">💰 40% COMMISSION</div>
-      <h3 style="margin:15px 0;">Broker</h3>
-      <p>Submit hotel jobs directly. Earn 40% on every job post (UGX 100,000).</p>
-      <p style="font-size:12px; color:#888; margin-top:10px;">⚠️ Submitting staff = No commission (staff registration is FREE)</p>
+    <div class="partner-card"><div style="background:#ff9800; color:black; padding:5px 10px; border-radius:20px; display:inline-block; font-weight:bold;">💰 40% COMMISSION</div>
+      <h3 style="margin:15px 0;">Broker</h3><p>Submit hotel jobs directly. Earn 40% on every job post (UGX 100,000).</p>
       <button class="btn-primary" onclick="openBrokerForm()">Become Broker</button>
     </div>
   </div>
   <div style="text-align:center; padding:20px;">
-    <button class="btn-secondary" onclick="openBrokerStaffSubmit()">📋 Broker: Submit Staff (No Commission)</button>
+    <button class="btn-secondary" onclick="openBrokerStaffSubmit()">📋 Broker: Submit Staff</button>
     <button class="btn-secondary" onclick="openBrokerJobSubmit()">📢 Broker: Submit Job (Earn 40%)</button>
   </div>
 </div>
 
-<!-- STAFF MODAL -->
-<div id="staffModal" class="modal">
-  <div class="modal-content"><span class="close" onclick="closeStaffModal()">&times;</span>
-    <h2>📋 Staff Registration (FREE)</h2>
-    <input type="text" id="staffName" placeholder="Full Name *">
-    <input type="tel" id="staffPhone" placeholder="WhatsApp *">
-    <input type="email" id="staffEmail" placeholder="Email">
-    <select id="staffLocation">
-      <option>Kampala CBD</option><option>Kansanga</option><option>Gaba</option>
-      <option>Munyonyo</option><option>Ntinda</option><option>Entebbe</option>
-    </select>
-    <select id="staffPosition">
-      <option>Chef</option><option>Waiter/Waitress</option><option>Manager</option>
-      <option>Housekeeping</option><option>Receptionist</option><option>Bartender</option>
-    </select>
-    <label>📸 Upload Photo:</label><input type="file" id="staffPhoto" accept="image/*" onchange="previewStaffPhoto(event)">
-    <div id="staffPhotoPreview"></div>
-    <label>📄 Upload CV:</label><input type="file" id="staffCV" accept=".pdf,.doc,.docx">
-    <input type="text" id="staffPromoterCode" placeholder="Promoter/Broker Code">
-    <button class="btn-primary" onclick="registerStaff()">Submit Registration (FREE)</button>
-    <p id="staffMsg"></p>
-  </div>
-</div>
+<!-- MODALS -->
+<div id="staffModal" class="modal"><div class="modal-content"><span class="close" onclick="closeStaffModal()">&times;</span>
+  <h2>📋 Staff Registration (FREE)</h2>
+  <input type="text" id="staffName" placeholder="Full Name *"><input type="tel" id="staffPhone" placeholder="WhatsApp *"><input type="email" id="staffEmail" placeholder="Email">
+  <select id="staffLocation"><option>Kampala CBD</option><option>Kansanga</option><option>Gaba</option><option>Munyonyo</option><option>Ntinda</option></select>
+  <select id="staffPosition"><option>Chef</option><option>Waiter/Waitress</option><option>Manager</option><option>Housekeeping</option><option>Receptionist</option></select>
+  <label>📸 Upload Photo:</label><input type="file" id="staffPhoto" accept="image/*" onchange="previewStaffPhoto(event)"><div id="staffPhotoPreview"></div>
+  <label>📄 Upload CV:</label><input type="file" id="staffCV" accept=".pdf,.doc,.docx">
+  <input type="text" id="staffPromoterCode" placeholder="Promoter/Broker Code">
+  <button class="btn-primary" onclick="registerStaff()">Submit Registration (FREE)</button><p id="staffMsg"></p>
+</div></div>
 
-<!-- COMPANY MODAL - Job Post UGX 100,000 -->
-<div id="companyModal" class="modal">
-  <div class="modal-content"><span class="close" onclick="closeCompanyModal()">&times;</span>
-    <h2>🏢 Post a Job - UGX 100,000</h2>
-    <input type="text" id="companyName" placeholder="Hotel Name *">
-    <input type="text" id="companyContact" placeholder="Contact Person *">
-    <input type="tel" id="companyPhone" placeholder="WhatsApp *">
-    <input type="email" id="companyEmail" placeholder="Email">
-    <select id="companyLocation">
-      <option>Kampala CBD</option><option>Kansanga</option><option>Gaba</option>
-      <option>Munyonyo</option><option>Ntinda</option>
-    </select>
-    <select id="jobPosition">
-      <option>Chef</option><option>Waiter</option><option>Manager</option>
-      <option>Housekeeping</option><option>Receptionist</option>
-    </select>
-    <input type="text" id="jobSalary" placeholder="Salary Range">
-    <input type="text" id="jobPromoterCode" placeholder="Promoter/Broker Code">
-    <button class="btn-primary" onclick="registerCompany()">Post Job (UGX 100,000)</button>
-    <p id="companyMsg"></p>
-  </div>
-</div>
+<div id="companyModal" class="modal"><div class="modal-content"><span class="close" onclick="closeCompanyModal()">&times;</span>
+  <h2>🏢 Post a Job - UGX 100,000</h2>
+  <input type="text" id="companyName" placeholder="Hotel Name *"><input type="text" id="companyContact" placeholder="Contact Person *"><input type="tel" id="companyPhone" placeholder="WhatsApp *"><input type="email" id="companyEmail" placeholder="Email">
+  <select id="companyLocation"><option>Kampala CBD</option><option>Kansanga</option><option>Gaba</option><option>Munyonyo</option></select>
+  <select id="jobPosition"><option>Chef</option><option>Waiter</option><option>Manager</option><option>Housekeeping</option></select>
+  <input type="text" id="jobSalary" placeholder="Salary Range"><input type="text" id="jobPromoterCode" placeholder="Promoter/Broker Code">
+  <button class="btn-primary" onclick="registerCompany()">Post Job (UGX 100,000)</button><p id="companyMsg"></p>
+</div></div>
 
-<!-- PROMOTER MODAL -->
-<div id="promoterModal" class="modal">
-  <div class="modal-content"><span class="close" onclick="closePromoterModal()">&times;</span>
-    <h2>Register as Promoter (16%)</h2>
-    <input type="text" id="promoterName" placeholder="Full Name *">
-    <input type="tel" id="promoterPhone" placeholder="WhatsApp *">
-    <input type="email" id="promoterEmail" placeholder="Email">
-    <button class="btn-primary" onclick="registerPromoter()">Register - Earn 16%</button>
-    <p id="promoterMsg"></p>
-  </div>
-</div>
+<div id="promoterModal" class="modal"><div class="modal-content"><span class="close" onclick="closePromoterModal()">&times;</span>
+  <h2>Register as Promoter (16%)</h2>
+  <input type="text" id="promoterName" placeholder="Full Name *"><input type="tel" id="promoterPhone" placeholder="WhatsApp *"><input type="email" id="promoterEmail" placeholder="Email">
+  <button class="btn-primary" onclick="registerPromoter()">Register - Earn 16%</button><p id="promoterMsg"></p>
+</div></div>
 
-<!-- BROKER MODAL -->
-<div id="brokerModal" class="modal">
-  <div class="modal-content"><span class="close" onclick="closeBrokerModal()">&times;</span>
-    <h2>Register as Broker (40%)</h2>
-    <input type="text" id="brokerName" placeholder="Agency/Company Name *">
-    <input type="tel" id="brokerPhone" placeholder="WhatsApp *">
-    <input type="email" id="brokerEmail" placeholder="Email">
-    <select id="brokerType"><option>Individual Broker</option><option>Recruitment Agency</option></select>
-    <button class="btn-primary" onclick="registerBroker()">Register - Earn 40%</button>
-    <p id="brokerMsg"></p>
-  </div>
-</div>
+<div id="brokerModal" class="modal"><div class="modal-content"><span class="close" onclick="closeBrokerModal()">&times;</span>
+  <h2>Register as Broker (40%)</h2>
+  <input type="text" id="brokerName" placeholder="Agency/Company Name *"><input type="tel" id="brokerPhone" placeholder="WhatsApp *"><input type="email" id="brokerEmail" placeholder="Email">
+  <select id="brokerType"><option>Individual Broker</option><option>Recruitment Agency</option></select>
+  <button class="btn-primary" onclick="registerBroker()">Register - Earn 40%</button><p id="brokerMsg"></p>
+</div></div>
 
-<!-- BROKER STAFF MODAL - NO COMMISSION -->
-<div id="brokerStaffModal" class="modal">
-  <div class="modal-content"><span class="close" onclick="closeBrokerStaffModal()">&times;</span>
-    <h2>📋 Broker: Submit Staff (NO Commission)</h2>
-    <p style="color:#ff9800; margin-bottom:10px;">⚠️ Staff registration is FREE. Brokers earn NO commission for submitting staff.</p>
-    <input type="text" id="brokerCodeStaff" placeholder="Your Broker Code *">
-    <input type="text" id="brokerStaffName" placeholder="Staff Name *">
-    <input type="tel" id="brokerStaffPhone" placeholder="Staff WhatsApp *">
-    <select id="brokerStaffPosition"><option>Chef</option><option>Waiter</option><option>Manager</option></select>
-    <button class="btn-primary" onclick="brokerSubmitStaff()">Submit Staff (No Commission)</button>
-    <p id="brokerStaffMsg"></p>
-  </div>
-</div>
+<div id="brokerStaffModal" class="modal"><div class="modal-content"><span class="close" onclick="closeBrokerStaffModal()">&times;</span>
+  <h2>Broker: Submit Staff</h2>
+  <input type="text" id="brokerCodeStaff" placeholder="Your Broker Code *"><input type="text" id="brokerStaffName" placeholder="Staff Name *"><input type="tel" id="brokerStaffPhone" placeholder="Staff WhatsApp *">
+  <select id="brokerStaffPosition"><option>Chef</option><option>Waiter</option><option>Manager</option></select>
+  <button class="btn-primary" onclick="brokerSubmitStaff()">Submit Staff</button><p id="brokerStaffMsg"></p>
+</div></div>
 
-<!-- BROKER JOB MODAL - EARNS 40% COMMISSION -->
-<div id="brokerJobModal" class="modal">
-  <div class="modal-content"><span class="close" onclick="closeBrokerJobModal()">&times;</span>
-    <h2>📢 Broker: Submit Job (Earn 40%)</h2>
-    <p style="color:#4caf50; margin-bottom:10px;">💰 Earn 40% commission (UGX 40,000 per job post)</p>
-    <input type="text" id="brokerCodeJob" placeholder="Your Broker Code *">
-    <input type="text" id="brokerCompanyJob" placeholder="Hotel Name *">
-    <input type="text" id="brokerPositionJob" placeholder="Position *">
-    <button class="btn-primary" onclick="brokerSubmitJob()">Submit Job - Earn 40%</button>
-    <p id="brokerJobMsg"></p>
-  </div>
-</div>
+<div id="brokerJobModal" class="modal"><div class="modal-content"><span class="close" onclick="closeBrokerJobModal()">&times;</span>
+  <h2>Broker: Submit Job (Earn 40%)</h2>
+  <input type="text" id="brokerCodeJob" placeholder="Your Broker Code *"><input type="text" id="brokerCompanyJob" placeholder="Hotel Name *"><input type="text" id="brokerPositionJob" placeholder="Position *">
+  <button class="btn-primary" onclick="brokerSubmitJob()">Submit - Earn 40%</button><p id="brokerJobMsg"></p>
+</div></div>
 
-<!-- REVENUE CONSULTATION MODAL -->
-<div id="revenueModal" class="modal">
-  <div class="modal-content"><span class="close" onclick="closeRevenueModal()">&times;</span>
-    <h2>Free Revenue Consultation</h2>
-    <input type="text" id="revHotel" placeholder="Hotel Name *">
-    <input type="tel" id="revPhone" placeholder="WhatsApp *">
-    <input type="email" id="revEmail" placeholder="Email">
-    <button class="btn-primary" onclick="requestRevenueAudit()">Request Consultation</button>
-    <p id="revMsg"></p>
-  </div>
-</div>
+<div id="revenueModal" class="modal"><div class="modal-content"><span class="close" onclick="closeRevenueModal()">&times;</span>
+  <h2>Free Revenue Consultation</h2>
+  <input type="text" id="revHotel" placeholder="Hotel Name *"><input type="tel" id="revPhone" placeholder="WhatsApp *"><input type="email" id="revEmail" placeholder="Email">
+  <button class="btn-primary" onclick="requestRevenueAudit()">Request Consultation</button><p id="revMsg"></p>
+</div></div>
 
-<!-- ADMIN MODAL -->
-<div id="adminModal" class="modal">
-  <div class="modal-content"><span class="close" onclick="closeAdmin()">&times;</span>
-    <h2>🔐 Admin Dashboard</h2>
-    <input type="password" id="adminPassword" placeholder="Password">
-    <button class="btn-primary" onclick="loginAdmin()">Login</button>
-    <div id="adminContent" style="display:none; margin-top:20px;"></div>
-  </div>
-</div>
+<div id="adminModal" class="modal"><div class="modal-content"><span class="close" onclick="closeAdmin()">&times;</span>
+  <h2>🔐 Admin Dashboard</h2>
+  <input type="password" id="adminPassword" placeholder="Password"><button class="btn-primary" onclick="loginAdmin()">Login</button>
+  <div id="adminContent" style="display:none; margin-top:20px;"></div>
+</div></div>
 
 <div id="toast" class="toast"></div>
 
@@ -343,7 +293,7 @@
 
 <script>
 // ============================================
-// PEARL HOTEL STAFFING - FINAL CORRECTED VERSION
+// PEARL HOTEL STAFFING - COMPLETE SYSTEM
 // ============================================
 
 let staffData = JSON.parse(localStorage.getItem('pearl_staff') || '[]');
@@ -351,9 +301,8 @@ let jobsData = JSON.parse(localStorage.getItem('pearl_jobs') || '[]');
 let promotersData = JSON.parse(localStorage.getItem('pearl_promoters') || '[]');
 let brokersData = JSON.parse(localStorage.getItem('pearl_brokers') || '[]');
 let revenueData = JSON.parse(localStorage.getItem('pearl_revenue') || '[]');
-let paymentsData = JSON.parse(localStorage.getItem('pearl_payments') || '[]');
 
-const PRICES = { staff: 0, job: 100000 };
+const PRICES = { job: 100000 };
 const ADMIN_PASSWORD = 'pearl123';
 let staffPhotoData = null;
 
@@ -399,10 +348,7 @@ function selectPlan(plan, amount) {
 function requestRevenueAudit() {
   let hotel = document.getElementById('revHotel').value;
   let phone = document.getElementById('revPhone').value;
-  if (!hotel || !phone) {
-    showToast('❌ Fill hotel name and phone number', true);
-    return;
-  }
+  if (!hotel || !phone) { showToast('❌ Fill hotel name and phone number', true); return; }
   revenueData.push({ hotel, phone, date: new Date().toISOString() });
   localStorage.setItem('pearl_revenue', JSON.stringify(revenueData));
   sendWhatsApp(phone, `📈 Revenue consultation requested for ${hotel}. We'll contact you within 24 hours.`);
@@ -432,10 +378,7 @@ function showSection(section) {
 function loadJobs() {
   let container = document.getElementById('jobListings');
   if (!container) return;
-  if (jobsData.length === 0) {
-    container.innerHTML = '<p style="text-align:center; color:#888;">No jobs yet. Post your first job! (UGX 100,000)</p>';
-    return;
-  }
+  if (jobsData.length === 0) { container.innerHTML = '<p style="text-align:center; color:#888;">No jobs yet. Post your first job! (UGX 100,000)</p>'; return; }
   let html = '';
   for (let i = 0; i < jobsData.length; i++) {
     let job = jobsData[i];
@@ -447,10 +390,7 @@ function loadJobs() {
 function loadStaffList() {
   let container = document.getElementById('staffListings');
   if (!container) return;
-  if (staffData.length === 0) {
-    container.innerHTML = '<p style="text-align:center; color:#888;">No staff registered yet. Registration is FREE!</p>';
-    return;
-  }
+  if (staffData.length === 0) { container.innerHTML = '<p style="text-align:center; color:#888;">No staff registered yet. Registration is FREE!</p>'; return; }
   let html = '';
   let start = Math.max(0, staffData.length - 10);
   for (let i = start; i < staffData.length; i++) {
@@ -466,18 +406,9 @@ function registerStaff() {
   let email = document.getElementById('staffEmail').value;
   let location = document.getElementById('staffLocation').value;
   let position = document.getElementById('staffPosition').value;
-  let promoterCode = document.getElementById('staffPromoterCode').value;
-  
-  if (!name || !phone || !location || !position) {
-    showToast('❌ Fill all required fields', true);
-    return;
-  }
-  
-  staffData.push({ name, phone, email, location, position, photo: staffPhotoData, promoterCode, registeredAt: new Date().toISOString() });
+  if (!name || !phone || !location || !position) { showToast('❌ Fill all required fields', true); return; }
+  staffData.push({ name, phone, email, location, position, photo: staffPhotoData, registeredAt: new Date().toISOString() });
   localStorage.setItem('pearl_staff', JSON.stringify(staffData));
-  
-  // Staff registration is FREE - no commission for promoters or brokers
-  
   sendWhatsApp(phone, `✅ Registration confirmed ${name}! Position: ${position}\nLocation: ${location}\n\nWe will contact you within 24 hours.`);
   showToast('✅ Registered! Check WhatsApp.', false);
   updateCounts();
@@ -492,32 +423,15 @@ function registerCompany() {
   let location = document.getElementById('companyLocation').value;
   let position = document.getElementById('jobPosition').value;
   let promoterCode = document.getElementById('jobPromoterCode').value;
-  
-  if (!company || !contact || !phone || !location || !position) {
-    showToast('❌ Fill all fields', true);
-    return;
-  }
-  
+  if (!company || !contact || !phone || !location || !position) { showToast('❌ Fill all fields', true); return; }
   jobsData.push({ company, contact, phone, email, location, position, promoterCode, postedAt: new Date().toISOString() });
   localStorage.setItem('pearl_jobs', JSON.stringify(jobsData));
-  
   if (promoterCode) {
     let promoter = promotersData.find(p => p.code === promoterCode);
-    if (promoter) {
-      let commission = PRICES.job * 0.16; // 16% commission
-      promoter.earnings = (promoter.earnings || 0) + commission;
-      localStorage.setItem('pearl_promoters', JSON.stringify(promotersData));
-      sendWhatsApp(promoter.phone, `💰 You earned UGX ${commission.toLocaleString()} (16%) from job post by ${company}`);
-    }
+    if (promoter) { let commission = PRICES.job * 0.16; promoter.earnings = (promoter.earnings || 0) + commission; localStorage.setItem('pearl_promoters', JSON.stringify(promotersData)); sendWhatsApp(promoter.phone, `💰 You earned UGX ${commission.toLocaleString()} (16%) from job post by ${company}`); }
     let broker = brokersData.find(b => b.code === promoterCode);
-    if (broker) {
-      let commission = PRICES.job * 0.40; // 40% commission for brokers
-      broker.earnings = (broker.earnings || 0) + commission;
-      localStorage.setItem('pearl_brokers', JSON.stringify(brokersData));
-      sendWhatsApp(broker.phone, `💰 You earned UGX ${commission.toLocaleString()} (40%) from job post by ${company}`);
-    }
+    if (broker) { let commission = PRICES.job * 0.40; broker.earnings = (broker.earnings || 0) + commission; localStorage.setItem('pearl_brokers', JSON.stringify(brokersData)); sendWhatsApp(broker.phone, `💰 You earned UGX ${commission.toLocaleString()} (40%) from job post by ${company}`); }
   }
-  
   sendWhatsApp(phone, `✅ Job posted: ${position} at ${company} in ${location}\n\nCandidates will contact you soon.`);
   showToast('✅ Job posted!', false);
   updateCounts();
@@ -528,12 +442,7 @@ function registerPromoter() {
   let name = document.getElementById('promoterName').value;
   let phone = document.getElementById('promoterPhone').value;
   let email = document.getElementById('promoterEmail').value;
-  
-  if (!name || !phone || !email) {
-    showToast('❌ Fill all fields', true);
-    return;
-  }
-  
+  if (!name || !phone || !email) { showToast('❌ Fill all fields', true); return; }
   let code = 'PRL' + Math.random().toString(36).substring(2, 8).toUpperCase();
   promotersData.push({ name, phone, email, code, earnings: 0, referrals: 0 });
   localStorage.setItem('pearl_promoters', JSON.stringify(promotersData));
@@ -547,15 +456,9 @@ function registerBroker() {
   let name = document.getElementById('brokerName').value;
   let phone = document.getElementById('brokerPhone').value;
   let email = document.getElementById('brokerEmail').value;
-  let type = document.getElementById('brokerType').value;
-  
-  if (!name || !phone || !email) {
-    showToast('❌ Fill all fields', true);
-    return;
-  }
-  
+  if (!name || !phone || !email) { showToast('❌ Fill all fields', true); return; }
   let code = 'BRK' + Math.random().toString(36).substring(2, 8).toUpperCase();
-  brokersData.push({ name, phone, email, type, code, earnings: 0, referrals: 0 });
+  brokersData.push({ name, phone, email, code, earnings: 0, referrals: 0 });
   localStorage.setItem('pearl_brokers', JSON.stringify(brokersData));
   sendWhatsApp(phone, `🎉 Welcome Broker ${name}! Your Broker Code: ${code}\nEarn 40% commission on every job post!`);
   showToast(`✅ Your Broker Code: ${code} (40% commission)`, false);
@@ -567,30 +470,13 @@ function brokerSubmitStaff() {
   let brokerCode = document.getElementById('brokerCodeStaff').value;
   let name = document.getElementById('brokerStaffName').value;
   let phone = document.getElementById('brokerStaffPhone').value;
-  let position = document.getElementById('brokerStaffPosition').value;
-  
-  if (!brokerCode || !name || !phone) {
-    showToast('❌ Fill broker code and staff details', true);
-    return;
-  }
-  
+  if (!brokerCode || !name || !phone) { showToast('❌ Fill broker code and staff details', true); return; }
   let broker = brokersData.find(b => b.code === brokerCode);
-  if (!broker) {
-    showToast('❌ Invalid broker code', true);
-    return;
-  }
-  
-  staffData.push({ name, phone, position, brokerCode, registeredAt: new Date().toISOString() });
+  if (!broker) { showToast('❌ Invalid broker code', true); return; }
+  staffData.push({ name, phone, brokerCode, registeredAt: new Date().toISOString() });
   localStorage.setItem('pearl_staff', JSON.stringify(staffData));
-  
-  // NO COMMISSION for submitting staff (staff registration is FREE)
-  broker.referrals = (broker.referrals || 0) + 1;
-  localStorage.setItem('pearl_brokers', JSON.stringify(brokersData));
-  
-  sendWhatsApp(broker.phone, `📋 You submitted staff: ${name}. Staff registration is FREE. No commission earned.`);
   sendWhatsApp(phone, `✅ Registration confirmed ${name}! We will contact you soon.`);
-  
-  showToast(`✅ Staff submitted! (No commission - staff registration is FREE)`, false);
+  showToast(`✅ Staff submitted!`, false);
   updateCounts();
   closeBrokerStaffModal();
 }
@@ -599,28 +485,16 @@ function brokerSubmitJob() {
   let brokerCode = document.getElementById('brokerCodeJob').value;
   let company = document.getElementById('brokerCompanyJob').value;
   let position = document.getElementById('brokerPositionJob').value;
-  
-  if (!brokerCode || !company || !position) {
-    showToast('❌ Fill broker code and job details', true);
-    return;
-  }
-  
+  if (!brokerCode || !company || !position) { showToast('❌ Fill broker code and job details', true); return; }
   let broker = brokersData.find(b => b.code === brokerCode);
-  if (!broker) {
-    showToast('❌ Invalid broker code', true);
-    return;
-  }
-  
+  if (!broker) { showToast('❌ Invalid broker code', true); return; }
   jobsData.push({ company, position, brokerCode, postedAt: new Date().toISOString() });
   localStorage.setItem('pearl_jobs', JSON.stringify(jobsData));
-  
-  let commission = PRICES.job * 0.40; // 40% commission
+  let commission = PRICES.job * 0.40;
   broker.earnings = (broker.earnings || 0) + commission;
   broker.referrals = (broker.referrals || 0) + 1;
   localStorage.setItem('pearl_brokers', JSON.stringify(brokersData));
-  
   sendWhatsApp(broker.phone, `💰 Commission Alert!\n\nYou earned UGX ${commission.toLocaleString()} (40%) for submitting job: ${position} at ${company}\n\nTotal Earnings: UGX ${broker.earnings.toLocaleString()}`);
-  
   showToast(`✅ Job submitted! Broker earned UGX ${commission.toLocaleString()}`, false);
   updateCounts();
   closeBrokerJobModal();
@@ -634,57 +508,37 @@ function loginAdmin() {
     document.getElementById('adminContent').innerHTML = `
       <div style="background:#1a1a1a; padding:15px; border-radius:12px;">
         <h3 style="color:#e2b13c;">📊 Dashboard Summary</h3>
-        <p>👥 Staff Registered (FREE): ${staffData.length}</p>
-        <p>🏢 Jobs Posted (UGX 100,000): ${jobsData.length}</p>
+        <p>👥 Staff Registered: ${staffData.length}</p>
+        <p>🏢 Jobs Posted: ${jobsData.length}</p>
         <p>🤝 Promoters (16%): ${promotersData.length}</p>
         <p>🏢 Brokers (40%): ${brokersData.length}</p>
         <p>📈 Revenue Clients: ${revenueData.length}</p>
         <p style="color:#ff9800;">Total Broker Commissions Paid: UGX ${totalBrokerCommissions.toLocaleString()}</p>
         <p style="color:#e2b13c;">Total Promoter Commissions Paid: UGX ${totalPromoterCommissions.toLocaleString()}</p>
-        <hr>
-        <h3 style="color:#ff9800;">Brokers List (40% on Job Posts)</h3>
+        <hr><h3 style="color:#ff9800;">Brokers List (40%)</h3>
         ${brokersData.map(b => `<p>💰 ${b.name} - Code: ${b.code} - Earnings: UGX ${(b.earnings||0).toLocaleString()} - Referrals: ${b.referrals||0}</p>`).join('') || '<p>No brokers yet</p>'}
-        <hr>
-        <h3 style="color:#e2b13c;">Promoters List (16% on Job Posts)</h3>
-        ${promotersData.map(p => `<p>🤝 ${p.name} - Code: ${p.code} - Earnings: UGX ${(p.earnings||0).toLocaleString()} - Referrals: ${p.referrals||0}</p>`).join('') || '<p>No promoters yet</p>'}
-        <hr>
-        <h3 style="color:#4caf50;">💰 3 Partner Plans</h3>
-        <p>• Starter: UGX 500,000/month</p>
-        <p>• Professional: UGX 1,500,000/month (Expert Partners earn 35%)</p>
-        <p>• Elite: UGX 3,000,000+/month (Expert Partners earn 35% + profit-share)</p>
-        <hr>
-        <button class="btn-primary" onclick="exportAllData()">📤 Export All Data to CSV</button>
+        <hr><h3 style="color:#e2b13c;">Promoters List (16%)</h3>
+        ${promotersData.map(p => `<p>🤝 ${p.name} - Code: ${p.code} - Earnings: UGX ${(p.earnings||0).toLocaleString()}</p>`).join('') || '<p>No promoters yet</p>'}
+        <hr><button class="btn-primary" onclick="exportAllData()">📤 Export All Data to CSV</button>
       </div>
     `;
     document.getElementById('adminContent').style.display = 'block';
     showToast('Welcome Admin!', false);
-  } else {
-    showToast('Wrong password!', true);
-  }
+  } else { showToast('Wrong password!', true); }
 }
 
 function exportAllData() {
   let csvRows = [
-    ['PEARL HOTEL STAFFING - COMPLETE DATA EXPORT'],
-    ['Date:', new Date().toISOString()],
-    [],
-    ['STAFF REGISTRATIONS (FREE)'],
-    ['Name', 'Phone', 'Email', 'Position', 'Location', 'Has Photo', 'Promoter/Broker Code', 'Date'],
-    ...staffData.map(s => [s.name, s.phone, s.email || '', s.position, s.location, s.photo ? 'Yes' : 'No', s.promoterCode || '', s.registeredAt || '']),
-    [],
-    ['PROMOTERS (16% Commission on Job Posts)'],
-    ['Name', 'Phone', 'Email', 'Code', 'Earnings (UGX)', 'Referrals'],
+    ['PEARL HOTEL STAFFING - COMPLETE DATA EXPORT'], ['Date:', new Date().toISOString()], [],
+    ['STAFF REGISTRATIONS (FREE)'], ['Name', 'Phone', 'Email', 'Position', 'Location', 'Has Photo', 'Date'],
+    ...staffData.map(s => [s.name, s.phone, s.email || '', s.position, s.location, s.photo ? 'Yes' : 'No', s.registeredAt || '']),
+    [], ['PROMOTERS (16% Commission)'], ['Name', 'Phone', 'Email', 'Code', 'Earnings (UGX)', 'Referrals'],
     ...promotersData.map(p => [p.name, p.phone, p.email, p.code, p.earnings || 0, p.referrals || 0]),
-    [],
-    ['BROKERS (40% Commission on Job Posts)'],
-    ['Name', 'Phone', 'Email', 'Type', 'Code', 'Earnings (UGX)', 'Referrals'],
-    ...brokersData.map(b => [b.name, b.phone, b.email, b.type, b.code, b.earnings || 0, b.referrals || 0]),
-    [],
-    ['JOBS POSTED (UGX 100,000 each)'],
-    ['Company', 'Contact', 'Phone', 'Email', 'Location', 'Position', 'Salary', 'Promoter/Broker Code', 'Date'],
+    [], ['BROKERS (40% Commission)'], ['Name', 'Phone', 'Email', 'Code', 'Earnings (UGX)', 'Referrals'],
+    ...brokersData.map(b => [b.name, b.phone, b.email, b.code, b.earnings || 0, b.referrals || 0]),
+    [], ['JOBS POSTED (UGX 100,000 each)'], ['Company', 'Contact', 'Phone', 'Email', 'Location', 'Position', 'Salary', 'Promoter/Broker Code', 'Date'],
     ...jobsData.map(j => [j.company, j.contact, j.phone, j.email || '', j.location, j.position, j.salary || '', j.promoterCode || '', j.postedAt || ''])
   ];
-  
   let csvContent = csvRows.map(row => row.join(',')).join('\n');
   let blob = new Blob([csvContent], { type: 'text/csv' });
   let a = document.createElement('a');
