@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Pearl Hotel Staffing | Find Hotel Jobs in Kampala</title>
+  <title>Pearl Hotel Staffing | Hotel Jobs & Revenue Growth Kampala</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -115,6 +115,27 @@
       margin: 15px;
       border: 1px solid #333;
     }
+    .pricing-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .pricing-card {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 16px;
+      flex: 1;
+      min-width: 250px;
+      border: 1px solid #333;
+      text-align: center;
+    }
+    .pricing-card.popular { border: 2px solid #e2b13c; }
+    .price { font-size: 28px; color: #e2b13c; margin: 10px 0; }
+    .pricing-card ul { text-align: left; margin: 15px 0; padding-left: 20px; }
+    .pricing-card li { margin: 8px 0; }
+    
     input, select, textarea {
       width: 100%;
       padding: 12px;
@@ -234,6 +255,29 @@
       gap: 10px;
       flex-wrap: wrap;
     }
+    .campaign-card {
+      background: #1a1a1a;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      border-left: 3px solid #ff9800;
+    }
+    .test-buttons {
+      background: #333;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .test-buttons button {
+      background: #444;
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin: 5px;
+      cursor: pointer;
+    }
     @media (min-width: 768px) {
       .action-buttons { max-width: 400px; }
     }
@@ -244,13 +288,15 @@
 <div class="header">
   <div class="logo">
     <h1>🏨 PEARL HOTEL STAFFING</h1>
-    <p>Kampala's trusted hotel staffing agency</p>
+    <p>Staffing • Revenue Growth • Slow Season Promotions</p>
   </div>
   <div class="nav-links">
     <a onclick="showMain()">Home</a>
     <a onclick="showJobsList()">Jobs</a>
-    <a onclick="showPromoters()">Earn 16%</a>
-    <a onclick="showBrokers()">Earn 40%</a>
+    <a onclick="showRevenuePage()">Revenue Growth</a>
+    <a onclick="showPromoters()">Promoters (16%)</a>
+    <a onclick="showBrokers()">Brokers (40%)</a>
+    <a onclick="showSlowSeason()">Slow Season Promos</a>
   </div>
 </div>
 
@@ -264,7 +310,7 @@
   <div class="action-buttons">
     <button class="btn-large btn-jobseeker" onclick="openStaffRegister()">🔍 I need a job (FREE registration)</button>
     <button class="btn-large btn-employer" onclick="openCompanyRegister()">🏢 I need staff (Post a job)</button>
-    <button class="btn-large btn-earn" onclick="showPromoters()">💰 Earn 16% as Promoter</button>
+    <button class="btn-large btn-earn" onclick="showRevenuePage()">📈 Revenue Growth Plans</button>
   </div>
 
   <div class="why-choose">
@@ -274,7 +320,7 @@
       <li>14-day free replacement guarantee</li>
       <li>You pay only after satisfied (Escrow protection)</li>
       <li>Fast matching within 24 hours</li>
-      <li>WhatsApp support 7 days a week</li>
+      <li>Revenue growth consulting + slow season marketing</li>
     </ul>
   </div>
 
@@ -285,7 +331,7 @@
   </div>
 </div>
 
-<!-- JOBS LIST SECTION with Location Filter -->
+<!-- JOBS LIST SECTION -->
 <div id="jobsListSection" style="display:none;">
   <h2 style="text-align:center; padding:20px;">📋 Available Jobs</h2>
   <div class="location-filter">
@@ -299,11 +345,51 @@
   <div id="jobListings" class="card" style="margin:10px;"></div>
 </div>
 
-<!-- PROMOTERS SECTION -->
+<!-- REVENUE GROWTH PAGE (Consulting Services) -->
+<div id="revenueSection" style="display:none;">
+  <h2 style="text-align:center; padding:30px 20px 0;">📈 Revenue Growth Consulting</h2>
+  <p style="text-align:center; color:#ccc;">Increase your hotel/restaurant revenue by 30-50%</p>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <h3>📱 Starter</h3>
+      <div class="price">UGX 300,000 <span style="font-size:14px;">/month</span></div>
+      <ul>
+        <li>✅ Digital Marketing Setup</li>
+        <li>✅ Basic Staff Training</li>
+        <li>✅ Monthly Report</li>
+      </ul>
+      <button class="btn-primary" onclick="requestRevenuePlan('Starter', 300000)">Request Quote</button>
+    </div>
+    <div class="pricing-card popular">
+      <h3>⭐ Professional</h3>
+      <div class="price">UGX 800,000 <span style="font-size:14px;">/month</span></div>
+      <ul>
+        <li>✅ Upselling Training for Staff</li>
+        <li>✅ Menu Engineering</li>
+        <li>✅ Weekly Consultations</li>
+        <li>✅ Guest Retention System</li>
+      </ul>
+      <button class="btn-primary" onclick="requestRevenuePlan('Professional', 800000)">Most Popular</button>
+    </div>
+    <div class="pricing-card">
+      <h3>👑 Elite</h3>
+      <div class="price">UGX 1,500,000 <span style="font-size:14px;">/month</span></div>
+      <ul>
+        <li>✅ Full Agency Partnership</li>
+        <li>✅ Profit-Share Model</li>
+        <li>✅ Dedicated Account Manager</li>
+        <li>✅ 360° Revenue Audit</li>
+      </ul>
+      <button class="btn-primary" onclick="requestRevenuePlan('Elite', 1500000)">Contact Us</button>
+    </div>
+  </div>
+</div>
+
+<!-- PROMOTERS SECTION (Standard 16% job referral) -->
 <div id="promotersSection" style="display:none;">
   <div class="card">
     <h3 style="color:#e2b13c;">🤝 Become a Promoter (16%)</h3>
-    <p>Share our link. Earn 16% on every job post you refer.</p>
+    <p>Share our job posting link. Earn 16% on every job post you refer.</p>
     <input type="text" id="promoterName" placeholder="Full Name">
     <input type="tel" id="promoterPhone" placeholder="WhatsApp">
     <input type="email" id="promoterEmail" placeholder="Email">
@@ -312,7 +398,7 @@
   </div>
 </div>
 
-<!-- BROKERS SECTION -->
+<!-- BROKERS SECTION (40% direct job submission) -->
 <div id="brokersSection" style="display:none;">
   <div class="card">
     <h3 style="color:#ff9800;">🏢 Become a Broker (40%)</h3>
@@ -331,7 +417,27 @@
   </div>
 </div>
 
-<!-- STAFF REGISTRATION MODAL (FREE) -->
+<!-- SLOW SEASON PROMOTER CAMPAIGNS (5% commission on bookings) -->
+<div id="slowSeasonSection" style="display:none;">
+  <h2 style="text-align:center; padding:20px;">🌧️ Slow Season Promotions</h2>
+  <p style="text-align:center; color:#ccc;">Help hotels & restaurants attract customers. Earn 5% on every booking!</p>
+  
+  <div class="card">
+    <h3 style="color:#ff9800;">📢 Create a Promotional Campaign</h3>
+    <p>As a promoter, you can create special offers for hotels/restaurants. Share the link, earn 5% commission on bookings.</p>
+    <input type="text" id="campaignPromoterCode" placeholder="Your Promoter Code (from registration)">
+    <input type="text" id="campaignBusinessName" placeholder="Hotel/Restaurant Name">
+    <input type="text" id="campaignOffer" placeholder="Offer (e.g., 20% off lunch, Buy 1 Get 1 Free)">
+    <input type="text" id="campaignLink" placeholder="Link to their booking page or menu">
+    <button class="btn-primary" onclick="createCampaign()">Create Campaign & Get Shareable Link</button>
+    <p id="campaignMsg" style="margin-top:10px;"></p>
+  </div>
+
+  <h3 style="text-align:center; margin-top:20px;">🔥 Active Campaigns (Share to earn 5%)</h3>
+  <div id="campaignsList" class="card"></div>
+</div>
+
+<!-- STAFF REGISTRATION MODAL -->
 <div id="staffModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeStaffModal()">&times;</span>
@@ -364,11 +470,16 @@
   </div>
 </div>
 
-<!-- JOB POST MODAL - Self-service WhatsApp quote -->
+<!-- JOB POST MODAL -->
 <div id="companyModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeCompanyModal()">&times;</span>
     <h2>🏢 Post a job - UGX 100,000</h2>
+    <div class="payment-info">
+      <p>📱 <strong>How to pay:</strong></p>
+      <p>Send <strong>UGX 100,000</strong> to:</p>
+      <p>Airtel: <strong>+256 709 937 339</strong> | MTN: <strong>+256 783 168 227</strong></p>
+    </div>
     <input type="text" id="companyName" placeholder="Hotel Name *" required>
     <input type="text" id="companyContact" placeholder="Contact Person *" required>
     <input type="tel" id="companyPhone" placeholder="WhatsApp Number *" required>
@@ -391,32 +502,26 @@
     <input type="text" id="jobSalary" placeholder="Salary range (optional)">
     <input type="text" id="jobPromoterCode" placeholder="Promoter/Broker code (optional)">
     <button class="btn-primary" onclick="sendJobQuote()">Get Quote via WhatsApp</button>
-    <!-- Email fallback -->
-    <div class="payment-info" style="background: #2196f320; margin-top: 15px;">
-      <p>📧 No WhatsApp? Email job details to: <strong>tesfann2@gmail.com</strong></p>
-    </div>
-    <p id="companyMsg" style="margin-top:10px; font-size:12px; color:#ccc;">We will reply with payment instructions. No upfront payment required.</p>
+    <p style="font-size:12px; color:#ccc; margin-top:10px;">We will reply with payment instructions.</p>
   </div>
 </div>
 
-<!-- APPLY MODAL (10k payment) -->
+<!-- APPLY MODAL -->
 <div id="applyModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeApplyModal()">&times;</span>
     <h2>📝 Apply for this job</h2>
     <div class="payment-info">
       <p>Application fee: <strong>UGX 10,000</strong></p>
-      <p>Send to: <strong>Airtel +256 709 937 339</strong> or <strong>MTN +256 783 168 227</strong></p>
-      <p style="font-size:12px;">After payment, WhatsApp your transaction ID to <strong>+256 709 937 339</strong></p>
+      <p>Send to Airtel +256 709 937 339 or MTN +256 783 168 227</p>
     </div>
     <input type="text" id="applicantName" placeholder="Your Full Name *" required>
     <input type="tel" id="applicantPhone" placeholder="Your WhatsApp *" required>
     <button class="btn-primary" onclick="submitApplication()">Confirm Application (UGX 10,000)</button>
-    <p id="applyMsg" style="margin-top:10px;"></p>
   </div>
 </div>
 
-<!-- ADMIN MODAL (Secret gear icon) -->
+<!-- ADMIN MODAL -->
 <div id="adminModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeAdmin()">&times;</span>
@@ -431,19 +536,22 @@
 
 <div class="contact-bar" style="background:#1a1a1a; padding:15px; text-align:center; font-size:12px;">
   <p>📞 Airtel: <a href="tel:+256709937339" style="color:#e2b13c;">+256 709 937 339</a> | MTN: <a href="tel:+256783168227" style="color:#e2b13c;">+256 783 168 227</a></p>
-  <p>📧 <a href="mailto:tesfann2@gmail.com" style="color:#e2b13c;">tesfann2@gmail.com</a> | 💬 <a href="https://wa.me/256709937339" style="color:#e2b13c;">WhatsApp</a></p>
+  <p>📧 <a href="mailto:tesfann2@gmail.com" style="color:#e2b13c;">tesfann2@gmail.com</a> | 💬 <a href="https://wa.me/256709937339" style="color:#e2b13c;">WhatsApp</a> | 🔐 <a href="#" onclick="openAdmin(); return false;" style="color:#e2b13c;">Admin</a></p>
 </div>
 
-<!-- Hidden gear icon for admin access -->
-<div style="text-align: center; font-size: 14px; color: #333; margin: 10px 0;">
-  <a href="#" onclick="openAdmin(); return false;" style="color: #333; text-decoration: none;">⚙️</a>
+<div class="test-buttons">
+  <p>🛠️ Diagnostic Tools</p>
+  <button onclick="alert('Staff: ' + (localStorage.getItem('pearl_staff') ? JSON.parse(localStorage.getItem('pearl_staff')).length : 0))">📋 Staff</button>
+  <button onclick="alert('Jobs: ' + (localStorage.getItem('pearl_jobs') ? JSON.parse(localStorage.getItem('pearl_jobs')).length : 0))">💼 Jobs</button>
+  <button onclick="alert('Campaigns: ' + (localStorage.getItem('pearl_campaigns') ? JSON.parse(localStorage.getItem('pearl_campaigns')).length : 0))">📢 Campaigns</button>
+  <button onclick="sendWhatsApp('256709937339', 'Test from Pearl Hotel Staffing')">📱 Test WhatsApp</button>
 </div>
 
 <div class="bottom-nav">
   <button onclick="showMain()">🏠 Home</button>
   <button onclick="showJobsList()">💼 Jobs</button>
-  <button onclick="showPromoters()">16%</button>
-  <button onclick="showBrokers()">40%</button>
+  <button onclick="showRevenuePage()">📈 Revenue</button>
+  <button onclick="showSlowSeason()">🌧️ Promos</button>
   <button onclick="openStaffRegister()">📝 Register</button>
 </div>
 
@@ -455,6 +563,8 @@ let promotersData = JSON.parse(localStorage.getItem('pearl_promoters') || '[]');
 let brokersData = JSON.parse(localStorage.getItem('pearl_brokers') || '[]');
 let applicationsData = JSON.parse(localStorage.getItem('pearl_applications') || '[]');
 let pendingJobs = JSON.parse(localStorage.getItem('pearl_pending_jobs') || '[]');
+let campaigns = JSON.parse(localStorage.getItem('pearl_campaigns') || '[]');
+let revenueLeads = JSON.parse(localStorage.getItem('pearl_revenue_leads') || '[]');
 const ADMIN_PASSWORD = 'pearl123';
 let staffPhotoData = null;
 let currentJobForApply = null;
@@ -475,40 +585,44 @@ function sendWhatsApp(phone, message) {
 
 // ========== UI NAVIGATION ==========
 function showMain() {
+  let sections = ['mainSection', 'jobsListSection', 'revenueSection', 'promotersSection', 'brokersSection', 'slowSeasonSection'];
+  sections.forEach(id => { let el = document.getElementById(id); if (el) el.style.display = 'none'; });
   document.getElementById('mainSection').style.display = 'block';
-  document.getElementById('jobsListSection').style.display = 'none';
-  document.getElementById('promotersSection').style.display = 'none';
-  document.getElementById('brokersSection').style.display = 'none';
 }
 function showJobsList() {
-  document.getElementById('mainSection').style.display = 'none';
+  let sections = ['mainSection', 'jobsListSection', 'revenueSection', 'promotersSection', 'brokersSection', 'slowSeasonSection'];
+  sections.forEach(id => { let el = document.getElementById(id); if (el) el.style.display = 'none'; });
   document.getElementById('jobsListSection').style.display = 'block';
-  document.getElementById('promotersSection').style.display = 'none';
-  document.getElementById('brokersSection').style.display = 'none';
   filterJobsByLocation();
 }
+function showRevenuePage() {
+  let sections = ['mainSection', 'jobsListSection', 'revenueSection', 'promotersSection', 'brokersSection', 'slowSeasonSection'];
+  sections.forEach(id => { let el = document.getElementById(id); if (el) el.style.display = 'none'; });
+  document.getElementById('revenueSection').style.display = 'block';
+}
 function showPromoters() {
-  document.getElementById('mainSection').style.display = 'none';
-  document.getElementById('jobsListSection').style.display = 'none';
+  let sections = ['mainSection', 'jobsListSection', 'revenueSection', 'promotersSection', 'brokersSection', 'slowSeasonSection'];
+  sections.forEach(id => { let el = document.getElementById(id); if (el) el.style.display = 'none'; });
   document.getElementById('promotersSection').style.display = 'block';
-  document.getElementById('brokersSection').style.display = 'none';
 }
 function showBrokers() {
-  document.getElementById('mainSection').style.display = 'none';
-  document.getElementById('jobsListSection').style.display = 'none';
-  document.getElementById('promotersSection').style.display = 'none';
+  let sections = ['mainSection', 'jobsListSection', 'revenueSection', 'promotersSection', 'brokersSection', 'slowSeasonSection'];
+  sections.forEach(id => { let el = document.getElementById(id); if (el) el.style.display = 'none'; });
   document.getElementById('brokersSection').style.display = 'block';
 }
+function showSlowSeason() {
+  let sections = ['mainSection', 'jobsListSection', 'revenueSection', 'promotersSection', 'brokersSection', 'slowSeasonSection'];
+  sections.forEach(id => { let el = document.getElementById(id); if (el) el.style.display = 'none'; });
+  document.getElementById('slowSeasonSection').style.display = 'block';
+  loadCampaigns();
+}
 
-// ========== JOBS LIST WITH LOCATION FILTER ==========
+// ========== JOBS ==========
 function filterJobsByLocation() {
   let container = document.getElementById('jobListings');
   let selected = document.getElementById('locationFilter').value;
   let filtered = jobsData.filter(job => selected === '' || job.location === selected);
-  if (filtered.length === 0) {
-    container.innerHTML = '<p style="text-align:center;">No jobs in this area yet.</p>';
-    return;
-  }
+  if (filtered.length === 0) { container.innerHTML = '<p style="text-align:center;">No jobs in this area yet.</p>'; return; }
   let html = '';
   filtered.forEach(job => {
     html += `<div class="job-card">
@@ -525,24 +639,17 @@ function openApplyModal(company, position) {
   currentJobForApply = { company, position };
   document.getElementById('applyModal').style.display = 'flex';
 }
-function closeApplyModal() {
-  document.getElementById('applyModal').style.display = 'none';
-  document.getElementById('applicantName').value = '';
-  document.getElementById('applicantPhone').value = '';
-}
+function closeApplyModal() { document.getElementById('applyModal').style.display = 'none'; }
 
 function submitApplication() {
   let name = document.getElementById('applicantName').value;
   let phone = document.getElementById('applicantPhone').value;
-  if (!name || !phone) {
-    showToast('❌ Please enter your name and WhatsApp number', true);
-    return;
-  }
+  if (!name || !phone) { showToast('❌ Enter name and WhatsApp', true); return; }
   applicationsData.push({ name, phone, job: currentJobForApply, fee: 10000, date: new Date().toISOString() });
   localStorage.setItem('pearl_applications', JSON.stringify(applicationsData));
-  sendWhatsApp('256709937339', `📝 New application: ${name} applied for ${currentJobForApply.position} at ${currentJobForApply.company}. Phone: ${phone}. Payment of UGX 10,000 pending.`);
-  sendWhatsApp(phone, `✅ Application received for ${currentJobForApply.position} at ${currentJobForApply.company}. We will contact you within 24 hours after payment confirmation.`);
-  showToast('✅ Application submitted! Check WhatsApp.', false);
+  sendWhatsApp('256709937339', `📝 New application: ${name} for ${currentJobForApply.position} at ${currentJobForApply.company}. Phone: ${phone}`);
+  sendWhatsApp(phone, `✅ Application received for ${currentJobForApply.position}. We will contact you after payment confirmation.`);
+  showToast('✅ Application submitted!', false);
   closeApplyModal();
 }
 
@@ -565,75 +672,51 @@ function registerStaff() {
   let email = document.getElementById('staffEmail').value;
   let location = document.getElementById('staffLocation').value;
   let position = document.getElementById('staffPosition').value;
-  if (!name || !phone || !location || !position) {
-    showToast('❌ Please fill all required fields (including location)', true);
-    return;
-  }
-  let cvFile = document.getElementById('staffCV').files[0];
-  let cvName = cvFile ? cvFile.name : 'No CV';
-  staffData.push({ name, phone, email, location, position, photo: staffPhotoData, cvName, registeredAt: new Date().toISOString() });
+  if (!name || !phone || !location || !position) { showToast('❌ Fill all required fields', true); return; }
+  staffData.push({ name, phone, email, location, position, registeredAt: new Date().toISOString() });
   localStorage.setItem('pearl_staff', JSON.stringify(staffData));
   sendWhatsApp(phone, `✅ Registration confirmed ${name}! Position: ${position}, Location: ${location}. We will contact you within 24 hours.`);
-  showToast('✅ Registered! Check WhatsApp.', false);
+  showToast('✅ Registered!', false);
   closeStaffModal();
   document.getElementById('staffName').value = '';
   document.getElementById('staffPhone').value = '';
   document.getElementById('staffEmail').value = '';
   document.getElementById('staffLocation').selectedIndex = 0;
   document.getElementById('staffPosition').selectedIndex = 0;
-  document.getElementById('staffPhotoPreview').innerHTML = '';
-  staffPhotoData = null;
 }
 
-// ========== JOB QUOTE (Self-service via WhatsApp) ==========
+// ========== JOB QUOTE ==========
 function sendJobQuote() {
   let company = document.getElementById('companyName').value;
   let contact = document.getElementById('companyContact').value;
   let phone = document.getElementById('companyPhone').value;
-  let email = document.getElementById('companyEmail').value;
   let location = document.getElementById('companyLocation').value;
   let position = document.getElementById('jobPositionSelect').value;
   let salary = document.getElementById('jobSalary').value;
   let promoterCode = document.getElementById('jobPromoterCode').value;
-
-  if (!company || !contact || !phone || !location || !position) {
-    showToast('❌ Please fill all required fields (including location)', true);
-    return;
-  }
-
-  // Save as pending job for admin approval
-  let pendingJob = { company, contact, phone, email, location, position, salary, promoterCode, status: 'pending', createdAt: new Date().toISOString() };
+  if (!company || !contact || !phone || !location || !position) { showToast('❌ Fill all required fields', true); return; }
+  let pendingJob = { company, contact, phone, location, position, salary, promoterCode, status: 'pending', createdAt: new Date().toISOString() };
   pendingJobs.push(pendingJob);
   localStorage.setItem('pearl_pending_jobs', JSON.stringify(pendingJobs));
-
-  let message = `📋 NEW JOB QUOTE REQUEST
-
-🏨 Hotel: ${company}
-👤 Contact: ${contact}
-📞 Phone: ${phone}
-📍 Location: ${location}
-💼 Position: ${position}
-💰 Salary: ${salary || 'Not specified'}
-📝 Promoter Code: ${promoterCode || 'None'}
-
-Total fee: UGX 100,000
-
-Please confirm to proceed with payment.`;
-
-  let url = `https://wa.me/256709937339?text=${encodeURIComponent(message)}`;
-  window.open(url, '_blank');
-
-  showToast('✅ Quote request sent via WhatsApp. We will reply shortly.', false);
+  let msg = `📋 NEW JOB QUOTE\n🏨 ${company}\n👤 ${contact}\n📍 ${location}\n💼 ${position}\n💰 ${salary || 'Not specified'}\nTotal fee: UGX 100,000`;
+  sendWhatsApp('256709937339', msg);
+  sendWhatsApp(phone, `✅ Thank you! We will send payment instructions within 1 hour.`);
+  showToast('✅ Quote request sent!', false);
   closeCompanyModal();
-  // Clear form
   document.getElementById('companyName').value = '';
   document.getElementById('companyContact').value = '';
   document.getElementById('companyPhone').value = '';
-  document.getElementById('companyEmail').value = '';
   document.getElementById('jobSalary').value = '';
   document.getElementById('jobPromoterCode').value = '';
   document.getElementById('companyLocation').selectedIndex = 0;
   document.getElementById('jobPositionSelect').selectedIndex = 0;
+}
+
+// ========== REVENUE GROWTH PLANS ==========
+function requestRevenuePlan(plan, amount) {
+  let msg = `📈 REVENUE PLAN REQUEST: ${plan} (UGX ${amount.toLocaleString()}/month)\nPlease contact client to close the deal.`;
+  sendWhatsApp('256709937339', msg);
+  showToast(`✅ Request for ${plan} plan sent! We will contact you.`, false);
 }
 
 // ========== PROMOTER & BROKER ==========
@@ -645,7 +728,7 @@ function registerPromoter() {
   let code = 'PRL' + Math.random().toString(36).substring(2,8).toUpperCase();
   promotersData.push({ name, phone, email, code, earnings: 0, referrals: 0 });
   localStorage.setItem('pearl_promoters', JSON.stringify(promotersData));
-  sendWhatsApp(phone, `🎉 Welcome ${name}! Your Promoter Code: ${code}. Share it to earn 16% on every job post.`);
+  sendWhatsApp(phone, `🎉 Welcome ${name}! Your Promoter Code: ${code}. Earn 16% on job referrals.`);
   showToast(`✅ Your code: ${code}`, false);
   document.getElementById('promoterName').value = '';
   document.getElementById('promoterPhone').value = '';
@@ -681,11 +764,133 @@ function brokerSubmitJob() {
   broker.referrals = (broker.referrals || 0) + 1;
   localStorage.setItem('pearl_brokers', JSON.stringify(brokersData));
   sendWhatsApp(broker.phone, `💰 You earned UGX ${commission} (40%) for submitting job: ${position} at ${company}.`);
-  showToast(`✅ Job submitted! Broker earned UGX ${commission}.`, false);
+  showToast(`✅ Job submitted!`, false);
   document.getElementById('brokerJobCode').value = '';
   document.getElementById('brokerCompanyName').value = '';
   document.getElementById('brokerJobPosition').value = '';
   filterJobsByLocation();
+}
+
+// ========== SLOW SEASON PROMOTER CAMPAIGNS ==========
+function createCampaign() {
+  let promoterCode = document.getElementById('campaignPromoterCode').value;
+  let businessName = document.getElementById('campaignBusinessName').value;
+  let offer = document.getElementById('campaignOffer').value;
+  let link = document.getElementById('campaignLink').value;
+  if (!promoterCode || !businessName || !offer) {
+    showToast('❌ Please fill promoter code, business name, and offer', true);
+    return;
+  }
+  // Verify promoter exists
+  let promoter = promotersData.find(p => p.code === promoterCode);
+  if (!promoter) {
+    showToast('❌ Invalid promoter code. Please register as a promoter first.', true);
+    return;
+  }
+  let campaignId = 'CAMP' + Date.now();
+  let campaign = {
+    id: campaignId,
+    promoterCode: promoterCode,
+    promoterName: promoter.name,
+    businessName: businessName,
+    offer: offer,
+    link: link || '#',
+    createdAt: new Date().toISOString(),
+    clicks: 0,
+    bookings: 0,
+    earnings: 0
+  };
+  campaigns.push(campaign);
+  localStorage.setItem('pearl_campaigns', JSON.stringify(campaigns));
+  
+  // Generate shareable link (this page with campaign ID as query param)
+  let shareUrl = window.location.href.split('?')[0] + '?campaign=' + campaignId;
+  showToast(`✅ Campaign created! Share this link: ${shareUrl}`, false);
+  sendWhatsApp(promoter.phone, `🎉 Your campaign for ${businessName} is live!\nShare this link: ${shareUrl}\nYou earn 5% on every booking!`);
+  document.getElementById('campaignPromoterCode').value = '';
+  document.getElementById('campaignBusinessName').value = '';
+  document.getElementById('campaignOffer').value = '';
+  document.getElementById('campaignLink').value = '';
+  loadCampaigns();
+}
+
+function loadCampaigns() {
+  let container = document.getElementById('campaignsList');
+  if (campaigns.length === 0) {
+    container.innerHTML = '<p style="text-align:center;">No active campaigns yet. Create one above.</p>';
+    return;
+  }
+  let html = '';
+  campaigns.forEach(c => {
+    let shareUrl = window.location.href.split('?')[0] + '?campaign=' + c.id;
+    html += `<div class="campaign-card">
+      <h4>🏨 ${c.businessName}</h4>
+      <p>🎁 ${c.offer}</p>
+      <p>📢 Promoter: ${c.promoterName} (Code: ${c.promoterCode})</p>
+      <p>📊 Clicks: ${c.clicks || 0} | Bookings: ${c.bookings || 0} | Earnings: UGX ${(c.earnings || 0).toLocaleString()}</p>
+      <button class="btn-secondary" onclick="copyToClipboard('${shareUrl}')">📋 Copy Shareable Link</button>
+      <button class="btn-secondary" onclick="shareOnWhatsApp('${shareUrl}', '${c.offer} at ${c.businessName}')">📱 Share on WhatsApp</button>
+    </div>`;
+  });
+  container.innerHTML = html;
+}
+
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text);
+  showToast('✅ Link copied to clipboard!', false);
+}
+
+function shareOnWhatsApp(link, message) {
+  let fullMsg = `🌧️ SLOW SEASON PROMO!\n${message}\n\nGrab this offer: ${link}`;
+  sendWhatsApp('', fullMsg); // empty phone will open WhatsApp to choose contact
+}
+
+// Check for campaign ID in URL (for tracking clicks)
+function checkCampaignReferral() {
+  let urlParams = new URLSearchParams(window.location.search);
+  let campaignId = urlParams.get('campaign');
+  if (campaignId) {
+    let campaign = campaigns.find(c => c.id === campaignId);
+    if (campaign) {
+      campaign.clicks = (campaign.clicks || 0) + 1;
+      localStorage.setItem('pearl_campaigns', JSON.stringify(campaigns));
+      // Show a special offer banner
+      let banner = document.createElement('div');
+      banner.style.position = 'fixed';
+      banner.style.bottom = '80px';
+      banner.style.left = '10px';
+      banner.style.right = '10px';
+      banner.style.background = '#ff9800';
+      banner.style.color = 'black';
+      banner.style.padding = '15px';
+      banner.style.borderRadius = '12px';
+      banner.style.textAlign = 'center';
+      banner.style.zIndex = '1000';
+      banner.innerHTML = `🎉 SPECIAL OFFER: ${campaign.offer} at ${campaign.businessName}!<br><button onclick="recordBooking('${campaignId}')" style="background:black; color:white; border:none; padding:8px 16px; border-radius:20px; margin-top:8px;">Claim Offer</button>`;
+      document.body.appendChild(banner);
+    }
+  }
+}
+
+function recordBooking(campaignId) {
+  let campaign = campaigns.find(c => c.id === campaignId);
+  if (campaign) {
+    campaign.bookings = (campaign.bookings || 0) + 1;
+    let commission = 5000; // 5% of UGX 100,000 average booking? Or you define
+    campaign.earnings = (campaign.earnings || 0) + commission;
+    localStorage.setItem('pearl_campaigns', JSON.stringify(campaigns));
+    // Notify promoter
+    let promoter = promotersData.find(p => p.code === campaign.promoterCode);
+    if (promoter) {
+      promoter.earnings = (promoter.earnings || 0) + commission;
+      localStorage.setItem('pearl_promoters', JSON.stringify(promotersData));
+      sendWhatsApp(promoter.phone, `💰 You earned UGX ${commission} (5%) from a booking at ${campaign.businessName}! Total earnings: UGX ${promoter.earnings.toLocaleString()}`);
+    }
+    showToast('✅ Offer claimed! The business will contact you shortly.', false);
+    // Remove banner
+    let banner = document.querySelector('div[style*="position: fixed"][style*="bottom: 80px"]');
+    if (banner) banner.remove();
+  }
 }
 
 // ========== ADMIN DASHBOARD ==========
@@ -695,9 +900,18 @@ function closeAdmin() { document.getElementById('adminModal').style.display = 'n
 function loginAdmin() {
   let pwd = document.getElementById('adminPassword').value;
   if (pwd === ADMIN_PASSWORD) {
+    // Refresh data
+    staffData = JSON.parse(localStorage.getItem('pearl_staff') || '[]');
+    jobsData = JSON.parse(localStorage.getItem('pearl_jobs') || '[]');
+    promotersData = JSON.parse(localStorage.getItem('pearl_promoters') || '[]');
+    brokersData = JSON.parse(localStorage.getItem('pearl_brokers') || '[]');
+    applicationsData = JSON.parse(localStorage.getItem('pearl_applications') || '[]');
+    pendingJobs = JSON.parse(localStorage.getItem('pearl_pending_jobs') || '[]');
+    campaigns = JSON.parse(localStorage.getItem('pearl_campaigns') || '[]');
     let totalBroker = brokersData.reduce((s,b)=>s+(b.earnings||0),0);
     let totalPromoter = promotersData.reduce((s,p)=>s+(p.earnings||0),0);
     let pendingHtml = pendingJobs.map(j => `<p>🏨 ${j.company} - ${j.position} - ${j.contact} - <button onclick="approveJob('${j.company}','${j.position}','${j.contact}','${j.phone}','${j.location}','${j.salary}','${j.promoterCode}')">Approve</button></p>`).join('');
+    let campaignsHtml = campaigns.map(c => `<p>📢 ${c.businessName} - ${c.offer} - Clicks: ${c.clicks} - Bookings: ${c.bookings} - Earnings: UGX ${(c.earnings||0).toLocaleString()}</p>`).join('');
     document.getElementById('adminContent').innerHTML = `
       <div style="background:#1a1a1a; padding:15px; border-radius:12px;">
         <h3>📊 Dashboard</h3>
@@ -707,14 +921,15 @@ function loginAdmin() {
         <p>🤝 Promoters: ${promotersData.length}</p>
         <p>🏢 Brokers: ${brokersData.length}</p>
         <p>📝 Applications: ${applicationsData.length}</p>
+        <p>📢 Campaigns: ${campaigns.length}</p>
         <p style="color:#ff9800;">Broker earnings: UGX ${totalBroker.toLocaleString()}</p>
         <p style="color:#e2b13c;">Promoter earnings: UGX ${totalPromoter.toLocaleString()}</p>
         <hr>
         <h4>Pending Job Approvals</h4>
         ${pendingHtml || '<p>No pending jobs</p>'}
         <hr>
-        <h4>Recent Applications</h4>
-        ${applicationsData.slice(-5).map(a => `<p>${a.name} applied for ${a.job.position} at ${a.job.company}</p>`).join('')}
+        <h4>Active Campaigns</h4>
+        ${campaignsHtml || '<p>No campaigns</p>'}
         <hr>
         <button class="btn-primary" onclick="exportAllData()">Export CSV</button>
       </div>
@@ -731,7 +946,7 @@ function approveJob(company, position, contact, phone, location, salary, promote
   localStorage.setItem('pearl_jobs', JSON.stringify(jobsData));
   pendingJobs = pendingJobs.filter(j => !(j.company === company && j.position === position && j.contact === contact));
   localStorage.setItem('pearl_pending_jobs', JSON.stringify(pendingJobs));
-  sendWhatsApp(phone, `✅ Your job post for ${position} at ${company} has been approved and is now live.`);
+  sendWhatsApp(phone, `✅ Your job post for ${position} at ${company} is now live.`);
   showToast('Job approved', false);
   loginAdmin();
   filterJobsByLocation();
@@ -758,6 +973,7 @@ window.onclick = function(e) {
   if (e.target.classList && e.target.classList.contains('modal')) e.target.style.display = 'none';
 }
 
+checkCampaignReferral();
 showMain();
 </script>
 </body>
