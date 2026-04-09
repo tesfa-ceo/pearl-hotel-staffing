@@ -55,13 +55,9 @@
       font-size: 12px;
     }
     .nav-links a:hover { background: #e2b13c; color: black; }
-    .btn-gold { background: #e2b13c !important; color: black !important; }
     
-    /* Mobile menu */
     @media (max-width: 768px) {
-      .hamburger {
-        display: block;
-      }
+      .hamburger { display: block; }
       .nav-links {
         display: none;
         flex-direction: column;
@@ -72,13 +68,8 @@
         margin-top: 15px;
         gap: 8px;
       }
-      .nav-links.show {
-        display: flex;
-      }
-      .nav-links a {
-        text-align: center;
-        padding: 10px;
-      }
+      .nav-links.show { display: flex; }
+      .nav-links a { text-align: center; padding: 10px; }
     }
     
     .action-buttons {
@@ -318,6 +309,17 @@
       margin: 5px;
       cursor: pointer;
     }
+    /* Thank You Modal */
+    .thankyou-icon {
+      font-size: 48px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .thankyou-message {
+      text-align: center;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
     @media (min-width: 768px) {
       .action-buttons { max-width: 400px; }
     }
@@ -461,7 +463,24 @@
   <div id="campaignsList" class="card"></div>
 </div>
 
-<!-- MODALS (Staff, Company, Apply, Admin) - same as before but I'll keep compact -->
+<!-- THANK YOU MODAL (Confirmation) -->
+<div id="thankyouModal" class="modal">
+  <div class="modal-content" style="text-align: center;">
+    <span class="close" onclick="closeThankYouModal()">&times;</span>
+    <div class="thankyou-icon">🎉</div>
+    <h2 style="color: #e2b13c;">Thank You!</h2>
+    <div id="thankyouMessage" class="thankyou-message">
+      Your request has been received successfully.
+    </div>
+    <div class="payment-info" style="margin: 15px 0;">
+      <p>📞 Need help? Contact us on WhatsApp</p>
+      <p><strong>Airtel: +256 709 937 339</strong> | <strong>MTN: +256 783 168 227</strong></p>
+    </div>
+    <button class="btn-primary" onclick="closeThankYouModal()">Close</button>
+  </div>
+</div>
+
+<!-- MODALS (Staff, Company, Apply, Admin) -->
 <div id="staffModal" class="modal"><div class="modal-content"><span class="close" onclick="closeStaffModal()">&times;</span>
   <h2>📋 Find a job (FREE)</h2>
   <input type="text" id="staffName" placeholder="Full Name *"><input type="tel" id="staffPhone" placeholder="WhatsApp *"><input type="email" id="staffEmail" placeholder="Email">
@@ -541,7 +560,6 @@ function closeMenu() {
 document.getElementById('hamburgerBtn').addEventListener('click', function() {
   document.getElementById('navLinks').classList.toggle('show');
 });
-// Close menu when clicking outside
 window.addEventListener('click', function(e) {
   let nav = document.getElementById('navLinks');
   let btn = document.getElementById('hamburgerBtn');
@@ -549,6 +567,17 @@ window.addEventListener('click', function(e) {
     nav.classList.remove('show');
   }
 });
+
+// Thank You Modal
+function showThankYou(message) {
+  document.getElementById('thankyouMessage').innerHTML = message;
+  document.getElementById('thankyouModal').style.display = 'flex';
+  // Auto close after 5 seconds
+  setTimeout(() => closeThankYouModal(), 5000);
+}
+function closeThankYouModal() {
+  document.getElementById('thankyouModal').style.display = 'none';
+}
 
 // Navigation
 function showMain() { hideAllSections(); document.getElementById('mainSection').style.display = 'block'; }
@@ -583,7 +612,7 @@ function submitApplication() {
   localStorage.setItem('pearl_applications', JSON.stringify(applicationsData));
   sendWhatsApp('256709937339', `📝 Application: ${name} for ${currentJobForApply.position} at ${currentJobForApply.company}. Phone: ${phone}`);
   sendWhatsApp(phone, `✅ Application received for ${currentJobForApply.position}. We'll contact you after payment.`);
-  showToast('✅ Application submitted!', false);
+  showThankYou(`Your application for <strong>${currentJobForApply.position}</strong> at <strong>${currentJobForApply.company}</strong> has been submitted.<br><br>We will contact you within 24 hours after payment confirmation.`);
   closeApplyModal();
 }
 function registerStaff() {
@@ -592,8 +621,15 @@ function registerStaff() {
   staffData.push({name:n, phone:p, location:l, position:pos, registeredAt:new Date().toISOString()});
   localStorage.setItem('pearl_staff', JSON.stringify(staffData));
   sendWhatsApp(p, `✅ Registration confirmed ${n}! Position: ${pos}, Location: ${l}. We will contact you.`);
-  showToast('✅ Registered!', false);
+  showThankYou(`Thank you ${n}!<br><br>Your registration as a <strong>${pos}</strong> in <strong>${l}</strong> has been received.<br><br>We will contact you within 24 hours with job opportunities.`);
   closeStaffModal();
+  document.getElementById('staffName').value = '';
+  document.getElementById('staffPhone').value = '';
+  document.getElementById('staffEmail').value = '';
+  document.getElementById('staffLocation').selectedIndex = 0;
+  document.getElementById('staffPosition').selectedIndex = 0;
+  document.getElementById('staffPhotoPreview').innerHTML = '';
+  staffPhotoData = null;
 }
 function sendJobQuote() {
   let c=document.getElementById('companyName').value, co=document.getElementById('companyContact').value, ph=document.getElementById('companyPhone').value, l=document.getElementById('companyLocation').value, pos=document.getElementById('jobPositionSelect').value;
@@ -603,12 +639,20 @@ function sendJobQuote() {
   localStorage.setItem('pearl_pending_jobs', JSON.stringify(pendingJobs));
   sendWhatsApp('256709937339', `📋 NEW JOB QUOTE: ${pos} at ${c} from ${co}. Phone: ${ph}`);
   sendWhatsApp(ph, `✅ Thank you! We'll send payment instructions within 1 hour.`);
-  showToast('✅ Quote request sent!', false);
+  showThankYou(`Thank you for posting a job with us!<br><br>We have received your request for a <strong>${pos}</strong> at <strong>${c}</strong>.<br><br>We will send you payment instructions via WhatsApp within 1 hour.`);
   closeCompanyModal();
+  document.getElementById('companyName').value = '';
+  document.getElementById('companyContact').value = '';
+  document.getElementById('companyPhone').value = '';
+  document.getElementById('companyEmail').value = '';
+  document.getElementById('jobSalary').value = '';
+  document.getElementById('jobPromoterCode').value = '';
+  document.getElementById('companyLocation').selectedIndex = 0;
+  document.getElementById('jobPositionSelect').selectedIndex = 0;
 }
 function requestRevenuePlan(plan, amount) {
   sendWhatsApp('256709937339', `📈 REVENUE PLAN: ${plan} (UGX ${amount.toLocaleString()}/month). Contact client.`);
-  showToast(`✅ Request for ${plan} plan sent!`, false);
+  showThankYou(`Thank you for your interest in the <strong>${plan} Plan</strong>!<br><br>We will contact you within 24 hours to discuss how we can increase your revenue by 30-50%.`);
 }
 function registerPromoter() {
   let n=document.getElementById('promoterName').value, p=document.getElementById('promoterPhone').value, e=document.getElementById('promoterEmail').value;
@@ -617,7 +661,10 @@ function registerPromoter() {
   promotersData.push({name:n, phone:p, email:e, code, earnings:0, referrals:0});
   localStorage.setItem('pearl_promoters', JSON.stringify(promotersData));
   sendWhatsApp(p, `🎉 Welcome ${n}! Your Promoter Code: ${code}. Earn 16% on job referrals.`);
-  showToast(`✅ Your code: ${code}`, false);
+  showThankYou(`Welcome to the Promoter Program, ${n}!<br><br>Your Promoter Code: <strong>${code}</strong><br><br>Share this code when referring hotels. You earn 16% on every successful job post.`);
+  document.getElementById('promoterName').value = '';
+  document.getElementById('promoterPhone').value = '';
+  document.getElementById('promoterEmail').value = '';
 }
 function registerBroker() {
   let n=document.getElementById('brokerName').value, p=document.getElementById('brokerPhone').value, e=document.getElementById('brokerEmail').value;
@@ -626,7 +673,10 @@ function registerBroker() {
   brokersData.push({name:n, phone:p, email:e, code, earnings:0, referrals:0});
   localStorage.setItem('pearl_brokers', JSON.stringify(brokersData));
   sendWhatsApp(p, `🎉 Welcome Broker ${n}! Code: ${code}. Earn 40% per job post.`);
-  showToast(`✅ Broker Code: ${code}`, false);
+  showThankYou(`Welcome to the Broker Program, ${n}!<br><br>Your Broker Code: <strong>${code}</strong><br><br>Submit hotel jobs directly and earn 40% commission (UGX 40,000 per job).`);
+  document.getElementById('brokerName').value = '';
+  document.getElementById('brokerPhone').value = '';
+  document.getElementById('brokerEmail').value = '';
 }
 function brokerSubmitJob() {
   let bc=document.getElementById('brokerJobCode').value, comp=document.getElementById('brokerCompanyName').value, pos=document.getElementById('brokerJobPosition').value;
@@ -640,7 +690,10 @@ function brokerSubmitJob() {
   broker.referrals=(broker.referrals||0)+1;
   localStorage.setItem('pearl_brokers', JSON.stringify(brokersData));
   sendWhatsApp(broker.phone, `💰 You earned UGX ${commission} (40%) for submitting ${pos} at ${comp}.`);
-  showToast('✅ Job submitted!', false);
+  showThankYou(`Job submitted successfully!<br><br>You earned <strong>UGX ${commission.toLocaleString()}</strong> (40% commission) for posting <strong>${pos}</strong> at <strong>${comp}</strong>.<br><br>The job is now live.`);
+  document.getElementById('brokerJobCode').value = '';
+  document.getElementById('brokerCompanyName').value = '';
+  document.getElementById('brokerJobPosition').value = '';
   filterJobsByLocation();
 }
 function createCampaign() {
@@ -653,7 +706,7 @@ function createCampaign() {
   campaigns.push(campaign);
   localStorage.setItem('pearl_campaigns', JSON.stringify(campaigns));
   let shareUrl = window.location.href.split('?')[0] + '?campaign='+id;
-  showToast(`✅ Campaign created! Share: ${shareUrl}`, false);
+  showThankYou(`Campaign created successfully!<br><br>Share this link to earn 5% on every booking:<br><strong>${shareUrl}</strong><br><br>We have also sent it to your WhatsApp.`);
   sendWhatsApp(promoter.phone, `🎉 Campaign for ${biz} is live!\nShare: ${shareUrl}\nYou earn 5% per booking!`);
   document.getElementById('campaignPromoterCode').value='';
   document.getElementById('campaignBusinessName').value='';
