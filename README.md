@@ -1,2 +1,415 @@
 # pearl-hotel-staffing
-pearl-hotel
+pearl-hotel<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Pearl Hotel Staffing | Smart Hiring for Kampala Hotels</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a0a;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: white;
+      padding-bottom: 70px;
+    }
+    .header {
+      background: #1a1a1a;
+      padding: 15px;
+      border-bottom: 3px solid #e2b13c;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      text-align: center;
+    }
+    .logo h1 { color: #e2b13c; font-size: 22px; }
+    .logo p { font-size: 11px; color: #888; }
+    
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 6px 12px;
+      background: #222;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .nav-links a:hover { background: #e2b13c; color: black; }
+    
+    .hero {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    }
+    .hero h1 { font-size: 28px; margin-bottom: 15px; }
+    .hero h1 span { color: #e2b13c; }
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .btn-primary, .btn-secondary {
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: #e2b13c; color: black; }
+    .btn-secondary { background: transparent; border: 2px solid #e2b13c; color: #e2b13c; }
+    
+    .card {
+      background: #1a1a1a;
+      padding: 25px;
+      border-radius: 20px;
+      margin: 20px;
+      border: 1px solid #333;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      background: #222;
+      border: 1px solid #444;
+      color: white;
+      border-radius: 10px;
+    }
+    .btn-submit {
+      background: #e2b13c;
+      color: black;
+      padding: 12px;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+    }
+    .toast {
+      position: fixed;
+      bottom: 80px;
+      left: 20px;
+      right: 20px;
+      background: #2e7d32;
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+      display: none;
+      z-index: 1100;
+    }
+    /* Client Logos Row */
+    .logo-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin: 20px 0;
+    }
+    .client-logo {
+      background: #2a2a2a;
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-size: 12px;
+      font-weight: bold;
+      color: #ccc;
+    }
+    /* Testimonial cards */
+    .testimonial-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .testimonial {
+      background: #222;
+      padding: 20px;
+      border-radius: 16px;
+      flex: 1;
+      min-width: 200px;
+      border-left: 3px solid #e2b13c;
+    }
+    .testimonial p { font-style: italic; margin-bottom: 10px; }
+    .testimonial h4 { color: #e2b13c; }
+    
+    /* Floating WhatsApp button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      background: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      z-index: 99;
+      text-decoration: none;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    .badge {
+      display: inline-block;
+      background: #e2b13c;
+      color: black;
+      padding: 5px 12px;
+      border-radius: 30px;
+      font-size: 12px;
+      margin-bottom: 15px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: #888;
+      border-top: 1px solid #333;
+      margin-top: 30px;
+    }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">
+    <h1>🏨 PEARL HOTEL STAFFING</h1>
+    <p>Smart staffing • Digital talent pool • Revenue growth</p>
+  </div>
+  <div class="nav-links">
+    <a href="#" onclick="showSection('home')">Home</a>
+    <a href="#" onclick="showSection('staffing')">Request Staff</a>
+    <a href="#" onclick="window.open('https://forms.gle/YOUR_GOOGLE_FORM_LINK', '_blank')">Candidate Registration</a>
+    <a href="#" onclick="window.open('https://YOUR_GLIDE_APP_URL.glideapp.io', '_blank')">Talent Database</a>
+    <a href="#" onclick="showSection('contact')">Contact</a>
+  </div>
+</div>
+
+<!-- HOME SECTION -->
+<div id="homeSection" style="display:block">
+  <div class="hero">
+    <h1>Find <span>Hotel Staff</span> or <span>Jobs</span> in Kampala</h1>
+    <p>Verified candidates • Video introductions • 14-day free replacement</p>
+    <div class="hero-buttons">
+      <button class="btn-primary" onclick="window.open('https://forms.gle/YOUR_GOOGLE_FORM_LINK', '_blank')">📝 I need a job (free)</button>
+      <button class="btn-primary" onclick="showSection('staffing')">🏢 I need staff | Request form</button>
+      <button class="btn-secondary" onclick="window.open('https://YOUR_GLIDE_APP_URL.glideapp.io', '_blank')">👥 Browse talent database</button>
+    </div>
+  </div>
+
+  <!-- Trust signals: logos + testimonials -->
+  <div class="card">
+    <h3 style="color:#e2b13c; text-align:center;">🏨 Trusted by hotels in Kampala</h3>
+    <div class="logo-row">
+      <div class="client-logo">🏨 Serena Hotel</div>
+      <div class="client-logo">🏨 Speke Resort</div>
+      <div class="client-logo">🏨 Fairway Hotel</div>
+      <div class="client-logo">🏨 Protea Hotel</div>
+      <div class="client-logo">🏨 Cafe Javas</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:#e2b13c; text-align:center;">⭐ Success stories</h3>
+    <div class="testimonial-grid">
+      <div class="testimonial"><p>"Pearl Hotel Staffing found us a chef within 2 days. The video intro saved us hours of interviews."</p><h4>— GM, Speke Resort</h4></div>
+      <div class="testimonial"><p>"I registered as a candidate, uploaded a short video, and got hired in a week. Very professional."</p><h4>— Martha, Waitress</h4></div>
+      <div class="testimonial"><p>"The talent database is brilliant. We browse, select, and hire. No more chasing CVs."</p><h4>— HR, Serena Hotel</h4></div>
+    </div>
+  </div>
+
+  <div class="card" style="text-align:center">
+    <div class="badge">📹 Video-first screening</div>
+    <h3>How it works – for hotels</h3>
+    <p>1. Fill the request form → 2. Browse our talent database → 3. Watch video intros → 4. Hire the best fit.</p>
+    <button class="btn-primary" onclick="showSection('staffing')" style="margin-top:15px;">Request staff now</button>
+  </div>
+</div>
+
+<!-- REQUEST STAFF FORM (connects to Google Sheets) -->
+<div id="staffingSection" style="display:none">
+  <div class="card">
+    <h2 style="color:#e2b13c;">🏢 Request Staff</h2>
+    <p>Fill the form below. We'll match you within 24 hours.</p>
+    <form id="staffRequestForm">
+      <input type="text" id="hotelName" placeholder="Hotel / Restaurant name *" required>
+      <input type="text" id="contactPerson" placeholder="Your name *" required>
+      <input type="tel" id="contactPhone" placeholder="WhatsApp number *" required>
+      <input type="email" id="contactEmail" placeholder="Email (optional)">
+      <select id="positionNeeded" required>
+        <option value="">Select position needed *</option>
+        <option>Chef</option><option>Waiter/Waitress</option><option>Manager</option>
+        <option>Housekeeping</option><option>Receptionist</option><option>Bartender</option>
+        <option>Security</option><option>Accountant</option>
+      </select>
+      <input type="number" id="staffCount" placeholder="Number of staff needed *" required>
+      <select id="urgency" required>
+        <option value="">Urgency *</option><option>Immediate (within 2 days)</option>
+        <option>Within a week</option><option>Within a month</option>
+      </select>
+      <textarea id="specialRequirements" placeholder="Special requirements (shift times, language, etc.)" rows="3"></textarea>
+      <button type="button" class="btn-submit" onclick="submitStaffRequest()">Send request →</button>
+    </form>
+    <p id="formStatus" style="margin-top:10px; font-size:13px;"></p>
+  </div>
+</div>
+
+<!-- CONTACT SECTION -->
+<div id="contactSection" style="display:none">
+  <div class="card">
+    <h2 style="color:#e2b13c;">📞 Contact & Support</h2>
+    <p><strong>📍 Location:</strong> Kansanga, Gaba Road, Kampala</p>
+    <p><strong>📞 Airtel:</strong> +256 709 937 339 &nbsp;|&nbsp; <strong>📞 MTN:</strong> +256 783 168 227</p>
+    <p><strong>📧 Email:</strong> tesfann2@gmail.com</p>
+    <p><strong>💬 24/7 support via WhatsApp</strong> – click the green button on the bottom right.</p>
+    <p style="margin-top:20px"><strong>📹 Candidate registration with video:</strong> <a href="#" onclick="window.open('https://forms.gle/YOUR_GOOGLE_FORM_LINK', '_blank')">Click here to apply as staff</a></p>
+    <p><strong>👥 Browse talent database (vetted staff):</strong> <a href="#" onclick="window.open('https://YOUR_GLIDE_APP_URL.glideapp.io', '_blank')">Open digital staff gallery</a></p>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Pearl Hotel Staffing – Smart hiring for Kampala's hospitality industry</p>
+  <p style="margin-top:5px">📜 <a href="#" onclick="alert('Privacy policy: Your data is safe. We never share without consent.')">Privacy policy</a></p>
+</footer>
+
+<!-- FLOATING WHATSAPP BUTTON -->
+<a href="https://wa.me/256709937339" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+  💬
+</a>
+
+<div id="toast" class="toast"></div>
+
+<script>
+  // ========== GOOGLE SHEETS BACKEND URL (REPLACE WITH YOUR DEPLOYED SCRIPT URL) ==========
+  // You need to create a Google Apps Script web app and paste its URL here.
+  const GOOGLE_SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
+
+  // ========== UI NAVIGATION ==========
+  function showSection(section) {
+    document.getElementById('homeSection').style.display = 'none';
+    document.getElementById('staffingSection').style.display = 'none';
+    document.getElementById('contactSection').style.display = 'none';
+    document.getElementById(section + 'Section').style.display = 'block';
+    window.scrollTo(0, 0);
+  }
+
+  // ========== TOAST NOTIFICATION ==========
+  function showToast(msg, isError) {
+    let toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.style.backgroundColor = isError ? '#c62828' : '#2e7d32';
+    toast.style.display = 'block';
+    setTimeout(() => { toast.style.display = 'none'; }, 4000);
+  }
+
+  // ========== SEND STAFF REQUEST TO GOOGLE SHEETS (and also WhatsApp notification) ==========
+  async function submitStaffRequest() {
+    const hotel = document.getElementById('hotelName').value.trim();
+    const contact = document.getElementById('contactPerson').value.trim();
+    const phone = document.getElementById('contactPhone').value.trim();
+    const position = document.getElementById('positionNeeded').value;
+    const count = document.getElementById('staffCount').value;
+    const urgency = document.getElementById('urgency').value;
+
+    if (!hotel || !contact || !phone || !position || !count || !urgency) {
+      showToast('❌ Please fill all required fields', true);
+      return;
+    }
+
+    // Prepare data
+    const formData = {
+      hotel: hotel,
+      contact: contact,
+      phone: phone,
+      email: document.getElementById('contactEmail').value,
+      position: position,
+      count: count,
+      urgency: urgency,
+      requirements: document.getElementById('specialRequirements').value,
+      timestamp: new Date().toISOString(),
+      type: 'staff_request'
+    };
+
+    // 1. Send to Google Sheets (if URL is configured)
+    let sheetSent = false;
+    if (GOOGLE_SHEETS_WEBAPP_URL && !GOOGLE_SHEETS_WEBAPP_URL.includes('YOUR_SCRIPT_ID')) {
+      try {
+        let url = GOOGLE_SHEETS_WEBAPP_URL + '?';
+        for (let key in formData) {
+          if (formData[key]) url += encodeURIComponent(key) + '=' + encodeURIComponent(formData[key]) + '&';
+        }
+        await fetch(url, { method: 'POST', mode: 'no-cors' });
+        sheetSent = true;
+      } catch(e) { console.error("Sheet error", e); }
+    }
+
+    // 2. Send WhatsApp notification to admin (you) – manual open as fallback, and auto if possible.
+    const adminPhone = "256709937339";
+    let msg = `🏨 NEW STAFF REQUEST\nHotel: ${hotel}\nContact: ${contact}\nPhone: ${phone}\nPosition: ${position} (${count})\nUrgency: ${urgency}`;
+    if (formData.requirements) msg += `\nRequirements: ${formData.requirements}`;
+    sendWhatsApp(adminPhone, msg);
+
+    // 3. Confirm to hotel client
+    sendWhatsApp(phone, `✅ Thank you ${contact}. We received your request for ${count} ${position}(s) at ${hotel}. We will contact you within 1 hour. - Pearl Hotel Staffing`);
+
+    showToast('✅ Request sent! We will contact you shortly.', false);
+    // Clear form
+    document.getElementById('staffRequestForm').reset();
+    if (sheetSent) showToast('✅ Data also saved to Google Sheets', false);
+  }
+
+  // WhatsApp helper (opens WhatsApp application)
+  function sendWhatsApp(number, message) {
+    let clean = number.replace(/[^0-9]/g, '');
+    if (!clean.startsWith('256')) clean = '256' + clean;
+    window.open(`https://wa.me/${clean}?text=${encodeURIComponent(message)}`, '_blank');
+  }
+
+  // Default section
+  showSection('home');
+</script>
+
+<!-- Instructions for setting up Google Sheets & Glide (visible only to admin) -->
+<div style="display: none;"> 
+  <!-- 
+    ========== SETUP INSTRUCTIONS (for the website owner) ==========
+    
+    1. GOOGLE SHEETS BACKEND (free, central database)
+       - Create a Google Sheet named "Pearl Staff Requests"
+       - Add headers: timestamp, hotel, contact, phone, email, position, count, urgency, requirements, type
+       - Go to Extensions → Apps Script, paste the code from the link below, deploy as Web App (execute as "Me", access "Anyone")
+       - Copy the Web App URL and replace YOUR_SCRIPT_ID in the const GOOGLE_SHEETS_WEBAPP_URL above.
+       - Script template: https://gist.github.com/tesfa-ceo/pearl-sheets-script (or request from DeepSeek)
+    
+    2. CANDIDATE REGISTRATION (with video upload)
+       - Create a Google Form with: Full name, WhatsApp, Email, Position, Location, CV upload (Google Drive file), Video introduction (Google Drive file upload or YouTube link)
+       - After creating, click "Send" → get the form link → replace YOUR_GOOGLE_FORM_LINK in the buttons above.
+       - Connect the form to a separate Google Sheet for candidate database.
+    
+    3. DIGITAL TALENT DATABASE (for hotels to browse)
+       - Create a free Glide account (glideapps.com)
+       - Use the candidate Google Sheet as data source
+       - Build a simple gallery showing: name, position, location, photo, video link, and "Verified" badge.
+       - Publish and get the Glide app URL → replace YOUR_GLIDE_APP_URL in the navigation buttons.
+    
+    4. WHATSAPP AUTOMATION (using Make.com)
+       - Create a Make.com account (free tier)
+       - Add a webhook trigger that receives data from your Google Sheet when a new row is added.
+       - Connect WhatsApp Business API (or simple HTTP request to your phone).
+       - Alternative: Manual WhatsApp messages (already coded) – good for starting.
+  -->
+</div>
+</body>
+</html>
