@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Pearl Hotel Staffing | Smart Hiring for Kampala Hotels</title>
+  <title>Pearl Hotel Staffing | Smart Hiring & AI Assistant</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -105,7 +105,6 @@
       display: none;
       z-index: 1100;
     }
-    /* Client Logos Row */
     .logo-row {
       display: flex;
       flex-wrap: wrap;
@@ -122,7 +121,6 @@
       font-weight: bold;
       color: #ccc;
     }
-    /* Testimonial cards */
     .testimonial-grid {
       display: flex;
       flex-wrap: wrap;
@@ -140,7 +138,179 @@
     .testimonial p { font-style: italic; margin-bottom: 10px; }
     .testimonial h4 { color: #e2b13c; }
     
-    /* Floating WhatsApp button */
+    /* Talent Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 20px;
+    }
+    .talent-card {
+      background: #1a1a1a;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #333;
+      transition: transform 0.2s;
+    }
+    .talent-card:hover {
+      transform: translateY(-5px);
+      border-color: #e2b13c;
+    }
+    .talent-header {
+      background: #222;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+    }
+    .talent-header h3 {
+      color: #e2b13c;
+      font-size: 1.4rem;
+      margin-bottom: 5px;
+    }
+    .badge {
+      display: inline-block;
+      background: #4caf50;
+      color: white;
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 20px;
+      margin-top: 8px;
+    }
+    .talent-body {
+      padding: 20px;
+    }
+    .detail {
+      margin-bottom: 12px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .detail strong {
+      color: #e2b13c;
+      width: 85px;
+    }
+    .btn-talent {
+      flex: 1;
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 13px;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+      margin-right: 5px;
+    }
+    .btn-talent-primary {
+      background: #e2b13c;
+      color: black;
+      font-weight: bold;
+    }
+    /* Chat Widget */
+    .chat-button {
+      position: fixed;
+      bottom: 150px;
+      right: 20px;
+      background: #e2b13c;
+      color: black;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      transition: 0.2s;
+    }
+    .chat-button:hover { transform: scale(1.05); }
+    .chat-window {
+      position: fixed;
+      bottom: 220px;
+      right: 20px;
+      width: 350px;
+      max-width: calc(100vw - 40px);
+      background: #1a1a1a;
+      border-radius: 20px;
+      border: 1px solid #e2b13c;
+      display: none;
+      flex-direction: column;
+      z-index: 1000;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    }
+    .chat-header {
+      background: #e2b13c;
+      color: black;
+      padding: 12px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chat-header button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: black;
+    }
+    .chat-messages {
+      height: 300px;
+      overflow-y: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .message {
+      max-width: 80%;
+      padding: 8px 12px;
+      border-radius: 16px;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .user-message {
+      background: #e2b13c;
+      color: black;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+    .bot-message {
+      background: #333;
+      color: white;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .chat-input-area {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #333;
+      background: #1a1a1a;
+    }
+    .chat-input-area input {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      border-radius: 20px;
+      background: #222;
+      color: white;
+      margin-right: 8px;
+    }
+    .chat-input-area button {
+      background: #e2b13c;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
     .whatsapp-float {
       position: fixed;
       bottom: 80px;
@@ -158,15 +328,6 @@
       text-decoration: none;
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
-    .badge {
-      display: inline-block;
-      background: #e2b13c;
-      color: black;
-      padding: 5px 12px;
-      border-radius: 30px;
-      font-size: 12px;
-      margin-bottom: 15px;
-    }
     footer {
       text-align: center;
       padding: 20px;
@@ -177,6 +338,7 @@
     }
     @media (max-width: 768px) {
       .hero h1 { font-size: 24px; }
+      .chat-window { width: calc(100vw - 40px); right: 20px; bottom: 210px; }
     }
   </style>
 </head>
@@ -185,13 +347,13 @@
 <div class="header">
   <div class="logo">
     <h1>🏨 PEARL HOTEL STAFFING</h1>
-    <p>Smart staffing • Digital talent pool • Revenue growth</p>
+    <p>Smart staffing • Digital talent pool • AI Assistant</p>
   </div>
   <div class="nav-links">
     <a href="#" onclick="showSection('home')">Home</a>
+    <a href="#" onclick="showSection('talent')">Talent Gallery</a>
     <a href="#" onclick="showSection('staffing')">Request Staff</a>
-    <a href="#" onclick="window.open('https://forms.gle/YOUR_GOOGLE_FORM_LINK', '_blank')">Candidate Registration</a>
-    <a href="#" onclick="window.open('https://YOUR_GLIDE_APP_URL.glideapp.io', '_blank')">Talent Database</a>
+    <a href="#" onclick="window.open('https://forms.gle/YOUR_GOOGLE_FORM_LINK', '_blank')">Candidate Register</a>
     <a href="#" onclick="showSection('contact')">Contact</a>
   </div>
 </div>
@@ -204,11 +366,10 @@
     <div class="hero-buttons">
       <button class="btn-primary" onclick="window.open('https://forms.gle/YOUR_GOOGLE_FORM_LINK', '_blank')">📝 I need a job (free)</button>
       <button class="btn-primary" onclick="showSection('staffing')">🏢 I need staff | Request form</button>
-      <button class="btn-secondary" onclick="window.open('https://YOUR_GLIDE_APP_URL.glideapp.io', '_blank')">👥 Browse talent database</button>
+      <button class="btn-secondary" onclick="showSection('talent')">👥 Browse talent gallery</button>
     </div>
   </div>
 
-  <!-- Trust signals: logos + testimonials -->
   <div class="card">
     <h3 style="color:#e2b13c; text-align:center;">🏨 Trusted by hotels in Kampala</h3>
     <div class="logo-row">
@@ -232,16 +393,26 @@
   <div class="card" style="text-align:center">
     <div class="badge">📹 Video-first screening</div>
     <h3>How it works – for hotels</h3>
-    <p>1. Fill the request form → 2. Browse our talent database → 3. Watch video intros → 4. Hire the best fit.</p>
+    <p>1. Fill the request form → 2. Browse our talent gallery → 3. Watch video intros → 4. Hire the best fit.</p>
     <button class="btn-primary" onclick="showSection('staffing')" style="margin-top:15px;">Request staff now</button>
   </div>
 </div>
 
-<!-- REQUEST STAFF FORM (connects to Google Sheets) -->
+<!-- TALENT GALLERY SECTION -->
+<div id="talentSection" style="display:none">
+  <div class="card">
+    <h2 style="color:#e2b13c;">👥 Vetted Talent Gallery</h2>
+    <p>All candidates have passed identity and skills verification. Watch their video intros.</p>
+    <div id="gallery" class="gallery">
+      <div style="text-align:center; padding:20px;">Loading vetted candidates...</div>
+    </div>
+  </div>
+</div>
+
+<!-- REQUEST STAFF SECTION -->
 <div id="staffingSection" style="display:none">
   <div class="card">
     <h2 style="color:#e2b13c;">🏢 Request Staff</h2>
-    <p>Fill the form below. We'll match you within 24 hours.</p>
     <form id="staffRequestForm">
       <input type="text" id="hotelName" placeholder="Hotel / Restaurant name *" required>
       <input type="text" id="contactPerson" placeholder="Your name *" required>
@@ -261,7 +432,7 @@
       <textarea id="specialRequirements" placeholder="Special requirements (shift times, language, etc.)" rows="3"></textarea>
       <button type="button" class="btn-submit" onclick="submitStaffRequest()">Send request →</button>
     </form>
-    <p id="formStatus" style="margin-top:10px; font-size:13px;"></p>
+    <p id="formStatus" style="margin-top:10px;"></p>
   </div>
 </div>
 
@@ -274,46 +445,189 @@
     <p><strong>📧 Email:</strong> tesfann2@gmail.com</p>
     <p><strong>💬 24/7 support via WhatsApp</strong> – click the green button on the bottom right.</p>
     <p style="margin-top:20px"><strong>📹 Candidate registration with video:</strong> <a href="#" onclick="window.open('https://forms.gle/YOUR_GOOGLE_FORM_LINK', '_blank')">Click here to apply as staff</a></p>
-    <p><strong>👥 Browse talent database (vetted staff):</strong> <a href="#" onclick="window.open('https://YOUR_GLIDE_APP_URL.glideapp.io', '_blank')">Open digital staff gallery</a></p>
+    <p><strong>👥 Browse talent gallery:</strong> <a href="#" onclick="showSection('talent')">Open vetted staff gallery</a></p>
   </div>
 </div>
 
-<footer>
-  <p>© 2026 Pearl Hotel Staffing – Smart hiring for Kampala's hospitality industry</p>
-  <p style="margin-top:5px">📜 <a href="#" onclick="alert('Privacy policy: Your data is safe. We never share without consent.')">Privacy policy</a></p>
-</footer>
+<!-- DEEPSEEK AI CHAT BUTTON & WINDOW -->
+<div class="chat-button" id="chatButton">💬</div>
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <span>🤖 Pearl Assistant</span>
+    <button id="closeChatBtn">✕</button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="message bot-message">👋 Hello! I'm Pearl Assistant. How can I help you with hiring or finding a hotel job today?</div>
+  </div>
+  <div class="chat-input-area">
+    <input type="text" id="chatInput" placeholder="Ask me anything...">
+    <button id="sendChatBtn">Send</button>
+  </div>
+</div>
 
 <!-- FLOATING WHATSAPP BUTTON -->
-<a href="https://wa.me/256709937339" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-  💬
-</a>
+<a href="https://wa.me/256709937339" class="whatsapp-float" target="_blank" rel="noopener noreferrer">💬</a>
 
 <div id="toast" class="toast"></div>
 
-<script>
-  // ========== GOOGLE SHEETS BACKEND URL (REPLACE WITH YOUR DEPLOYED SCRIPT URL) ==========
-  // You need to create a Google Apps Script web app and paste its URL here.
-  const GOOGLE_SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
+<footer>
+  <p>© 2026 Pearl Hotel Staffing – Smart hiring for Kampala's hospitality industry</p>
+  <p style="margin-top:5px">🔐 <a href="#" onclick="openAdmin(); return false;" style="color:#e2b13c;">Admin</a> | 📜 <a href="#" onclick="alert('Privacy policy: Your data is safe. We never share without consent.')" style="color:#e2b13c;">Privacy policy</a></p>
+</footer>
 
-  // ========== UI NAVIGATION ==========
-  function showSection(section) {
-    document.getElementById('homeSection').style.display = 'none';
-    document.getElementById('staffingSection').style.display = 'none';
-    document.getElementById('contactSection').style.display = 'none';
-    document.getElementById(section + 'Section').style.display = 'block';
-    window.scrollTo(0, 0);
+<!-- ADMIN MODAL -->
+<div id="adminModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:1000; justify-content:center; align-items:center;">
+  <div style="background:#1a1a1a; padding:25px; border-radius:20px; max-width:400px; width:90%; border:1px solid #e2b13c;">
+    <span onclick="closeAdmin()" style="float:right; font-size:24px; cursor:pointer;">&times;</span>
+    <h2>🔐 Admin</h2>
+    <input type="password" id="adminPassword" placeholder="Password" style="width:100%; padding:12px; margin:10px 0;">
+    <button class="btn-primary" onclick="loginAdmin()">Login</button>
+    <div id="adminContent" style="margin-top:20px;"></div>
+  </div>
+</div>
+
+<script>
+  // ========== DEEPSEEK AI CONFIGURATION ==========
+  // 🔴 IMPORTANT: Replace with your DeepSeek API key (get it free from platform.deepseek.com)
+  const DEEPSEEK_API_KEY = "YOUR_DEEPSEEK_API_KEY_HERE";   // <-- PASTE YOUR API KEY HERE
+  const DEEPSEEK_API_URL = "https://api.deepseek.com/v1/chat/completions";
+  
+  // System prompt to make the AI act as Pearl Hotel Staffing assistant
+  const SYSTEM_PROMPT = `You are Pearl Assistant, the official AI chatbot for Pearl Hotel Staffing in Kampala, Uganda.
+Business: Hotel staffing agency. Services: Staff placement (UGX 100,000 per successful hire), candidate registration (free), job application fee (UGX 10,000), revenue growth plans (Starter UGX 300k, Professional UGX 800k, Elite UGX 1.5M per month).
+Promoters earn 16% commission, brokers earn 40%.
+Contact: Airtel +256 709 937 339, MTN +256 783 168 227, Email tesfann2@gmail.com.
+Be helpful, concise, and professional. If you don't know something, say "Please contact our support team at +256 709 937 339".`;
+
+  // DOM elements
+  const chatButton = document.getElementById('chatButton');
+  const chatWindow = document.getElementById('chatWindow');
+  const closeChatBtn = document.getElementById('closeChatBtn');
+  const sendChatBtn = document.getElementById('sendChatBtn');
+  const chatInput = document.getElementById('chatInput');
+  const chatMessagesDiv = document.getElementById('chatMessages');
+
+  let conversationHistory = [];
+
+  // Add a message to the chat UI
+  function addMessage(text, isUser) {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+    msgDiv.textContent = text;
+    chatMessagesDiv.appendChild(msgDiv);
+    chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
   }
 
-  // ========== TOAST NOTIFICATION ==========
+  // Show typing indicator
+  function showTyping() {
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'message bot-message';
+    typingDiv.id = 'typing-indicator';
+    typingDiv.textContent = '✍️ typing...';
+    chatMessagesDiv.appendChild(typingDiv);
+    chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+  }
+
+  function removeTyping() {
+    const typing = document.getElementById('typing-indicator');
+    if (typing) typing.remove();
+  }
+
+  // Send message to DeepSeek API (if key provided) else simple echo
+  async function sendToAI(userMessage) {
+    if (!DEEPSEEK_API_KEY || DEEPSEEK_API_KEY === 'YOUR_DEEPSEEK_API_KEY_HERE') {
+      // Fallback mode: static responses
+      const lowerMsg = userMessage.toLowerCase();
+      if (lowerMsg.includes('register') || lowerMsg.includes('job')) {
+        return "To register as a candidate, click the 'Candidate Register' link above. Registration is free. You'll need to upload your CV and a short video introduction.";
+      } else if (lowerMsg.includes('cost') || lowerMsg.includes('price')) {
+        return "Job postings cost UGX 100,000. Candidates pay a UGX 10,000 application fee. Revenue growth plans start at UGX 300,000 per month.";
+      } else if (lowerMsg.includes('commission')) {
+        return "Promoters earn 16% on every successful job post. Brokers earn 40% directly on jobs they submit.";
+      } else {
+        return "Thank you for your message. Please contact us on WhatsApp at +256 709 937 339 for immediate assistance.";
+      }
+    }
+    
+    // Real DeepSeek API call
+    conversationHistory.push({ role: "user", content: userMessage });
+    const messages = [{ role: "system", content: SYSTEM_PROMPT }, ...conversationHistory];
+    
+    try {
+      const response = await fetch(DEEPSEEK_API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
+        },
+        body: JSON.stringify({
+          model: 'deepseek-chat',
+          messages: messages,
+          temperature: 0.7,
+          max_tokens: 500
+        })
+      });
+      
+      if (!response.ok) throw new Error(`API error: ${response.status}`);
+      const data = await response.json();
+      const reply = data.choices[0].message.content;
+      conversationHistory.push({ role: "assistant", content: reply });
+      return reply;
+    } catch (error) {
+      console.error('DeepSeek error:', error);
+      return "I'm sorry, I'm having trouble connecting right now. Please try again later or contact +256 709 937 339.";
+    }
+  }
+
+  // Handle sending a message
+  async function handleSendMessage() {
+    const userText = chatInput.value.trim();
+    if (!userText) return;
+    addMessage(userText, true);
+    chatInput.value = '';
+    showTyping();
+    const botReply = await sendToAI(userText);
+    removeTyping();
+    addMessage(botReply, false);
+  }
+
+  // Chat UI logic
+  chatButton.addEventListener('click', () => {
+    chatWindow.style.display = 'flex';
+  });
+  closeChatBtn.addEventListener('click', () => {
+    chatWindow.style.display = 'none';
+  });
+  sendChatBtn.addEventListener('click', handleSendMessage);
+  chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') handleSendMessage();
+  });
+
+  // ========== REST OF EXISTING FUNCTIONS (UI, TALENT, STAFF REQUEST, ADMIN) ==========
   function showToast(msg, isError) {
     let toast = document.getElementById('toast');
     toast.textContent = msg;
     toast.style.backgroundColor = isError ? '#c62828' : '#2e7d32';
     toast.style.display = 'block';
-    setTimeout(() => { toast.style.display = 'none'; }, 4000);
+    setTimeout(() => toast.style.display = 'none', 4000);
   }
 
-  // ========== SEND STAFF REQUEST TO GOOGLE SHEETS (and also WhatsApp notification) ==========
+  function sendWhatsApp(number, message) {
+    let clean = number.replace(/[^0-9]/g, '');
+    if (!clean.startsWith('256')) clean = '256' + clean;
+    window.open(`https://wa.me/${clean}?text=${encodeURIComponent(message)}`, '_blank');
+  }
+
+  function showSection(section) {
+    document.getElementById('homeSection').style.display = 'none';
+    document.getElementById('talentSection').style.display = 'none';
+    document.getElementById('staffingSection').style.display = 'none';
+    document.getElementById('contactSection').style.display = 'none';
+    document.getElementById(section + 'Section').style.display = 'block';
+    if (section === 'talent') renderTalentGallery();
+    window.scrollTo(0,0);
+  }
+
   async function submitStaffRequest() {
     const hotel = document.getElementById('hotelName').value.trim();
     const contact = document.getElementById('contactPerson').value.trim();
@@ -327,88 +641,80 @@
       return;
     }
 
-    // Prepare data
-    const formData = {
-      hotel: hotel,
-      contact: contact,
-      phone: phone,
-      email: document.getElementById('contactEmail').value,
-      position: position,
-      count: count,
-      urgency: urgency,
-      requirements: document.getElementById('specialRequirements').value,
-      timestamp: new Date().toISOString(),
-      type: 'staff_request'
-    };
-
-    // 1. Send to Google Sheets (if URL is configured)
-    let sheetSent = false;
-    if (GOOGLE_SHEETS_WEBAPP_URL && !GOOGLE_SHEETS_WEBAPP_URL.includes('YOUR_SCRIPT_ID')) {
-      try {
-        let url = GOOGLE_SHEETS_WEBAPP_URL + '?';
-        for (let key in formData) {
-          if (formData[key]) url += encodeURIComponent(key) + '=' + encodeURIComponent(formData[key]) + '&';
-        }
-        await fetch(url, { method: 'POST', mode: 'no-cors' });
-        sheetSent = true;
-      } catch(e) { console.error("Sheet error", e); }
-    }
-
-    // 2. Send WhatsApp notification to admin (you) – manual open as fallback, and auto if possible.
-    const adminPhone = "256709937339";
-    let msg = `🏨 NEW STAFF REQUEST\nHotel: ${hotel}\nContact: ${contact}\nPhone: ${phone}\nPosition: ${position} (${count})\nUrgency: ${urgency}`;
-    if (formData.requirements) msg += `\nRequirements: ${formData.requirements}`;
-    sendWhatsApp(adminPhone, msg);
-
-    // 3. Confirm to hotel client
+    const msg = `🏨 NEW STAFF REQUEST\nHotel: ${hotel}\nContact: ${contact}\nPhone: ${phone}\nPosition: ${position} (${count})\nUrgency: ${urgency}`;
+    sendWhatsApp('256709937339', msg);
     sendWhatsApp(phone, `✅ Thank you ${contact}. We received your request for ${count} ${position}(s) at ${hotel}. We will contact you within 1 hour. - Pearl Hotel Staffing`);
-
     showToast('✅ Request sent! We will contact you shortly.', false);
-    // Clear form
     document.getElementById('staffRequestForm').reset();
-    if (sheetSent) showToast('✅ Data also saved to Google Sheets', false);
   }
 
-  // WhatsApp helper (opens WhatsApp application)
-  function sendWhatsApp(number, message) {
-    let clean = number.replace(/[^0-9]/g, '');
-    if (!clean.startsWith('256')) clean = '256' + clean;
-    window.open(`https://wa.me/${clean}?text=${encodeURIComponent(message)}`, '_blank');
+  // MOCK candidates for talent gallery – replace with your own data or Google Sheets later
+  const MOCK_CANDIDATES = [
+    { name: "John Mukasa", position: "Chef", experience: "7 years", location: "Kampala CBD", videoLink: "#", cvLink: "#", vetted: true },
+    { name: "Sarah Namutebi", position: "Waiter", experience: "3 years", location: "Kansanga", videoLink: "#", cvLink: "#", vetted: true },
+    { name: "David Ochieng", position: "Housekeeping Supervisor", experience: "5 years", location: "Munyonyo", videoLink: "#", cvLink: "#", vetted: true },
+    { name: "Grace Nabatanzi", position: "Receptionist", experience: "2 years", location: "Ntinda", videoLink: "#", cvLink: "#", vetted: true },
+    { name: "Peter Wasswa", position: "Bartender", experience: "4 years", location: "Gaba", videoLink: "#", cvLink: "#", vetted: true },
+    { name: "Aisha Mwanga", position: "Manager", experience: "8 years", location: "Entebbe", videoLink: "#", cvLink: "#", vetted: true }
+  ];
+
+  function renderTalentGallery() {
+    const container = document.getElementById('gallery');
+    const candidates = MOCK_CANDIDATES;
+    if (!candidates.length) {
+      container.innerHTML = '<div style="text-align:center;">No vetted candidates yet. Check back soon.</div>';
+      return;
+    }
+    let html = '';
+    for (const c of candidates) {
+      html += `
+        <div class="talent-card">
+          <div class="talent-header">
+            <h3>${escapeHtml(c.name)}</h3>
+            <div class="badge">✅ Verified</div>
+          </div>
+          <div class="talent-body">
+            <div class="detail"><strong>💼 Position:</strong> ${escapeHtml(c.position)}</div>
+            <div class="detail"><strong>⭐ Experience:</strong> ${escapeHtml(c.experience)}</div>
+            <div class="detail"><strong>📍 Location:</strong> ${escapeHtml(c.location)}</div>
+            <div style="margin-top:15px;">
+              <a href="${c.videoLink}" target="_blank" class="btn-talent btn-talent-primary" style="margin-right:5px;">🎥 Watch Video</a>
+              <a href="${c.cvLink}" target="_blank" class="btn-talent">📄 View CV</a>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    container.innerHTML = html;
   }
 
-  // Default section
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    });
+  }
+
+  function openAdmin() {
+    document.getElementById('adminModal').style.display = 'flex';
+  }
+  function closeAdmin() {
+    document.getElementById('adminModal').style.display = 'none';
+  }
+  function loginAdmin() {
+    let pwd = document.getElementById('adminPassword').value;
+    if (pwd === 'pearl123') {
+      document.getElementById('adminContent').innerHTML = '<p>Welcome Admin. Use Google Sheets to manage candidates.</p>';
+      showToast('Logged in', false);
+    } else {
+      showToast('Wrong password', true);
+    }
+  }
+
   showSection('home');
 </script>
-
-<!-- Instructions for setting up Google Sheets & Glide (visible only to admin) -->
-<div style="display: none;"> 
-  <!-- 
-    ========== SETUP INSTRUCTIONS (for the website owner) ==========
-    
-    1. GOOGLE SHEETS BACKEND (free, central database)
-       - Create a Google Sheet named "Pearl Staff Requests"
-       - Add headers: timestamp, hotel, contact, phone, email, position, count, urgency, requirements, type
-       - Go to Extensions → Apps Script, paste the code from the link below, deploy as Web App (execute as "Me", access "Anyone")
-       - Copy the Web App URL and replace YOUR_SCRIPT_ID in the const GOOGLE_SHEETS_WEBAPP_URL above.
-       - Script template: https://gist.github.com/tesfa-ceo/pearl-sheets-script (or request from DeepSeek)
-    
-    2. CANDIDATE REGISTRATION (with video upload)
-       - Create a Google Form with: Full name, WhatsApp, Email, Position, Location, CV upload (Google Drive file), Video introduction (Google Drive file upload or YouTube link)
-       - After creating, click "Send" → get the form link → replace YOUR_GOOGLE_FORM_LINK in the buttons above.
-       - Connect the form to a separate Google Sheet for candidate database.
-    
-    3. DIGITAL TALENT DATABASE (for hotels to browse)
-       - Create a free Glide account (glideapps.com)
-       - Use the candidate Google Sheet as data source
-       - Build a simple gallery showing: name, position, location, photo, video link, and "Verified" badge.
-       - Publish and get the Glide app URL → replace YOUR_GLIDE_APP_URL in the navigation buttons.
-    
-    4. WHATSAPP AUTOMATION (using Make.com)
-       - Create a Make.com account (free tier)
-       - Add a webhook trigger that receives data from your Google Sheet when a new row is added.
-       - Connect WhatsApp Business API (or simple HTTP request to your phone).
-       - Alternative: Manual WhatsApp messages (already coded) – good for starting.
-  -->
-</div>
 </body>
 </html>
