@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Pearl Hotel Staffing – Smart Hiring & AI Assistant</title>
+  <title>Pearl Hotel Staffing – Smart Hiring for Kampala</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -230,111 +230,8 @@
       border-top: 1px solid #333;
       margin-top: 30px;
     }
-    /* Chat Widget – No API key needed, answers directly */
-    .ds-chat-btn {
-      position: fixed;
-      bottom: 100px;
-      right: 20px;
-      background: #e2b13c;
-      color: black;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      cursor: pointer;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-      transition: 0.2s;
-    }
-    .ds-chat-btn:hover { transform: scale(1.05); }
-    .ds-chat-window {
-      position: fixed;
-      bottom: 170px;
-      right: 20px;
-      width: 350px;
-      max-width: calc(100vw - 40px);
-      background: #1a1a1a;
-      border-radius: 20px;
-      border: 1px solid #e2b13c;
-      display: none;
-      flex-direction: column;
-      z-index: 1000;
-      overflow: hidden;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    }
-    .ds-chat-header {
-      background: #e2b13c;
-      color: black;
-      padding: 12px;
-      font-weight: bold;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .ds-chat-header button {
-      background: none;
-      border: none;
-      font-size: 20px;
-      cursor: pointer;
-      color: black;
-    }
-    .ds-chat-messages {
-      height: 300px;
-      overflow-y: auto;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      background: #0a0a0a;
-    }
-    .ds-message {
-      max-width: 80%;
-      padding: 8px 12px;
-      border-radius: 16px;
-      font-size: 13px;
-      line-height: 1.4;
-    }
-    .ds-user {
-      background: #e2b13c;
-      color: black;
-      align-self: flex-end;
-      border-bottom-right-radius: 4px;
-    }
-    .ds-bot {
-      background: #333;
-      color: white;
-      align-self: flex-start;
-      border-bottom-left-radius: 4px;
-    }
-    .ds-chat-input {
-      display: flex;
-      padding: 10px;
-      border-top: 1px solid #333;
-      background: #1a1a1a;
-    }
-    .ds-chat-input input {
-      flex: 1;
-      padding: 8px;
-      border: none;
-      border-radius: 20px;
-      background: #222;
-      color: white;
-      margin-right: 8px;
-    }
-    .ds-chat-input button {
-      background: #e2b13c;
-      border: none;
-      border-radius: 20px;
-      padding: 8px 16px;
-      cursor: pointer;
-      font-weight: bold;
-    }
     @media (max-width: 768px) {
       .hero h1 { font-size: 24px; }
-      .ds-chat-window { width: calc(100vw - 40px); right: 20px; bottom: 160px; }
     }
   </style>
 </head>
@@ -343,7 +240,7 @@
 <div class="header">
   <div class="logo">
     <h1>🏨 PEARL HOTEL STAFFING</h1>
-    <p>Smart staffing • Digital talent pool • AI Assistant</p>
+    <p>Smart staffing • Digital talent pool</p>
   </div>
   <div class="nav-links">
     <a href="#" onclick="showSection('home')">Home</a>
@@ -478,23 +375,7 @@
   </div>
 </div>
 
-<!-- DEEPSEEK V4 FLASH CHATBOT – DIRECT ANSWERS, NO WHATSAPP REDIRECT -->
-<div class="ds-chat-btn" id="dsChatBtn">💬</div>
-<div class="ds-chat-window" id="dsChatWindow">
-  <div class="ds-chat-header">
-    <span>🤖 Pearl Assistant (DeepSeek V4)</span>
-    <button id="dsCloseChat">✕</button>
-  </div>
-  <div class="ds-chat-messages" id="dsChatMessages">
-    <div class="ds-message ds-bot">👋 Hello! I'm Pearl Assistant. Ask me anything about hotel jobs, hiring, pricing, commissions, revenue growth, or our talent gallery. I'll answer you directly – no redirects.</div>
-  </div>
-  <div class="ds-chat-input">
-    <input type="text" id="dsChatInput" placeholder="Ask me...">
-    <button id="dsSendBtn">Send</button>
-  </div>
-</div>
-
-<!-- FLOATING WHATSAPP BUTTON (separate) -->
+<!-- FLOATING WHATSAPP BUTTON (only contact method) -->
 <a href="https://wa.me/256709937339" class="whatsapp-float" target="_blank" rel="noopener noreferrer">💬</a>
 
 <div id="toast" class="toast"></div>
@@ -629,94 +510,6 @@
       showToast('Wrong password', true);
     }
   }
-
-  // ========== CHATBOT – DIRECT ANSWERS (NEVER MENTIONS WHATSAPP UNLESS ASKED) ==========
-  const chatMessagesDiv = document.getElementById('dsChatMessages');
-  let isProcessing = false;
-
-  function addChatMessage(text, isUser) {
-    const msgDiv = document.createElement('div');
-    msgDiv.className = `ds-message ${isUser ? 'ds-user' : 'ds-bot'}`;
-    msgDiv.textContent = text;
-    chatMessagesDiv.appendChild(msgDiv);
-    chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
-  }
-
-  function getLocalResponse(userMessage) {
-    const lower = userMessage.toLowerCase();
-    
-    // Registration / job seeker
-    if (lower.includes('register') || lower.includes('job seeker') || lower.includes('candidate')) {
-      return "To register as a job seeker, click 'Candidate Register' in the menu. It's free. Fill in your name, WhatsApp, position, experience, location, skills, upload your CV (and optionally a video). We will review and contact you within 24 hours.";
-    }
-    // Hiring / post a job
-    else if (lower.includes('post a job') || lower.includes('hire staff') || lower.includes('employer') || lower.includes('need staff')) {
-      return "To hire staff, click 'Request Staff' in the menu. Provide your hotel name, contact person, WhatsApp, position, number of staff, urgency, and special requirements. We will respond within 1 hour.";
-    }
-    // Pricing / cost / fee
-    else if (lower.includes('cost') || lower.includes('price') || lower.includes('fee')) {
-      return "Job posts cost UGX 100,000 (paid only after successful hire). Candidates pay UGX 10,000 application fee. Revenue growth plans: Starter UGX 300k/month, Professional UGX 800k/month, Elite UGX 1.5M/month.";
-    }
-    // Commission / promoter / broker
-    else if (lower.includes('commission') || lower.includes('promoter') || lower.includes('broker')) {
-      return "Promoters earn 16% commission on every job post they refer. Brokers earn 40% commission on jobs they submit directly. To join, click the 'Earn 16%' or 'Earn 40%' links in the navigation (if available) or contact the admin.";
-    }
-    // Revenue growth / consulting
-    else if (lower.includes('revenue') || lower.includes('growth') || lower.includes('consulting') || lower.includes('menu engineering') || lower.includes('upselling')) {
-      return "We offer three revenue growth plans: Starter (UGX 300k/month) – digital marketing & basic training; Professional (UGX 800k/month) – upselling training, menu engineering, weekly consultations; Elite (UGX 1.5M/month) – full agency partnership, profit‑share, dedicated manager. Contact us for a free audit.";
-    }
-    // Talent gallery
-    else if (lower.includes('talent gallery') || lower.includes('browse candidates')) {
-      return "You can browse vetted candidates in the 'Talent Gallery' section. Each candidate shows their position, experience, location, and you can watch their video introduction and view their CV. Click 'Talent Gallery' in the menu.";
-    }
-    // About / who are you
-    else if (lower.includes('who are you') || lower.includes('about pearl')) {
-      return "I am Pearl Assistant, the AI chatbot for Pearl Hotel Staffing. We are a Kampala-based agency that connects hotels with verified staff and helps hotels increase revenue by 30‑50% through our growth plans.";
-    }
-    // Contact details (if they explicitly ask)
-    else if (lower.includes('contact') || lower.includes('whatsapp number') || lower.includes('phone number')) {
-      return "You can reach us via Airtel +256 709 937 339, MTN +256 783 168 227, email tesfann2@gmail.com, or use the floating WhatsApp button on the bottom right.";
-    }
-    // General fallback – no WhatsApp mention
-    else {
-      return "I'm not sure about that. You can ask me about: registration (job seeker), hiring staff, pricing, commissions, revenue growth plans, or the talent gallery. I'll do my best to answer directly.";
-    }
-  }
-
-  async function handleSendChat() {
-    if (isProcessing) return;
-    const input = document.getElementById('dsChatInput');
-    const userText = input.value.trim();
-    if (!userText) return;
-    addChatMessage(userText, true);
-    input.value = '';
-    isProcessing = true;
-    const typingDiv = document.createElement('div');
-    typingDiv.className = 'ds-message ds-bot';
-    typingDiv.textContent = '✍️ typing...';
-    typingDiv.id = 'dsTyping';
-    chatMessagesDiv.appendChild(typingDiv);
-    chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
-    
-    // Simulate a short delay for realism (optional, remove if you want instantaneous)
-    setTimeout(() => {
-      document.getElementById('dsTyping')?.remove();
-      const reply = getLocalResponse(userText);
-      addChatMessage(reply, false);
-      isProcessing = false;
-    }, 300);
-  }
-
-  document.getElementById('dsChatBtn').addEventListener('click', () => {
-    document.getElementById('dsChatWindow').style.display = 'flex';
-  });
-  document.getElementById('dsCloseChat').addEventListener('click', () => {
-    document.getElementById('dsChatWindow').style.display = 'none';
-  });
-  document.getElementById('dsSendBtn').addEventListener('click', handleSendChat);
-  document.getElementById('dsChatInput').addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') handleSendChat();
-  });
 
   // Initialise the homepage
   showSection('home');
