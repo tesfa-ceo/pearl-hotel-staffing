@@ -1,218 +1,4 @@
-<!-- DeepSeek V4 Flash Chatbot Widget -->
-<style>
-  .ds-chat-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #e2b13c;
-    color: black;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    cursor: pointer;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    transition: 0.2s;
-  }
-  .ds-chat-btn:hover { transform: scale(1.05); }
-  .ds-chat-window {
-    position: fixed;
-    bottom: 90px;
-    right: 20px;
-    width: 350px;
-    max-width: calc(100vw - 40px);
-    background: #1a1a1a;
-    border-radius: 20px;
-    border: 1px solid #e2b13c;
-    display: none;
-    flex-direction: column;
-    z-index: 1000;
-    overflow: hidden;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
-  .ds-chat-header {
-    background: #e2b13c;
-    color: black;
-    padding: 12px;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .ds-chat-header button {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: black;
-  }
-  .ds-chat-messages {
-    height: 300px;
-    overflow-y: auto;
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    background: #0a0a0a;
-  }
-  .ds-message {
-    max-width: 80%;
-    padding: 8px 12px;
-    border-radius: 16px;
-    font-size: 13px;
-    line-height: 1.4;
-  }
-  .ds-user {
-    background: #e2b13c;
-    color: black;
-    align-self: flex-end;
-    border-bottom-right-radius: 4px;
-  }
-  .ds-bot {
-    background: #333;
-    color: white;
-    align-self: flex-start;
-    border-bottom-left-radius: 4px;
-  }
-  .ds-chat-input {
-    display: flex;
-    padding: 10px;
-    border-top: 1px solid #333;
-    background: #1a1a1a;
-  }
-  .ds-chat-input input {
-    flex: 1;
-    padding: 8px;
-    border: none;
-    border-radius: 20px;
-    background: #222;
-    color: white;
-    margin-right: 8px;
-  }
-  .ds-chat-input button {
-    background: #e2b13c;
-    border: none;
-    border-radius: 20px;
-    padding: 8px 16px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-</style>
-
-<div class="ds-chat-btn" id="dsChatBtn">💬</div>
-<div class="ds-chat-window" id="dsChatWindow">
-  <div class="ds-chat-header">
-    <span>🤖 Pearl Assistant (DeepSeek V4)</span>
-    <button id="dsCloseChat">✕</button>
-  </div>
-  <div class="ds-chat-messages" id="dsChatMessages">
-    <div class="ds-message ds-bot">👋 Hello! I'm Pearl Assistant, powered by DeepSeek-V4-Flash. Ask me anything about hotel jobs, hiring, or our services.</div>
-  </div>
-  <div class="ds-chat-input">
-    <input type="text" id="dsChatInput" placeholder="Ask me...">
-    <button id="dsSendBtn">Send</button>
-  </div>
-</div>
-
-<script>
-  // =====================================================
-  // DEEPSEEK V4 FLASH CHATBOT - Replace API key below
-  // =====================================================
-  const DEEPSEEK_API_KEY = "YOUR_DEEPSEEK_API_KEY_HERE";  // <-- GET FREE KEY from platform.deepseek.com
-  const DEEPSEEK_API_URL = "https://api.deepseek.com/v1/chat/completions";
-  const MODEL = "deepseek-v4-flash";   // or "deepseek-v4-pro" for maximum power
-
-  // System prompt (tells AI how to behave)
-  const SYSTEM_PROMPT = `You are Pearl Assistant, the official AI chatbot for Pearl Hotel Staffing in Kampala, Uganda.
-Business: Hotel staffing agency. Services: Staff placement (UGX 100,000 per successful hire), candidate registration (free), job application fee (UGX 10,000), revenue growth plans (Starter UGX 300k, Professional UGX 800k, Elite UGX 1.5M per month).
-Promoters earn 16% commission, brokers earn 40%.
-Contact: Airtel +256 709 937 339, MTN +256 783 168 227, Email tesfann2@gmail.com.
-Be helpful, concise, and professional. If you don't know, say "Please contact our support team at +256 709 937 339".`;
-
-  // DOM elements
-  const chatBtn = document.getElementById('dsChatBtn');
-  const chatWindow = document.getElementById('dsChatWindow');
-  const closeBtn = document.getElementById('dsCloseChat');
-  const sendBtn = document.getElementById('dsSendBtn');
-  const chatInput = document.getElementById('dsChatInput');
-  const chatMessages = document.getElementById('dsChatMessages');
-
-  let conversationHistory = [];
-
-  function addMessage(text, isUser) {
-    const msgDiv = document.createElement('div');
-    msgDiv.className = `ds-message ${isUser ? 'ds-user' : 'ds-bot'}`;
-    msgDiv.textContent = text;
-    chatMessages.appendChild(msgDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }
-
-  async function sendToAI(userMessage) {
-    // If no API key, use fallback responses
-    if (!DEEPSEEK_API_KEY || DEEPSEEK_API_KEY === 'YOUR_DEEPSEEK_API_KEY_HERE') {
-      const lower = userMessage.toLowerCase();
-      if (lower.includes('register')) return "To register as a job seeker, click the 'Candidate Register' link on our website. It's free. Upload your CV and a video intro.";
-      if (lower.includes('cost') || lower.includes('price')) return "Job posts cost UGX 100,000. Application fee UGX 10,000. Revenue plans start at UGX 300,000/month.";
-      if (lower.includes('commission')) return "Promoters earn 16% on job posts. Brokers earn 40% directly.";
-      return "Please contact us on WhatsApp at +256 709 937 339 for detailed assistance.";
-    }
-
-    conversationHistory.push({ role: "user", content: userMessage });
-    const messages = [{ role: "system", content: SYSTEM_PROMPT }, ...conversationHistory];
-
-    try {
-      const response = await fetch(DEEPSEEK_API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
-        },
-        body: JSON.stringify({
-          model: MODEL,
-          messages: messages,
-          temperature: 0.7,
-          max_tokens: 500
-        })
-      });
-      if (!response.ok) throw new Error(`API error: ${response.status}`);
-      const data = await response.json();
-      const reply = data.choices[0].message.content;
-      conversationHistory.push({ role: "assistant", content: reply });
-      return reply;
-    } catch (error) {
-      console.error('DeepSeek error:', error);
-      return "I'm having trouble connecting right now. Please try again later or contact +256 709 937 339.";
-    }
-  }
-
-  async function handleSend() {
-    const userText = chatInput.value.trim();
-    if (!userText) return;
-    addMessage(userText, true);
-    chatInput.value = '';
-    // Show typing indicator
-    const typingDiv = document.createElement('div');
-    typingDiv.className = 'ds-message ds-bot';
-    typingDiv.textContent = '✍️ typing...';
-    typingDiv.id = 'dsTyping';
-    chatMessages.appendChild(typingDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-
-    const reply = await sendToAI(userText);
-    document.getElementById('dsTyping')?.remove();
-    addMessage(reply, false);
-  }
-
-  // UI events
-  chatBtn.addEventListener('click', () => { chatWindow.style.display = 'flex'; });
-  closeBtn.addEventListener('click', () => { chatWindow.style.display = 'none'; });
-  sendBtn.addEventListener('click', handleSend);
-  chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSend(); });
-</script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -419,110 +205,9 @@ Be helpful, concise, and professional. If you don't know, say "Please contact ou
       color: black;
       font-weight: bold;
     }
-    /* Chat Widget */
-    .chat-button {
-      position: fixed;
-      bottom: 150px;
-      right: 20px;
-      background: #e2b13c;
-      color: black;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      cursor: pointer;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-      transition: 0.2s;
-    }
-    .chat-button:hover { transform: scale(1.05); }
-    .chat-window {
-      position: fixed;
-      bottom: 220px;
-      right: 20px;
-      width: 350px;
-      max-width: calc(100vw - 40px);
-      background: #1a1a1a;
-      border-radius: 20px;
-      border: 1px solid #e2b13c;
-      display: none;
-      flex-direction: column;
-      z-index: 1000;
-      overflow: hidden;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-    }
-    .chat-header {
-      background: #e2b13c;
-      color: black;
-      padding: 12px;
-      font-weight: bold;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .chat-header button {
-      background: none;
-      border: none;
-      font-size: 20px;
-      cursor: pointer;
-      color: black;
-    }
-    .chat-messages {
-      height: 300px;
-      overflow-y: auto;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .message {
-      max-width: 80%;
-      padding: 8px 12px;
-      border-radius: 16px;
-      font-size: 13px;
-      line-height: 1.4;
-    }
-    .user-message {
-      background: #e2b13c;
-      color: black;
-      align-self: flex-end;
-      border-bottom-right-radius: 4px;
-    }
-    .bot-message {
-      background: #333;
-      color: white;
-      align-self: flex-start;
-      border-bottom-left-radius: 4px;
-    }
-    .chat-input-area {
-      display: flex;
-      padding: 10px;
-      border-top: 1px solid #333;
-      background: #1a1a1a;
-    }
-    .chat-input-area input {
-      flex: 1;
-      padding: 8px;
-      border: none;
-      border-radius: 20px;
-      background: #222;
-      color: white;
-      margin-right: 8px;
-    }
-    .chat-input-area button {
-      background: #e2b13c;
-      border: none;
-      border-radius: 20px;
-      padding: 8px 16px;
-      cursor: pointer;
-      font-weight: bold;
-    }
     .whatsapp-float {
       position: fixed;
-      bottom: 80px;
+      bottom: 20px;
       right: 20px;
       background: #25D366;
       color: white;
@@ -545,9 +230,111 @@ Be helpful, concise, and professional. If you don't know, say "Please contact ou
       border-top: 1px solid #333;
       margin-top: 30px;
     }
+    /* Chat Widget (DeepSeek V4 Flash) */
+    .ds-chat-btn {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      background: #e2b13c;
+      color: black;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      transition: 0.2s;
+    }
+    .ds-chat-btn:hover { transform: scale(1.05); }
+    .ds-chat-window {
+      position: fixed;
+      bottom: 170px;
+      right: 20px;
+      width: 350px;
+      max-width: calc(100vw - 40px);
+      background: #1a1a1a;
+      border-radius: 20px;
+      border: 1px solid #e2b13c;
+      display: none;
+      flex-direction: column;
+      z-index: 1000;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    .ds-chat-header {
+      background: #e2b13c;
+      color: black;
+      padding: 12px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .ds-chat-header button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: black;
+    }
+    .ds-chat-messages {
+      height: 300px;
+      overflow-y: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: #0a0a0a;
+    }
+    .ds-message {
+      max-width: 80%;
+      padding: 8px 12px;
+      border-radius: 16px;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .ds-user {
+      background: #e2b13c;
+      color: black;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+    .ds-bot {
+      background: #333;
+      color: white;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .ds-chat-input {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #333;
+      background: #1a1a1a;
+    }
+    .ds-chat-input input {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      border-radius: 20px;
+      background: #222;
+      color: white;
+      margin-right: 8px;
+    }
+    .ds-chat-input button {
+      background: #e2b13c;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
     @media (max-width: 768px) {
       .hero h1 { font-size: 24px; }
-      .chat-window { width: calc(100vw - 40px); right: 20px; bottom: 210px; }
+      .ds-chat-window { width: calc(100vw - 40px); right: 20px; bottom: 160px; }
     }
   </style>
 </head>
@@ -600,7 +387,7 @@ Be helpful, concise, and professional. If you don't know, say "Please contact ou
   </div>
 </div>
 
-<!-- TALENT GALLERY SECTION (mock data) -->
+<!-- TALENT GALLERY SECTION -->
 <div id="talentSection" style="display:none">
   <div class="card">
     <h2 style="color:#e2b13c;">👥 Vetted Talent Gallery</h2>
@@ -638,7 +425,7 @@ Be helpful, concise, and professional. If you don't know, say "Please contact ou
   </div>
 </div>
 
-<!-- CANDIDATE REGISTRATION SECTION (built‑in) -->
+<!-- CANDIDATE REGISTRATION SECTION -->
 <div id="candidateSection" style="display:none">
   <div class="card">
     <h2 style="color:#e2b13c;">📝 Register as a job seeker (FREE)</h2>
@@ -680,19 +467,30 @@ Be helpful, concise, and professional. If you don't know, say "Please contact ou
   </div>
 </div>
 
-<!-- DEEPSEEK AI CHAT BUTTON & WINDOW -->
-<div class="chat-button" id="chatButton">💬</div>
-<div class="chat-window" id="chatWindow">
-  <div class="chat-header">
-    <span>🤖 Pearl Assistant</span>
-    <button id="closeChatBtn">✕</button>
+<!-- ADMIN MODAL -->
+<div id="adminModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:1000; justify-content:center; align-items:center;">
+  <div style="background:#1a1a1a; padding:25px; border-radius:20px; max-width:400px; width:90%; border:1px solid #e2b13c;">
+    <span onclick="closeAdmin()" style="float:right; font-size:24px; cursor:pointer;">&times;</span>
+    <h2>🔐 Admin</h2>
+    <input type="password" id="adminPassword" placeholder="Password">
+    <button class="btn-primary" onclick="loginAdmin()">Login</button>
+    <div id="adminContent" style="margin-top:20px;"></div>
   </div>
-  <div class="chat-messages" id="chatMessages">
-    <div class="message bot-message">👋 Hello! I'm Pearl Assistant. How can I help you with hiring or finding a hotel job today?</div>
+</div>
+
+<!-- DEEPSEEK V4 FLASH CHATBOT WIDGET -->
+<div class="ds-chat-btn" id="dsChatBtn">💬</div>
+<div class="ds-chat-window" id="dsChatWindow">
+  <div class="ds-chat-header">
+    <span>🤖 Pearl Assistant (DeepSeek V4)</span>
+    <button id="dsCloseChat">✕</button>
   </div>
-  <div class="chat-input-area">
-    <input type="text" id="chatInput" placeholder="Ask me anything...">
-    <button id="sendChatBtn">Send</button>
+  <div class="ds-chat-messages" id="dsChatMessages">
+    <div class="ds-message ds-bot">👋 Hello! I'm Pearl Assistant, powered by DeepSeek-V4-Flash. Ask me anything about hotel jobs, hiring, or our services.</div>
+  </div>
+  <div class="ds-chat-input">
+    <input type="text" id="dsChatInput" placeholder="Ask me...">
+    <button id="dsSendBtn">Send</button>
   </div>
 </div>
 
@@ -706,56 +504,35 @@ Be helpful, concise, and professional. If you don't know, say "Please contact ou
   <p style="margin-top:5px">🔐 <a href="#" onclick="openAdmin(); return false;" style="color:#e2b13c;">Admin</a> | 📜 <a href="#" onclick="alert('Privacy policy: Your data is safe. We never share without consent.')" style="color:#e2b13c;">Privacy policy</a></p>
 </footer>
 
-<!-- ADMIN MODAL -->
-<div id="adminModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:1000; justify-content:center; align-items:center;">
-  <div style="background:#1a1a1a; padding:25px; border-radius:20px; max-width:400px; width:90%; border:1px solid #e2b13c;">
-    <span onclick="closeAdmin()" style="float:right; font-size:24px; cursor:pointer;">&times;</span>
-    <h2>🔐 Admin</h2>
-    <input type="password" id="adminPassword" placeholder="Password" style="width:100%; padding:12px; margin:10px 0;">
-    <button class="btn-primary" onclick="loginAdmin()">Login</button>
-    <div id="adminContent" style="margin-top:20px;"></div>
-  </div>
-</div>
-
 <script>
-  // ========== DEEPSEEK AI CONFIGURATION (optional - works without key) ==========
-  const DEEPSEEK_API_KEY = "YOUR_DEEPSEEK_API_KEY_HERE";   // optional
+  // ========== DEEPSEEK V4 FLASH CHATBOT ==========
+  // Get your free API key from https://platform.deepseek.com and replace below
+  const DEEPSEEK_API_KEY = "YOUR_DEEPSEEK_API_KEY_HERE";
   const DEEPSEEK_API_URL = "https://api.deepseek.com/v1/chat/completions";
-  const SYSTEM_PROMPT = `You are Pearl Assistant for Pearl Hotel Staffing in Kampala. Services: staff placement (UGX 100k per hire), free candidate registration, job application fee UGX 10k, revenue plans: Starter UGX 300k, Professional UGX 800k, Elite UGX 1.5M per month. Promoters 16%, brokers 40%. Contact: +256 709 937 339. Be helpful and concise.`;
+  const MODEL = "deepseek-v4-flash";
 
-  // Chat UI elements
-  const chatButton = document.getElementById('chatButton');
-  const chatWindow = document.getElementById('chatWindow');
-  const closeChatBtn = document.getElementById('closeChatBtn');
-  const sendChatBtn = document.getElementById('sendChatBtn');
-  const chatInput = document.getElementById('chatInput');
-  const chatMessagesDiv = document.getElementById('chatMessages');
+  const SYSTEM_PROMPT = `You are Pearl Assistant, the official AI chatbot for Pearl Hotel Staffing in Kampala, Uganda.
+Business: Hotel staffing agency. Services: Staff placement (UGX 100,000 per successful hire), candidate registration (free), job application fee (UGX 10,000), revenue growth plans (Starter UGX 300k, Professional UGX 800k, Elite UGX 1.5M per month).
+Promoters earn 16% commission, brokers earn 40%.
+Contact: Airtel +256 709 937 339, MTN +256 783 168 227, Email tesfann2@gmail.com.
+Be helpful, concise, and professional. If you don't know, say "Please contact our support team at +256 709 937 339".`;
+
   let conversationHistory = [];
 
-  function addMessage(text, isUser) {
+  function addChatMessage(text, isUser) {
     const msgDiv = document.createElement('div');
-    msgDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+    msgDiv.className = `ds-message ${isUser ? 'ds-user' : 'ds-bot'}`;
     msgDiv.textContent = text;
-    chatMessagesDiv.appendChild(msgDiv);
-    chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+    const container = document.getElementById('dsChatMessages');
+    container.appendChild(msgDiv);
+    container.scrollTop = container.scrollHeight;
   }
-  function showTyping() {
-    const typingDiv = document.createElement('div');
-    typingDiv.className = 'message bot-message';
-    typingDiv.id = 'typing-indicator';
-    typingDiv.textContent = '✍️ typing...';
-    chatMessagesDiv.appendChild(typingDiv);
-    chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
-  }
-  function removeTyping() {
-    const typing = document.getElementById('typing-indicator');
-    if (typing) typing.remove();
-  }
+
   async function sendToAI(userMessage) {
     if (!DEEPSEEK_API_KEY || DEEPSEEK_API_KEY === 'YOUR_DEEPSEEK_API_KEY_HERE') {
       const lower = userMessage.toLowerCase();
-      if (lower.includes('register') || lower.includes('job')) return "To register as a job seeker, click 'Candidate Register' in the menu. It's free. Upload your CV and a video intro.";
-      if (lower.includes('cost') || lower.includes('price')) return "Job posts: UGX 100,000. Application fee: UGX 10,000. Revenue plans start at UGX 300,000 per month.";
+      if (lower.includes('register')) return "To register as a job seeker, click 'Candidate Register' on our website. It's free. Upload your CV and video intro.";
+      if (lower.includes('cost') || lower.includes('price')) return "Job posts cost UGX 100,000. Application fee UGX 10,000. Revenue plans start at UGX 300,000/month.";
       if (lower.includes('commission')) return "Promoters earn 16% on job posts. Brokers earn 40% directly.";
       return "Please contact us on WhatsApp at +256 709 937 339 for detailed assistance.";
     }
@@ -764,34 +541,52 @@ Be helpful, concise, and professional. If you don't know, say "Please contact ou
     try {
       const response = await fetch(DEEPSEEK_API_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${DEEPSEEK_API_KEY}` },
-        body: JSON.stringify({ model: 'deepseek-chat', messages, temperature: 0.7, max_tokens: 500 })
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
+        },
+        body: JSON.stringify({ model: MODEL, messages, temperature: 0.7, max_tokens: 500 })
       });
-      if (!response.ok) throw new Error();
+      if (!response.ok) throw new Error(`API error: ${response.status}`);
       const data = await response.json();
       const reply = data.choices[0].message.content;
       conversationHistory.push({ role: "assistant", content: reply });
       return reply;
     } catch (error) {
-      return "I'm sorry, I'm having trouble connecting. Please try again later or contact +256 709 937 339.";
+      console.error('DeepSeek error:', error);
+      return "I'm having trouble connecting. Please try again later or contact +256 709 937 339.";
     }
   }
-  async function handleSendMessage() {
-    const userText = chatInput.value.trim();
-    if (!userText) return;
-    addMessage(userText, true);
-    chatInput.value = '';
-    showTyping();
-    const botReply = await sendToAI(userText);
-    removeTyping();
-    addMessage(botReply, false);
-  }
-  chatButton.addEventListener('click', () => { chatWindow.style.display = 'flex'; });
-  closeChatBtn.addEventListener('click', () => { chatWindow.style.display = 'none'; });
-  sendChatBtn.addEventListener('click', handleSendMessage);
-  chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSendMessage(); });
 
-  // ========== COMMON FUNCTIONS ==========
+  async function handleSend() {
+    const input = document.getElementById('dsChatInput');
+    const userText = input.value.trim();
+    if (!userText) return;
+    addChatMessage(userText, true);
+    input.value = '';
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'ds-message ds-bot';
+    typingDiv.textContent = '✍️ typing...';
+    typingDiv.id = 'dsTyping';
+    document.getElementById('dsChatMessages').appendChild(typingDiv);
+    const reply = await sendToAI(userText);
+    document.getElementById('dsTyping')?.remove();
+    addChatMessage(reply, false);
+  }
+
+  // Chat UI
+  document.getElementById('dsChatBtn').addEventListener('click', () => {
+    document.getElementById('dsChatWindow').style.display = 'flex';
+  });
+  document.getElementById('dsCloseChat').addEventListener('click', () => {
+    document.getElementById('dsChatWindow').style.display = 'none';
+  });
+  document.getElementById('dsSendBtn').addEventListener('click', handleSend);
+  document.getElementById('dsChatInput').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') handleSend();
+  });
+
+  // ========== MAIN WEBSITE FUNCTIONS ==========
   function showToast(msg, isError) {
     const toast = document.getElementById('toast');
     toast.textContent = msg;
@@ -799,19 +594,25 @@ Be helpful, concise, and professional. If you don't know, say "Please contact ou
     toast.style.display = 'block';
     setTimeout(() => toast.style.display = 'none', 4000);
   }
+
   function sendWhatsApp(number, message) {
     let clean = number.replace(/[^0-9]/g, '');
     if (!clean.startsWith('256')) clean = '256' + clean;
     window.open(`https://wa.me/${clean}?text=${encodeURIComponent(message)}`, '_blank');
   }
+
   function showSection(section) {
     const sections = ['homeSection', 'talentSection', 'staffingSection', 'candidateSection', 'contactSection'];
-    sections.forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
     document.getElementById(section + 'Section').style.display = 'block';
     if (section === 'talent') renderTalentGallery();
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   }
-  // Talent gallery mock candidates
+
+  // Talent gallery mock data (replace with your own)
   const MOCK_CANDIDATES = [
     { name: "John Mukasa", position: "Chef", experience: "7 years", location: "Kampala CBD", videoLink: "#", cvLink: "#", vetted: true },
     { name: "Sarah Namutebi", position: "Waiter", experience: "3 years", location: "Kansanga", videoLink: "#", cvLink: "#", vetted: true },
@@ -820,6 +621,7 @@ Be helpful, concise, and professional. If you don't know, say "Please contact ou
     { name: "Peter Wasswa", position: "Bartender", experience: "4 years", location: "Gaba", videoLink: "#", cvLink: "#", vetted: true },
     { name: "Aisha Mwanga", position: "Manager", experience: "8 years", location: "Entebbe", videoLink: "#", cvLink: "#", vetted: true }
   ];
+
   function renderTalentGallery() {
     const container = document.getElementById('gallery');
     if (!container) return;
@@ -846,6 +648,7 @@ Be helpful, concise, and professional. If you don't know, say "Please contact ou
     }
     container.innerHTML = html;
   }
+
   function escapeHtml(str) {
     if (!str) return '';
     return str.replace(/[&<>]/g, function(m) {
@@ -855,7 +658,7 @@ Be helpful, concise, and professional. If you don't know, say "Please contact ou
       return m;
     });
   }
-  // Staff request
+
   async function submitStaffRequest() {
     const hotel = document.getElementById('hotelName').value.trim();
     const contact = document.getElementById('contactPerson').value.trim();
@@ -873,7 +676,7 @@ Be helpful, concise, and professional. If you don't know, say "Please contact ou
     showToast('✅ Request sent! We will contact you shortly.', false);
     document.getElementById('staffRequestForm').reset();
   }
-  // Candidate registration
+
   async function submitCandidate() {
     const name = document.getElementById('candName').value.trim();
     const phone = document.getElementById('candPhone').value.trim();
@@ -895,7 +698,7 @@ Be helpful, concise, and professional. If you don't know, say "Please contact ou
     showToast('✅ Registration submitted! Check WhatsApp for confirmation.', false);
     document.getElementById('candidateForm').reset();
   }
-  // Admin
+
   function openAdmin() { document.getElementById('adminModal').style.display = 'flex'; }
   function closeAdmin() { document.getElementById('adminModal').style.display = 'none'; }
   function loginAdmin() {
@@ -907,7 +710,8 @@ Be helpful, concise, and professional. If you don't know, say "Please contact ou
       showToast('Wrong password', true);
     }
   }
-  // Initialize
+
+  // Initialise
   showSection('home');
 </script>
 </body>
