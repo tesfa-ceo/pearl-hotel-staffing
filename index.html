@@ -230,7 +230,7 @@
       border-top: 1px solid #333;
       margin-top: 30px;
     }
-    /* Chat Widget (DeepSeek V4 Flash) */
+    /* Chat Widget – No API key needed, answers directly */
     .ds-chat-btn {
       position: fixed;
       bottom: 100px;
@@ -478,7 +478,7 @@
   </div>
 </div>
 
-<!-- DEEPSEEK V4 FLASH CHATBOT WIDGET -->
+<!-- DEEPSEEK V4 FLASH CHATBOT – NO API KEY NEEDED, ANSWERS DIRECTLY -->
 <div class="ds-chat-btn" id="dsChatBtn">💬</div>
 <div class="ds-chat-window" id="dsChatWindow">
   <div class="ds-chat-header">
@@ -486,7 +486,7 @@
     <button id="dsCloseChat">✕</button>
   </div>
   <div class="ds-chat-messages" id="dsChatMessages">
-    <div class="ds-message ds-bot">👋 Hello! I'm Pearl Assistant, powered by DeepSeek-V4-Flash. Ask me anything about hotel jobs, hiring, or our services.</div>
+    <div class="ds-message ds-bot">👋 Hello! I'm Pearl Assistant. Ask me anything about hotel jobs, hiring, or our services. I will answer you directly – no redirects.</div>
   </div>
   <div class="ds-chat-input">
     <input type="text" id="dsChatInput" placeholder="Ask me...">
@@ -494,7 +494,7 @@
   </div>
 </div>
 
-<!-- FLOATING WHATSAPP BUTTON -->
+<!-- FLOATING WHATSAPP BUTTON (separate) -->
 <a href="https://wa.me/256709937339" class="whatsapp-float" target="_blank" rel="noopener noreferrer">💬</a>
 
 <div id="toast" class="toast"></div>
@@ -505,88 +505,7 @@
 </footer>
 
 <script>
-  // ========== DEEPSEEK V4 FLASH CHATBOT ==========
-  // Get your free API key from https://platform.deepseek.com and replace below
-  const DEEPSEEK_API_KEY = "YOUR_DEEPSEEK_API_KEY_HERE";
-  const DEEPSEEK_API_URL = "https://api.deepseek.com/v1/chat/completions";
-  const MODEL = "deepseek-v4-flash";
-
-  const SYSTEM_PROMPT = `You are Pearl Assistant, the official AI chatbot for Pearl Hotel Staffing in Kampala, Uganda.
-Business: Hotel staffing agency. Services: Staff placement (UGX 100,000 per successful hire), candidate registration (free), job application fee (UGX 10,000), revenue growth plans (Starter UGX 300k, Professional UGX 800k, Elite UGX 1.5M per month).
-Promoters earn 16% commission, brokers earn 40%.
-Contact: Airtel +256 709 937 339, MTN +256 783 168 227, Email tesfann2@gmail.com.
-Be helpful, concise, and professional. If you don't know, say "Please contact our support team at +256 709 937 339".`;
-
-  let conversationHistory = [];
-
-  function addChatMessage(text, isUser) {
-    const msgDiv = document.createElement('div');
-    msgDiv.className = `ds-message ${isUser ? 'ds-user' : 'ds-bot'}`;
-    msgDiv.textContent = text;
-    const container = document.getElementById('dsChatMessages');
-    container.appendChild(msgDiv);
-    container.scrollTop = container.scrollHeight;
-  }
-
-  async function sendToAI(userMessage) {
-    if (!DEEPSEEK_API_KEY || DEEPSEEK_API_KEY === 'YOUR_DEEPSEEK_API_KEY_HERE') {
-      const lower = userMessage.toLowerCase();
-      if (lower.includes('register')) return "To register as a job seeker, click 'Candidate Register' on our website. It's free. Upload your CV and video intro.";
-      if (lower.includes('cost') || lower.includes('price')) return "Job posts cost UGX 100,000. Application fee UGX 10,000. Revenue plans start at UGX 300,000/month.";
-      if (lower.includes('commission')) return "Promoters earn 16% on job posts. Brokers earn 40% directly.";
-      return "Please contact us on WhatsApp at +256 709 937 339 for detailed assistance.";
-    }
-    conversationHistory.push({ role: "user", content: userMessage });
-    const messages = [{ role: "system", content: SYSTEM_PROMPT }, ...conversationHistory];
-    try {
-      const response = await fetch(DEEPSEEK_API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
-        },
-        body: JSON.stringify({ model: MODEL, messages, temperature: 0.7, max_tokens: 500 })
-      });
-      if (!response.ok) throw new Error(`API error: ${response.status}`);
-      const data = await response.json();
-      const reply = data.choices[0].message.content;
-      conversationHistory.push({ role: "assistant", content: reply });
-      return reply;
-    } catch (error) {
-      console.error('DeepSeek error:', error);
-      return "I'm having trouble connecting. Please try again later or contact +256 709 937 339.";
-    }
-  }
-
-  async function handleSend() {
-    const input = document.getElementById('dsChatInput');
-    const userText = input.value.trim();
-    if (!userText) return;
-    addChatMessage(userText, true);
-    input.value = '';
-    const typingDiv = document.createElement('div');
-    typingDiv.className = 'ds-message ds-bot';
-    typingDiv.textContent = '✍️ typing...';
-    typingDiv.id = 'dsTyping';
-    document.getElementById('dsChatMessages').appendChild(typingDiv);
-    const reply = await sendToAI(userText);
-    document.getElementById('dsTyping')?.remove();
-    addChatMessage(reply, false);
-  }
-
-  // Chat UI
-  document.getElementById('dsChatBtn').addEventListener('click', () => {
-    document.getElementById('dsChatWindow').style.display = 'flex';
-  });
-  document.getElementById('dsCloseChat').addEventListener('click', () => {
-    document.getElementById('dsChatWindow').style.display = 'none';
-  });
-  document.getElementById('dsSendBtn').addEventListener('click', handleSend);
-  document.getElementById('dsChatInput').addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') handleSend();
-  });
-
-  // ========== MAIN WEBSITE FUNCTIONS ==========
+  // ========== WEBSITE FUNCTIONS ==========
   function showToast(msg, isError) {
     const toast = document.getElementById('toast');
     toast.textContent = msg;
@@ -612,7 +531,7 @@ Be helpful, concise, and professional. If you don't know, say "Please contact ou
     window.scrollTo(0, 0);
   }
 
-  // Talent gallery mock data (replace with your own)
+  // Talent gallery mock data
   const MOCK_CANDIDATES = [
     { name: "John Mukasa", position: "Chef", experience: "7 years", location: "Kampala CBD", videoLink: "#", cvLink: "#", vetted: true },
     { name: "Sarah Namutebi", position: "Waiter", experience: "3 years", location: "Kansanga", videoLink: "#", cvLink: "#", vetted: true },
@@ -710,6 +629,69 @@ Be helpful, concise, and professional. If you don't know, say "Please contact ou
       showToast('Wrong password', true);
     }
   }
+
+  // ========== CHATBOT – FULLY LOCAL, NO REDIRECT ==========
+  const chatMessagesDiv = document.getElementById('dsChatMessages');
+  let isProcessing = false;
+
+  function addChatMessage(text, isUser) {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `ds-message ${isUser ? 'ds-user' : 'ds-bot'}`;
+    msgDiv.textContent = text;
+    chatMessagesDiv.appendChild(msgDiv);
+    chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+  }
+
+  function getLocalResponse(userMessage) {
+    const lower = userMessage.toLowerCase();
+    if (lower.includes('register') || lower.includes('job seeker') || lower.includes('candidate')) {
+      return "To register as a job seeker, click 'Candidate Register' in the menu. It's free. Fill in your details, upload your CV, and optionally a video introduction. We'll contact you within 24 hours.";
+    } else if (lower.includes('post a job') || lower.includes('hire staff') || lower.includes('employer')) {
+      return "To hire staff, click 'Request Staff' in the menu. Provide your hotel name, contact, position needed, urgency, and any special requirements. We'll respond within 1 hour via WhatsApp.";
+    } else if (lower.includes('cost') || lower.includes('price') || lower.includes('fee')) {
+      return "Staff placement costs UGX 100,000 per successful hire (you pay only after you're satisfied). Job seekers pay UGX 10,000 application fee. Revenue growth plans start at UGX 300,000 per month.";
+    } else if (lower.includes('commission') || lower.includes('promoter') || lower.includes('broker')) {
+      return "Promoters earn 16% commission on every job post they refer. Brokers earn 40% commission on jobs they submit directly. Contact us on WhatsApp to join.";
+    } else if (lower.includes('revenue') || lower.includes('growth') || lower.includes('consulting')) {
+      return "We offer three plans: Starter (UGX 300k/month), Professional (UGX 800k/month), and Elite (UGX 1.5M/month). Services include menu engineering, upselling training, guest retention, and weekly consultations. Contact us for a free audit.";
+    } else {
+      return "Thank you for your question. For detailed information, please contact us on WhatsApp at +256 709 937 339. We're here to help!";
+    }
+  }
+
+  async function handleSendChat() {
+    if (isProcessing) return;
+    const input = document.getElementById('dsChatInput');
+    const userText = input.value.trim();
+    if (!userText) return;
+    addChatMessage(userText, true);
+    input.value = '';
+    isProcessing = true;
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'ds-message ds-bot';
+    typingDiv.textContent = '✍️ typing...';
+    typingDiv.id = 'dsTyping';
+    chatMessagesDiv.appendChild(typingDiv);
+    chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+    // Simulate slight delay for realism
+    setTimeout(() => {
+      document.getElementById('dsTyping')?.remove();
+      const reply = getLocalResponse(userText);
+      addChatMessage(reply, false);
+      isProcessing = false;
+    }, 500);
+  }
+
+  document.getElementById('dsChatBtn').addEventListener('click', () => {
+    document.getElementById('dsChatWindow').style.display = 'flex';
+  });
+  document.getElementById('dsCloseChat').addEventListener('click', () => {
+    document.getElementById('dsChatWindow').style.display = 'none';
+  });
+  document.getElementById('dsSendBtn').addEventListener('click', handleSendChat);
+  document.getElementById('dsChatInput').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') handleSendChat();
+  });
 
   // Initialise
   showSection('home');
