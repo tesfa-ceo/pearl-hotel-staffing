@@ -288,12 +288,12 @@
     <h2 style="color:#e2b13c;">👥 Vetted Talent Gallery</h2>
     <p>All candidates have passed identity and skills verification. Watch their video intros.</p>
     <div id="gallery" class="gallery">
-      <div style="text-align:center; padding:20px;">Loading vetted candidates from Google Sheet...</div>
+      <div style="text-align:center; padding:20px;">Loading candidates from Google Sheet...</div>
     </div>
   </div>
 </div>
 
-<!-- REQUEST STAFF SECTION (WhatsApp notifications) -->
+<!-- REQUEST STAFF SECTION -->
 <div id="staffingSection" style="display:none">
   <div class="card">
     <h2 style="color:#e2b13c;">🏢 Request Staff</h2>
@@ -383,38 +383,37 @@
 </footer>
 
 <script>
-  // ========== GOOGLE SHEET CONFIGURATION ==========
+  // ========== GOOGLE SHEET CONFIGURATION (exact column names) ==========
   const SHEET_ID = "1uAviKqMuIUtyW2X6Ec4TbO4eV2GmvoKsPw4SwS9jSuI";
-  const SHEET_NAME = "pearl hotel staffing_ job application form";
+  const SHEET_NAME = "pearl hotel staffing_ job application form"; // as in your sheet
   const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
 
-  // Display talent gallery from Google Sheet – all entries with name and WhatsApp appear as “vetted”
+  // Map your exact headers to friendly names
   async function fetchAndDisplayTalent() {
     const galleryDiv = document.getElementById('gallery');
     galleryDiv.innerHTML = '<div style="text-align:center; padding:20px;">Loading candidates...</div>';
-    
     try {
       const response = await fetch(SHEET_URL);
       const text = await response.text();
       const jsonText = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
       const data = JSON.parse(jsonText);
-      
       const rows = data.table.rows;
       const headers = data.table.cols.map(col => col.label);
-      
-      const nameIdx = headers.findIndex(h => h && h.toLowerCase().includes('name'));
-      const phoneIdx = headers.findIndex(h => h && h.toLowerCase().includes('whatsapp') || h.toLowerCase().includes('phone'));
-      const positionIdx = headers.findIndex(h => h && h.toLowerCase().includes('position'));
-      const experienceIdx = headers.findIndex(h => h && h.toLowerCase().includes('experience'));
-      const locationIdx = headers.findIndex(h => h && h.toLowerCase().includes('location'));
-      const cvIdx = headers.findIndex(h => h && h.toLowerCase().includes('cv'));
-      const videoIdx = headers.findIndex(h => h && h.toLowerCase().includes('video'));
-      
+
+      // Indexes based on your actual column headers
+      const nameIdx = headers.findIndex(h => h && h.includes('Full Name'));
+      const phoneIdx = headers.findIndex(h => h && h.includes('Phone number'));
+      const positionIdx = headers.findIndex(h => h && h.includes('Position you are applying for?'));
+      const experienceIdx = headers.findIndex(h => h && h.includes('Years of experience'));
+      const locationIdx = headers.findIndex(h => h && h.includes('Location'));
+      const cvIdx = headers.findIndex(h => h && h.includes('Upload CV'));
+      const videoIdx = headers.findIndex(h => h && h.includes('Video link'));
+
       if (nameIdx === -1 || phoneIdx === -1) {
-        galleryDiv.innerHTML = '<div style="text-align:center; color:#e2b13c;">⚠️ Column headers not recognised. Ensure your sheet has "Name" and "WhatsApp" columns.</div>';
+        galleryDiv.innerHTML = '<div style="text-align:center; color:#e2b13c;">⚠️ Column headers not matched. Please update the code.</div>';
         return;
       }
-      
+
       const candidates = [];
       for (let i = 0; i < rows.length; i++) {
         const row = rows[i].c;
@@ -433,12 +432,12 @@
           });
         }
       }
-      
+
       if (candidates.length === 0) {
         galleryDiv.innerHTML = '<div style="text-align:center;">No candidates yet. Be the first to register!</div>';
         return;
       }
-      
+
       let html = '';
       for (const c of candidates) {
         html += `
@@ -461,11 +460,11 @@
       }
       galleryDiv.innerHTML = html;
     } catch (error) {
-      console.error('Error loading Google Sheet:', error);
-      galleryDiv.innerHTML = '<div style="text-align:center; color:#e2b13c;">⚠️ Unable to load data from Google Sheet. Please check sharing settings.</div>';
+      console.error('Sheet error:', error);
+      galleryDiv.innerHTML = '<div style="text-align:center; color:#e2b13c;">⚠️ Unable to load data. Check sheet sharing.</div>';
     }
   }
-  
+
   function escapeHtml(str) {
     if (!str) return '';
     return str.replace(/[&<>]/g, function(m) {
@@ -475,8 +474,8 @@
       return m;
     });
   }
-  
-  // ========== CANDIDATE REGISTRATION (sends WhatsApp) ==========
+
+  // ========== CANDIDATE REGISTRATION ==========
   async function submitCandidate() {
     const name = document.getElementById('candName').value.trim();
     const phone = document.getElementById('candPhone').value.trim();
@@ -486,26 +485,20 @@
     const location = document.getElementById('candLocation').value;
     const skills = document.getElementById('candSkills').value.trim();
     const videoLink = document.getElementById('candVideoLink').value.trim();
-    
     if (!name || !phone || !position || !experience || !location || !skills) {
       showToast('❌ Please fill all required fields', true);
       return;
     }
-    
     const cvFile = document.getElementById('candCV').files[0];
     const cvName = cvFile ? cvFile.name : 'No CV uploaded';
-    
     const message = `📋 NEW CANDIDATE REGISTRATION\nName: ${name}\nPhone: ${phone}\nEmail: ${email || 'Not provided'}\nPosition: ${position}\nExperience: ${experience} years\nLocation: ${location}\nSkills: ${skills}\nVideo: ${videoLink || 'Not provided'}\nCV: ${cvName}`;
-    
     sendWhatsApp('256709937339', message);
     sendWhatsApp(phone, `✅ Hi ${name}, thank you for registering with Pearl Hotel Staffing. We will review your application and contact you within 24 hours if you match any hotel job.`);
     showToast('✅ Registration submitted! Check WhatsApp for confirmation.', false);
-    
     document.getElementById('candidateForm').reset();
-    // Optionally close the modal or stay on the same page
   }
-  
-  // ========== REQUEST STAFF (sends WhatsApp) ==========
+
+  // ========== REQUEST STAFF ==========
   async function submitStaffRequest() {
     const hotel = document.getElementById('hotelName').value.trim();
     const contact = document.getElementById('contactPerson').value.trim();
@@ -513,19 +506,17 @@
     const position = document.getElementById('positionNeeded').value;
     const count = document.getElementById('staffCount').value;
     const urgency = document.getElementById('urgency').value;
-    
     if (!hotel || !contact || !phone || !position || !count || !urgency) {
       showToast('❌ Please fill all required fields', true);
       return;
     }
-    
     const msg = `🏨 NEW STAFF REQUEST\nHotel: ${hotel}\nContact: ${contact}\nPhone: ${phone}\nPosition: ${position} (${count})\nUrgency: ${urgency}`;
     sendWhatsApp('256709937339', msg);
     sendWhatsApp(phone, `✅ Thank you ${contact}. We received your request for ${count} ${position}(s) at ${hotel}. We will contact you within 1 hour. - Pearl Hotel Staffing`);
     showToast('✅ Request sent! We will contact you shortly.', false);
     document.getElementById('staffRequestForm').reset();
   }
-  
+
   // ========== UI HELPERS ==========
   function showToast(msg, isError) {
     const toast = document.getElementById('toast');
@@ -534,13 +525,13 @@
     toast.style.display = 'block';
     setTimeout(() => toast.style.display = 'none', 4000);
   }
-  
+
   function sendWhatsApp(number, message) {
     let clean = number.replace(/[^0-9]/g, '');
     if (!clean.startsWith('256')) clean = '256' + clean;
     window.open(`https://wa.me/${clean}?text=${encodeURIComponent(message)}`, '_blank');
   }
-  
+
   function showSection(section) {
     const sections = ['homeSection', 'talentSection', 'staffingSection', 'candidateSection', 'contactSection'];
     sections.forEach(id => {
@@ -551,7 +542,7 @@
     if (section === 'talent') fetchAndDisplayTalent();
     window.scrollTo(0, 0);
   }
-  
+
   function openAdmin() { document.getElementById('adminModal').style.display = 'flex'; }
   function closeAdmin() { document.getElementById('adminModal').style.display = 'none'; }
   function loginAdmin() {
@@ -563,11 +554,11 @@
       showToast('Wrong password', true);
     }
   }
-  
+
   // Initialise
   showSection('home');
-  
-  // Inject missing CSS for demo logos and testimonials
+
+  // Add missing CSS for demo sections
   const style = document.createElement('style');
   style.textContent = `
     .logo-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin: 20px 0; }
